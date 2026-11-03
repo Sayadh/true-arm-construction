@@ -1,6 +1,36 @@
 <script setup lang="ts">
 import { company } from '~/data/company'
 import { estimatePath } from '~/data/navigation'
+
+/**
+ * The title block "stamps in" after the house elevation finishes drawing
+ * (or quickly, if a real hero photo is shown instead) rather than appearing
+ * with the rest of the hero — it reads as the drawing being signed off.
+ * Gated behind IntersectionObserver so it never fires off-screen on mobile.
+ */
+const captionEl = ref<HTMLElement | null>(null)
+const captionInView = ref(false)
+const captionBaseDelay = company.heroImage ? '0.15s' : '2.2s'
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduceMotion || !captionEl.value) {
+    captionInView.value = true
+    return
+  }
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) {
+        captionInView.value = true
+        observer?.disconnect()
+      }
+    },
+    { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+  )
+  observer.observe(captionEl.value)
+})
+onBeforeUnmount(() => observer?.disconnect())
 </script>
 
 <template>
@@ -61,23 +91,32 @@ import { estimatePath } from '~/data/navigation'
           </div>
           <HeroElevation v-else />
 
-          <!-- Title block, as on a construction drawing -->
-          <figcaption class="mt-4 grid grid-cols-2 border border-slate-line text-[0.8125rem]">
-            <div class="border-b border-r border-slate-line p-3">
-              <span class="block text-stone/55">Project</span>
-              <span class="font-semibold text-paper">Yours</span>
+          <!-- Title block, as on a construction drawing: stamped in cell by cell -->
+          <figcaption
+            ref="captionEl"
+            class="title-block mt-4 grid grid-cols-2 border border-slate-line text-[0.8125rem]"
+            :class="{ 'in-view': captionInView }"
+            :style="{ '--cap-base': captionBaseDelay }"
+          >
+            <div class="cell border-b border-r border-slate-line p-3" style="--i: 0">
+              <span class="scan" aria-hidden="true" />
+              <span class="label block text-stone/55">Project</span>
+              <span class="value font-semibold text-paper">Yours</span>
             </div>
-            <div class="border-b border-slate-line p-3">
-              <span class="block text-stone/55">Location</span>
-              <span class="font-semibold text-paper">{{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}</span>
+            <div class="cell border-b border-slate-line p-3" style="--i: 1">
+              <span class="scan" aria-hidden="true" />
+              <span class="label block text-stone/55">Location</span>
+              <span class="value font-semibold text-paper">{{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}</span>
             </div>
-            <div class="border-r border-slate-line p-3">
-              <span class="block text-stone/55">Contractor</span>
-              <span class="font-semibold text-paper">{{ company.name }}</span>
+            <div class="cell border-r border-slate-line p-3" style="--i: 2">
+              <span class="scan" aria-hidden="true" />
+              <span class="label block text-stone/55">Contractor</span>
+              <span class="value font-semibold text-paper">{{ company.name }}</span>
             </div>
-            <div class="p-3">
-              <span class="block text-stone/55">License</span>
-              <span class="font-semibold text-paper">#{{ company.license.number }}</span>
+            <div class="cell p-3" style="--i: 3">
+              <span class="scan" aria-hidden="true" />
+              <span class="label block text-stone/55">License</span>
+              <span class="value font-semibold text-paper">#{{ company.license.number }}</span>
             </div>
           </figcaption>
         </figure>
@@ -85,3 +124,41 @@ import { estimatePath } from '~/data/navigation'
     </div>
   </section>
 </template>
+
+<style scoped>
+@media (prefers-reduced-motion: no-preference) {
+  /* Frame placed first, empty; cells "plotted" in one by one after. */
+  .title-block { opacity: 0; }
+  .title-block.in-view { animation: frame-in 0.3s ease-out var(--cap-base, 0s) forwards; }
+
+  .cell { position: relative; overflow: hidden; }
+  .cell .label,
+  .cell .value {
+    display: block;
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  .cell .scan {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgb(184 137 87 / 0.4), transparent);
+    transform: translateX(-100%);
+  }
+
+  .title-block.in-view .cell .scan {
+    animation: sweep 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: calc(var(--cap-base, 0s) + var(--i) * 0.14s);
+  }
+  .title-block.in-view .cell .label {
+    animation: cell-in 0.4s ease-out forwards;
+    animation-delay: calc(var(--cap-base, 0s) + var(--i) * 0.14s + 0.18s);
+  }
+  .title-block.in-view .cell .value {
+    animation: cell-in 0.4s ease-out forwards;
+    animation-delay: calc(var(--cap-base, 0s) + var(--i) * 0.14s + 0.26s);
+  }
+}
+@keyframes frame-in { to { opacity: 1; } }
+@keyframes sweep { to { transform: translateX(100%); } }
+@keyframes cell-in { to { opacity: 1; transform: none; } }
+</style>
