@@ -53,6 +53,18 @@ export const company: CompanyConfig = {
 
   heroImage: null, // e.g. { src: '/images/hero/home-hero.jpg', alt: '...', width: 2400, height: 1600 }
 
+  // TODO(client): add finished-project photos here to put them behind the homepage
+  // hero as a slow auto-rotating background (works with 1 photo too — just no rotation).
+  // 1. Drop the files in public/images/hero/slides/ (e.g. slide-1.jpg, slide-2.jpg).
+  // 2. List them below, widest side first works best — these get cropped to fill
+  //    the hero on every screen size, so a clear, simply-composed photo (one job
+  //    site or finished room, not a busy collage) reads best.
+  // heroSlides: [
+  //   { src: '/images/hero/slides/slide-1.jpg', alt: 'Finished kitchen remodel in Sacramento, CA' },
+  //   { src: '/images/hero/slides/slide-2.jpg', alt: 'New fence and gate installation' }
+  // ],
+  heroSlides: [],
+
   defaultOgImage: '/images/social/og-default.png'
 }
 

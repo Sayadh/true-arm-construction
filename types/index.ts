@@ -71,6 +71,13 @@ export interface CompanyConfig {
   }
   /** Optional hero photograph. When null, the drawn elevation graphic is shown. */
   heroImage: ImageAsset | null
+  /**
+   * Optional background slideshow of completed work, shown full-bleed behind the
+   * whole homepage hero (mobile and desktop) with a dark scrim over it for text
+   * contrast. Empty by default — the hero falls back to its plain dark background.
+   * With 2+ photos it auto-advances; with exactly 1 it's shown static.
+   */
+  heroSlides: ImageAsset[]
   defaultOgImage: string
 }
 

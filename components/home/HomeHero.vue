@@ -35,6 +35,7 @@ onBeforeUnmount(() => observer?.disconnect())
 
 <template>
   <section class="on-dark relative overflow-hidden bg-ink text-stone">
+    <HeroSlideshow :slides="company.heroSlides" />
     <div class="graph-paper-dark absolute inset-0" aria-hidden="true" />
     <div class="wrap relative grid gap-12 pb-16 pt-12 sm:pt-16 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-20">
       <div class="flex flex-col justify-center lg:col-span-7">
