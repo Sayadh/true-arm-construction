@@ -62,9 +62,11 @@ docs/            ← deployment, forms, analytics, assets, business checklist
 
 ## Routes
 
-`/` · `/services` · `/services/{home-remodeling, bathroom-remodeling, tile-installation, interior-painting, exterior-painting, fence-repair, siding, wall-installation, power-washing, window-services, gazebo-construction, new-construction}` · `/projects` · `/projects/[slug]` (only published projects) · `/about` · `/licenses-certifications` · `/service-areas` · `/faq` · `/resources` · `/resources/[slug]` · `/contact` · `/free-estimate` (project planner) · `/privacy-policy` · custom 404.
+`/` · `/services` · `/services/{home-remodeling, kitchen-remodeling, bathroom-remodeling, room-additions, flooring-installation, epoxy-flooring, tile-installation, baseboard-installation, interior-painting, exterior-painting, power-washing, fences-gates, drywall-repair, dry-rot-repair, handyman-services}` · `/projects` · `/projects/[slug]` (only published projects) · `/about` · `/licenses-certifications` · `/service-areas` · `/faq` · `/resources` · `/resources/[slug]` · `/contact` · `/free-estimate` (project planner) · `/privacy-policy` · custom 404.
 
-Google Ads landing pages: `/services/home-remodeling`, `/services/bathroom-remodeling`, `/services/tile-installation`, `/services/new-construction`.
+Google Ads landing pages: `/services/home-remodeling` (+ `/services/kitchen-remodeling`, `/services/bathroom-remodeling`), `/services/tile-installation`. The third campaign (originally New Construction, which was removed) needs a new destination, e.g. `/services/room-additions`.
+
+Old URLs of removed or renamed services are 301-redirected in `public/_redirects`.
 
 ## Content rules (important)
 

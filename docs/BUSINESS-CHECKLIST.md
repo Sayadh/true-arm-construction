@@ -11,10 +11,13 @@ Items the client must supply or confirm before launch. Edit the listed file, the
 - [ ] **Privacy policy** reviewed → `pages/privacy-policy.vue`
 
 ## Content to confirm
-- [ ] Exact scope of **"Wall Install"** (drywall? framing? partitions?) → `data/services.ts` `wall-installation`
-- [ ] Exact scope of **"Window"** (repair? replacement? trim?) → `window-services`
-- [ ] Siding materials offered and whether full re-siding is offered → `siding`
-- [ ] Whether residential and commercial new construction are both offered → `new-construction`
+- [ ] Drywall: repair only, or also new drywall installation? (formerly "Wall Install") → `data/services.ts` `drywall-repair`
+- [ ] Flooring materials actually installed (LVP, laminate, engineered wood, tile) → `flooring-installation`
+- [ ] Epoxy systems offered (solid, flake) and spaces (garage, commercial) → `epoxy-flooring`
+- [ ] Fence materials offered (wood, vinyl, chain link, metal?) and gate types → `fences-gates`
+- [ ] Room additions: typical scope and whether plans/permits are handled in-house → `room-additions`
+- [ ] Phone numbers to publish: (213) 248-1760 call/text, (213) 248-1273 text → `phone`
+- [ ] Facebook page URL → `social.facebook`
 - [ ] Additional service cities, if any → `data/areas.ts` (`enabled: true`)
 - [ ] Business hours (optional) → `hours`
 - [ ] Public business address (only if the company wants one shown) → `address`

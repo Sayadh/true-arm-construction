@@ -13,8 +13,3 @@ export const primaryNav: NavLink[] = [
 
 export const estimatePath = '/free-estimate'
 
-/** Extra links shown inside the services menu for the construction group */
-export const constructionMenuExtras: NavLink[] = [
-  { label: 'Residential construction', to: '/services/new-construction#residential' },
-  { label: 'Commercial construction', to: '/services/new-construction#commercial' }
-]

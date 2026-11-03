@@ -1,12 +1,14 @@
 import type { FaqCategory, FaqCategoryId, FaqItem } from '../types'
 
 export const faqCategories: FaqCategory[] = [
-  { id: 'general', name: 'General construction' },
+  { id: 'general', name: 'General' },
+  { id: 'kitchen', name: 'Kitchen remodeling' },
   { id: 'bathroom', name: 'Bathroom remodeling' },
-  { id: 'tile', name: 'Tile installation' },
+  { id: 'additions', name: 'Room additions' },
+  { id: 'flooring', name: 'Flooring & tile' },
   { id: 'painting', name: 'Interior & exterior painting' },
-  { id: 'exterior', name: 'Exterior improvements' },
-  { id: 'construction', name: 'New construction' },
+  { id: 'exterior', name: 'Fences, gates & pressure washing' },
+  { id: 'repairs', name: 'Repairs & handyman' },
   { id: 'estimates', name: 'Estimates & project planning' }
 ]
 
@@ -22,7 +24,7 @@ export const faqs: FaqItem[] = [
     featured: true,
     question: 'What construction services do you offer in Sacramento?',
     answer: [
-      'We offer bathroom remodeling, tile installation, interior and exterior painting, fence repair, siding services, wall installation, pressure washing, window services, gazebo construction, and new construction. See the [full list of services](/services) for details on each one.'
+      'We offer home, kitchen, and bathroom remodeling, room additions, flooring and epoxy flooring, tile and baseboard installation, interior and exterior painting, pressure washing, fences and gates, drywall repair, dry rot repair, and handyman services. See the [full list of services](/services) for details on each one.'
     ]
   },
   {
@@ -90,10 +92,10 @@ export const faqs: FaqItem[] = [
     ]
   },
 
-  // ── Tile
+  // ── Flooring & tile
   {
     id: 'tile-cost',
-    category: 'tile',
+    category: 'flooring',
     featured: true,
     question: 'What affects tile installation pricing?',
     answer: [
@@ -102,7 +104,7 @@ export const faqs: FaqItem[] = [
   },
   {
     id: 'tile-over-tile',
-    category: 'tile',
+    category: 'flooring',
     question: 'Can new tile be installed over existing tile?',
     answer: [
       'Sometimes, but it is often not the best option. Tiling over tile raises the floor height, can cause problems at doors and transitions, and hides any issues with the original installation. In wet areas such as showers, removing the old tile lets us confirm the waterproofing. We will recommend an approach after seeing the surface.'
@@ -110,7 +112,7 @@ export const faqs: FaqItem[] = [
   },
   {
     id: 'tile-type',
-    category: 'tile',
+    category: 'flooring',
     question: 'What type of tile is best for bathroom floors?',
     answer: [
       'Porcelain is a common choice for bathroom floors because it absorbs very little water and is durable. Look for a tile rated for floor use with adequate slip resistance for wet areas. Natural stone can also work but usually needs sealing and more careful cleaning.'
@@ -143,7 +145,7 @@ export const faqs: FaqItem[] = [
     ]
   },
 
-  // ── Exterior
+  // ── Fences, gates & pressure washing
   {
     id: 'fence-repair-or-replace',
     category: 'exterior',
@@ -153,47 +155,118 @@ export const faqs: FaqItem[] = [
     ]
   },
   {
-    id: 'pressure-wash-siding',
+    id: 'pressure-wash-walls',
     category: 'exterior',
-    question: 'Is pressure washing safe for siding?',
+    question: 'Is pressure washing safe for my house exterior?',
     answer: [
-      'It can be, with the right method. Lower pressure and a gentler technique are used for painted surfaces, wood, and many siding materials to avoid damage or forcing water behind the siding. Concrete and masonry can usually take higher pressure.'
+      'It can be, with the right method. Lower pressure and a gentler technique are used for painted surfaces, wood, and stucco to avoid damage or forcing water into the walls. Concrete and masonry can usually take higher pressure.'
     ]
   },
   {
-    id: 'gazebo-permit',
+    id: 'fence-new',
     category: 'exterior',
-    question: 'Do I need a permit for a gazebo?',
+    featured: true,
+    question: 'Do you build new fences and gates, or only repair them?',
     answer: [
-      `It depends on the size, height, location on your lot, and whether electrical work is included. Your HOA may also have rules. Check with the [City of Sacramento Building Division](${CITY_BUILDING}) or [Sacramento County](${COUNTY_BUILDING}), and we will review it during your estimate.`
+      'Both. We install new fences and gates, replace old fences, and repair posts, boards, rails, and sagging gates. See [Fences & Gates](/services/fences-gates) for details.'
+    ]
+  },
+  {
+    id: 'fence-permit',
+    category: 'exterior',
+    question: 'Do I need a permit for a new fence?',
+    answer: [
+      `It depends on the fence height and location. Taller fences, and fences in front yards or near streets, may be regulated. Check with the [City of Sacramento Building Division](${CITY_BUILDING}) or [Sacramento County](${COUNTY_BUILDING}), and confirm any HOA rules. Underground utilities should be marked before digging by contacting [California 811](https://california811.org/).`
     ]
   },
 
-  // ── New construction
+  // ── Kitchen
   {
-    id: 'new-construction-start',
-    category: 'construction',
+    id: 'kitchen-cost',
+    category: 'kitchen',
     featured: true,
-    question: 'What should homeowners know before starting new construction?',
+    question: 'What affects the cost of a kitchen remodel?',
     answer: [
-      'New construction typically requires plans from licensed design professionals, a building permit, and inspections at several stages. Early decisions about size, layout, and materials have the biggest effect on cost and schedule.',
-      'Before you contact a contractor, gather what you have: property details, any drawings, a budget range, and your target timing. It is fine to be early in the process. The first conversation is about understanding where you are.'
+      'The biggest factors are whether the layout changes, the type and number of cabinets, countertop material, and whether plumbing, gas, or electrical lines move. Flooring, backsplash, lighting, and the condition of walls and subfloor after demolition also play a part. Your estimate is based on your kitchen and your selections.'
     ]
   },
   {
-    id: 'new-construction-plans',
-    category: 'construction',
-    question: 'Do I need plans before contacting you?',
+    id: 'kitchen-time',
+    category: 'kitchen',
+    question: 'How long will my kitchen be out of service?',
     answer: [
-      'No. You can contact us at the idea stage, with preliminary sketches, or with completed drawings. Tell us where you are in the process so we can plan the next step.'
+      'It depends on the scope and on lead times for cabinets and countertops, which are often measured after cabinets are installed. A refresh that keeps the layout is much shorter than a full remodel. We give you a timeline for your project with the estimate, and ordering long-lead items early helps keep it on track.'
+    ]
+  },
+
+  // ── Room additions
+  {
+    id: 'addition-permit',
+    category: 'additions',
+    featured: true,
+    question: 'Does a room addition need a permit?',
+    answer: [
+      `Yes. A room addition creates new habitable space, so it generally requires plans, a building permit, and inspections at several stages. Requirements depend on the jurisdiction; see the [City of Sacramento Building Division](${CITY_BUILDING}) or [Sacramento County Building Permits & Inspection](${COUNTY_BUILDING}).`
     ]
   },
   {
-    id: 'new-construction-commercial',
-    category: 'construction',
-    question: 'Do you take on commercial construction?',
+    id: 'addition-start',
+    category: 'additions',
+    question: 'What should I think about before planning an addition?',
     answer: [
-      'Yes, we work on commercial properties as well as residential ones. Commercial projects involve additional considerations, such as occupancy and accessibility requirements, which we discuss during the initial consultation.'
+      'Start with how the new room will be used, since that drives size, layout, windows, and whether plumbing is needed. Then consider your lot: setbacks, easements, and HOA rules can affect where an addition can go. It is fine to contact us at the idea stage; the first conversation is about understanding your goals and your property.'
+    ]
+  },
+
+  {
+    id: 'flooring-type',
+    category: 'flooring',
+    question: 'What type of flooring is best for kitchens and bathrooms?',
+    answer: [
+      'Rooms with water need moisture-tolerant flooring. Luxury vinyl plank and porcelain tile are common choices. Laminate and engineered wood are better suited to drier areas unless the product is specifically rated for moisture.'
+    ]
+  },
+  {
+    id: 'epoxy-garage',
+    category: 'flooring',
+    question: 'How long does an epoxy garage floor last, and when can I park on it?',
+    answer: [
+      'Durability depends mostly on surface preparation and the coating system. A properly prepared and applied coating holds up well to everyday garage use. Cure times are set by the coating manufacturer, with light foot traffic allowed before vehicles. We give you the schedule for your specific system.'
+    ]
+  },
+  {
+    id: 'baseboards-flooring',
+    category: 'flooring',
+    question: 'Should I replace baseboards when I install new flooring?',
+    answer: [
+      'Often, yes. New flooring can change the floor height, and removing baseboards allows a cleaner installation along the walls. Replacing them at the same time usually gives a better finished look than reinstalling old trim.'
+    ]
+  },
+
+  // ── Repairs
+  {
+    id: 'dry-rot-what',
+    category: 'repairs',
+    featured: true,
+    question: 'What is dry rot, and how is it repaired?',
+    answer: [
+      'Dry rot is wood decay caused by fungi after wood stays damp for a long time. Common spots are fascia boards, window sills, door frames, and exterior trim. Repair means cutting out all the damaged wood, replacing it with sound material, and sealing and painting it. Addressing the moisture source helps prevent it from coming back.'
+    ]
+  },
+  {
+    id: 'drywall-match',
+    category: 'repairs',
+    question: 'Can you match the texture on my walls after a drywall repair?',
+    answer: [
+      'Common textures such as orange peel and knockdown can usually be matched. Blending also depends on paint: touching up a small patch can show a difference in sheen, so painting the full wall section is sometimes the better option.'
+    ]
+  },
+  {
+    id: 'handyman-list',
+    category: 'repairs',
+    question: 'Do you take small jobs?',
+    answer: [
+      'Yes. Send us your list of small repairs and installations, ideally with photos. Grouping several items into one visit is usually the most efficient way to get them done.'
     ]
   },
 

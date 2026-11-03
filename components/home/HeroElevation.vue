@@ -29,7 +29,7 @@
       <path class="ln" d="M274 384 h0.1" stroke-width="3" />
       <!-- floor line -->
       <path class="ln" d="M75 345 H100 M192 345 H236 M284 345 H325" stroke-opacity=".25" stroke-dasharray="3 5" />
-      <!-- wing siding + window -->
+      <!-- wing cladding lines + window -->
       <path class="ln" d="M325 336 H432 M325 352 H432 M325 368 H432 M325 384 H432 M325 400 H432" stroke-opacity=".18" />
       <rect class="ln" x="352" y="344" width="54" height="40" fill="#101719" />
     </g>

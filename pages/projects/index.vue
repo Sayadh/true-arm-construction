@@ -4,7 +4,7 @@ import { projectCategories, publishedProjects } from '~/data/projects'
 
 const title = 'Our Projects | Construction & Remodeling Work in Sacramento'
 const description =
-  'Browse completed construction and remodeling projects by True Arm Construction in Sacramento, including bathrooms, tile, painting, siding, and more.'
+  'Browse completed construction and remodeling projects by True Arm Construction in Sacramento, including kitchens, bathrooms, flooring, painting, fences, and more.'
 const path = '/projects'
 // While no real projects are published, keep this page out of search results.
 usePageSeo({ title, description, path, noindex: publishedProjects.length === 0 })

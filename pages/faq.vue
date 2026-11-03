@@ -3,7 +3,7 @@ import { faqCategories, faqs, faqsByCategory } from '~/data/faqs'
 
 const title = 'Construction & Remodeling FAQ | Sacramento'
 const description =
-  'Answers to common questions about remodeling, tile, painting, exterior work, new construction, permits, and estimates in Sacramento.'
+  'Answers to common questions about remodeling, room additions, flooring, painting, fences, repairs, permits, and estimates in Sacramento.'
 const path = '/faq'
 usePageSeo({ title, description, path })
 useJsonLd([

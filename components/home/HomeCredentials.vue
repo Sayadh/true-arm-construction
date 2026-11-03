@@ -8,7 +8,7 @@ import { publishedCredentials } from '~/data/credentials'
       <div class="lg:col-span-5">
         <h2 id="cred-heading" class="text-h2">Licensed by the State of California</h2>
         <p class="mt-5 text-lead text-muted">
-          A Class B General Building Contractor license covers projects that involve two or more building trades, such as remodels and new construction.
+          A Class B General Building Contractor license covers projects that involve two or more building trades, such as remodels and room additions.
           We publish our license number so you can check it yourself.
         </p>
         <div class="mt-8">

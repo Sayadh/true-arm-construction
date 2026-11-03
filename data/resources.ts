@@ -5,7 +5,7 @@ import type { ResourceArticle } from '../types'
  * Planned topics (not yet written, not published):
  *  - Choosing materials for a tile installation project
  *  - Planning interior and exterior painting
- *  - What to consider before starting new construction
+ *  - What to consider before planning a room addition
  */
 export const resources: ResourceArticle[] = [
   {
@@ -16,7 +16,7 @@ export const resources: ResourceArticle[] = [
     published: true,
     publishedOn: '2026-11-01',
     readingMinutes: 6,
-    relatedServices: ['home-remodeling', 'bathroom-remodeling', 'new-construction'],
+    relatedServices: ['home-remodeling', 'kitchen-remodeling', 'room-additions'],
     body: [
       {
         paragraphs: [

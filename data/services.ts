@@ -1,9 +1,10 @@
 import type { Service, ServiceGroup, ServiceGroupId } from '../types'
 
 /**
- * Service catalogue. Source: client-supplied list
- * (Tiles, Bathroom, Interior Paint, Exterior Paint, Fence Repair, Siding,
- *  Wall Install, Power Wash, Window, Gazebo) + reported ground-up construction.
+ * Service catalogue. Source: client-confirmed categories (Interior & Exterior Painting,
+ * Home Remodeling, Bathroom Remodeling, Room Additions, Fences & Gates) and the
+ * company business card (kitchen, flooring, tile, handyman, epoxy, baseboards,
+ * drywall repair, dry rot repair, power wash).
  *
  * Copy is written to be accurate without claiming unconfirmed specialties.
  * Items marked with `scopeNote` need the client to confirm exact scope.
@@ -13,28 +14,23 @@ import type { Service, ServiceGroup, ServiceGroupId } from '../types'
 export const serviceGroups: ServiceGroup[] = [
   {
     id: 'remodeling',
-    name: 'Remodeling & interiors',
-    description: 'Bathrooms, interior painting, walls, and windows.'
+    name: 'Remodeling & additions',
+    description: 'Kitchens, bathrooms, and room additions.'
   },
   {
-    id: 'tile',
-    name: 'Tile & surfaces',
-    description: 'Floor, wall, and shower tile installation.'
+    id: 'flooring',
+    name: 'Flooring & tile',
+    description: 'Flooring, epoxy, tile, and baseboards.'
   },
   {
     id: 'exterior',
-    name: 'Exterior & property',
-    description: 'Painting, siding, fences, and pressure washing.'
+    name: 'Painting & exterior',
+    description: 'Painting, pressure washing, fences and gates.'
   },
   {
-    id: 'outdoor',
-    name: 'Outdoor structures',
-    description: 'Gazebos and backyard structures.'
-  },
-  {
-    id: 'construction',
-    name: 'General & new construction',
-    description: 'Ground-up residential and commercial projects.'
+    id: 'repairs',
+    name: 'Repairs & handyman',
+    description: 'Drywall, dry rot, and small repairs.'
   }
 ]
 
@@ -52,10 +48,10 @@ export const services: Service[] = [
     adsLanding: true,
     seoTitle: `Home Remodeling Contractor in ${SAC}, CA | True Arm Construction`,
     metaDescription:
-      'Home remodeling in Sacramento, CA: bathrooms, tile, interior painting, walls, and windows. Licensed Class B contractor. Request a free estimate.',
+      'Home remodeling in Sacramento, CA: kitchens, bathrooms, flooring, tile, and room additions. Licensed Class B contractor. Request a free estimate.',
     heroTitle: 'Home remodeling in Sacramento',
     heroLead:
-      'Update the rooms you use every day. We handle bathroom remodels, tile, interior painting, and related improvements for Sacramento homes and commercial spaces, with one contractor coordinating the work.',
+      'Update the rooms you use every day. We handle kitchen and bathroom remodels, flooring, tile, painting, and related improvements for Sacramento homes and commercial spaces, with one contractor coordinating the work.',
     cardText: 'Room updates and renovations coordinated by one licensed contractor.',
     intro: [
       'A remodel usually starts with one problem: a bathroom that no longer works for your family, worn flooring, or rooms that feel dated. Good remodeling work solves that problem without creating new ones, which comes down to accurate scope, clear decisions up front, and careful work on site.',
@@ -63,11 +59,11 @@ export const services: Service[] = [
     ],
     scopeTitle: 'Remodeling work we take on',
     scope: [
+      { title: 'Kitchen remodels', text: 'Cabinets, countertops, backsplash, flooring, and layout updates.' },
       { title: 'Bathroom remodels', text: 'From vanity and fixture updates to full layout changes, including tile and shower work.' },
-      { title: 'Tile installation', text: 'Floors, walls, backsplashes, and shower surrounds in porcelain, ceramic, and natural stone.' },
-      { title: 'Interior painting', text: 'Walls, ceilings, trim, and doors, with the surface prep that makes paint last.' },
-      { title: 'Wall work', text: 'Wall installation projects scoped to your space. Ask us about your specific project.' },
-      { title: 'Window services', text: 'Window-related improvements discussed case by case during your estimate.' },
+      { title: 'Room additions', text: 'Extra bedrooms, family rooms, and living space added to your home.' },
+      { title: 'Flooring and tile', text: 'Vinyl plank, laminate, engineered wood, tile, and epoxy floors.' },
+      { title: 'Painting, drywall, and trim', text: 'Interior painting, drywall repair, and baseboards that finish each room.' },
       { title: 'Multi-room updates', text: 'Combining several improvements into one planned project to reduce disruption.' }
     ],
     sections: [
@@ -107,10 +103,87 @@ export const services: Service[] = [
       'Regular communication while work is underway',
       'A final walkthrough together'
     ],
-    related: ['bathroom-remodeling', 'tile-installation', 'interior-painting', 'wall-installation'],
+    related: ['kitchen-remodeling', 'bathroom-remodeling', 'room-additions', 'flooring-installation'],
     faqCategory: 'general',
     faqIds: ['prepare-remodel', 'permits', 'estimate-info'],
-    projectCategory: 'bathroom',
+    projectCategory: 'remodeling',
+    images: []
+  },
+
+  // ───────────────────────── Kitchen ─────────────────────────
+  {
+    slug: 'kitchen-remodeling',
+    name: 'Kitchen Remodeling',
+    shortName: 'Kitchen remodeling',
+    group: 'remodeling',
+    enabled: true,
+    icon: 'CookingPot',
+    seoTitle: `Kitchen Remodeling in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Kitchen remodeling in Sacramento: cabinets, countertops, backsplash, flooring, and layout updates. Licensed Class B contractor. Free estimates.',
+    heroTitle: 'Kitchen remodeling in Sacramento',
+    heroLead:
+      'A kitchen that fits how you cook and live. We plan and coordinate kitchen updates, from new cabinets and countertops to full remodels, for Sacramento homes and commercial spaces.',
+    cardText: 'Cabinets, countertops, backsplash, flooring, and layout updates.',
+    intro: [
+      'The kitchen is usually the busiest room in the house and one of the most involved to remodel. Cabinets, countertops, plumbing, electrical, lighting, flooring, and finishes all have to come together in the right order.',
+      'True Arm Construction holds a California Class B General Building Contractor license (#1128503), which covers projects involving multiple building trades. We start by understanding how you use your kitchen today, then put together a scope and estimate you can review before work begins.'
+    ],
+    scopeTitle: 'Kitchen remodeling scopes',
+    scope: [
+      { title: 'Full kitchen remodel', text: 'Taking the kitchen down to the walls and rebuilding it with a new layout and finishes.' },
+      { title: 'Cabinet updates', text: 'New cabinets or updates to existing ones, including hardware and storage solutions.' },
+      { title: 'Countertops', text: 'Replacing worn countertops as part of a refresh or a larger remodel.' },
+      { title: 'Backsplash tile', text: 'Tile backsplashes with clean cuts around outlets, windows, and cabinets.' },
+      { title: 'Kitchen flooring', text: 'Durable flooring suited to spills, foot traffic, and daily cleaning.' },
+      { title: 'Paint and finishing', text: 'Walls, ceilings, trim, and the details that complete the room.' }
+    ],
+    sections: [
+      {
+        title: 'Start with how you use the kitchen',
+        body: [
+          'Before choosing finishes, think about what is not working today: not enough counter space, storage that is hard to reach, poor lighting, or a layout that makes two people bump into each other. Those answers shape the layout, and the layout drives most of the cost and schedule.',
+          'Keeping the sink, range, and refrigerator in their current locations is usually simpler than moving them, because relocating them can mean moving plumbing, gas, or electrical lines.'
+        ]
+      },
+      {
+        title: 'Decisions with long lead times',
+        body: [
+          'Cabinets, countertops, and some appliances can take time to order and fabricate. Countertops are often measured only after cabinets are installed. Settling these selections early helps keep the project moving once demolition starts.'
+        ]
+      },
+      {
+        title: 'Living without a kitchen',
+        body: [
+          'During a full remodel, the kitchen is out of service for a period of time. Many households set up a temporary space with a microwave, coffee maker, and a small refrigerator. We discuss the sequence of work with you so you can plan ahead.'
+        ]
+      },
+      {
+        title: 'Permits',
+        body: [
+          'Kitchen remodels that move plumbing, add circuits, or change walls usually require a permit; replacing cabinets or countertops in place often does not. Requirements depend on the scope and jurisdiction. See the [City of Sacramento Building Division](https://www.cityofsacramento.gov/community-development/building) or [Sacramento County Building Permits & Inspection](https://development.saccounty.gov/us/en/building-permits-inspection/frequently-asked-questions.html), and we review it during your estimate.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Keeping the existing layout or changing it',
+      'Cabinet type, size, and quantity',
+      'Countertop material and edge details',
+      'Plumbing, gas, and electrical changes',
+      'Flooring, backsplash, and lighting selections',
+      'Condition of walls and subfloor after demolition'
+    ],
+    expectations: [
+      'Talk through how you use the kitchen and what you want to change',
+      'Site visit to measure and review existing conditions',
+      'Scope, material options, and estimate',
+      'Selections confirmed and long-lead items ordered',
+      'Demolition, rough work, cabinets, countertops, then finishes',
+      'Final walkthrough and cleanup'
+    ],
+    related: ['bathroom-remodeling', 'flooring-installation', 'tile-installation', 'home-remodeling'],
+    faqCategory: 'kitchen',
+    projectCategory: 'kitchen',
     images: []
   },
 
@@ -186,9 +259,221 @@ export const services: Service[] = [
       'Demolition, rough work, waterproofing, then finishes',
       'Final walkthrough and cleanup'
     ],
-    related: ['tile-installation', 'interior-painting', 'home-remodeling', 'wall-installation'],
+    related: ['tile-installation', 'kitchen-remodeling', 'flooring-installation', 'drywall-repair'],
     faqCategory: 'bathroom',
     projectCategory: 'bathroom',
+    images: []
+  },
+
+  // ───────────────────────── Room additions ─────────────────────────
+  {
+    slug: 'room-additions',
+    name: 'Room Additions',
+    shortName: 'Room additions',
+    group: 'remodeling',
+    enabled: true,
+    icon: 'HousePlus',
+    seoTitle: `Room Additions in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Room additions in Sacramento: add a bedroom, family room, or extra living space to your home. Licensed Class B contractor. Request a free estimate.',
+    heroTitle: 'Room additions in Sacramento',
+    heroLead:
+      'Need more space without moving? A room addition extends your home with a new bedroom, family room, office, or larger living area, planned to fit your property and blend with the existing house.',
+    cardText: 'Add a bedroom, family room, or extra living space.',
+    intro: [
+      'A room addition is one of the most practical ways to gain space while staying in a home and neighborhood you already like. It is also a construction project in its own right: new foundation, framing, roofing, and systems that have to connect cleanly to the existing house.',
+      'True Arm Construction holds a California Class B General Building Contractor license (#1128503), the classification for projects that involve multiple building trades. Every addition starts with a consultation about how you want to use the new space and what your property allows.'
+    ],
+    scopeTitle: 'How a room addition comes together',
+    scope: [
+      { title: 'Consultation and site review', text: 'Your goals, budget range, and a look at the lot, the house, and where an addition could go.' },
+      { title: 'Design and plans', text: 'Coordinating with design professionals on plans that fit your needs and local requirements.' },
+      { title: 'Permits', text: 'Building permits and inspections required for new habitable space.' },
+      { title: 'Foundation and framing', text: 'A new foundation and structure that tie into the existing house.' },
+      { title: 'Roof and exterior tie-in', text: 'Roofing and exterior finishes that blend the addition with the rest of the home.' },
+      { title: 'Interior finishes', text: 'Drywall, flooring, trim, paint, and the details that make the room feel original to the house.' }
+    ],
+    sections: [
+      {
+        title: 'What to think about first',
+        body: [
+          'Start with how the new room will be used: a bedroom, a home office, a larger family room, or a primary suite. Use affects size, layout, windows, heating and cooling, and whether plumbing is needed.',
+          'Your lot also matters. Setbacks from property lines, easements, lot coverage limits, and HOA rules can affect where an addition can go and how large it can be.'
+        ]
+      },
+      {
+        title: 'Plans, permits, and inspections',
+        body: [
+          'Room additions create new habitable space, so they generally require plans and a building permit, with inspections at several stages. California energy code (Title 24) requirements also apply to new conditioned space. Requirements depend on the jurisdiction; see the [City of Sacramento Building Division](https://www.cityofsacramento.gov/community-development/building) or [Sacramento County Building Permits & Inspection](https://development.saccounty.gov/us/en/building-permits-inspection/frequently-asked-questions.html).'
+        ]
+      },
+      {
+        title: 'Cost and timeline',
+        body: [
+          'Size, foundation type, roof tie-in, plumbing and electrical needs, finish selections, design and permit review times, and inspection scheduling all affect cost and schedule. We give you an estimate based on your specific scope and explain the assumptions behind it.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Size and use of the new space',
+      'Foundation type and site conditions',
+      'How the roof and walls connect to the existing house',
+      'Plumbing, electrical, heating and cooling needs',
+      'Design, engineering, and permit requirements',
+      'Interior and exterior finish selections'
+    ],
+    expectations: [
+      'Consultation about your goals and property',
+      'Site review and early feasibility questions',
+      'Plans, scope, and estimate',
+      'Permits and scheduling',
+      'Construction with inspections at required stages',
+      'Final walkthrough and close-out'
+    ],
+    related: ['home-remodeling', 'kitchen-remodeling', 'bathroom-remodeling', 'flooring-installation'],
+    faqCategory: 'additions',
+    projectCategory: 'room-addition',
+    images: []
+  },
+
+  // ───────────────────────── Flooring ─────────────────────────
+  {
+    slug: 'flooring-installation',
+    name: 'Flooring Installation',
+    shortName: 'Flooring installation',
+    group: 'flooring',
+    enabled: true,
+    icon: 'Layers',
+    seoTitle: `Flooring Installation in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Flooring installation in Sacramento: vinyl plank, laminate, engineered wood, and tile, with proper subfloor prep and clean transitions. Free estimates.',
+    heroTitle: 'Flooring installation in Sacramento',
+    heroLead:
+      'New floors change how a whole home feels. We install flooring on properly prepared subfloors, with clean transitions between rooms and trim that finishes the job.',
+    cardText: 'Vinyl plank, laminate, engineered wood, and tile floors.',
+    intro: [
+      'Most flooring problems, such as gaps, squeaks, peaking joints, or cracked tiles, come from what is underneath. A flat, dry, solid subfloor is the foundation of a floor that lasts.',
+      'We install flooring for Sacramento homes and commercial spaces, as a standalone project or as part of a larger remodel. During your estimate we look at the existing floor and subfloor, talk through material options, and explain the preparation your project needs.'
+    ],
+    scopeTitle: 'Flooring we install',
+    scope: [
+      { title: 'Luxury vinyl plank (LVP)', text: 'Water-resistant, durable flooring popular for kitchens, living areas, and rentals.' },
+      { title: 'Laminate', text: 'An affordable, hard-wearing option for dry areas of the home.' },
+      { title: 'Engineered wood', text: 'Real wood surface with a stable construction suited to many rooms.' },
+      { title: 'Tile floors', text: 'Porcelain and ceramic tile for kitchens, bathrooms, and entries.' },
+      { title: 'Removal of old flooring', text: 'Taking out carpet, vinyl, or tile and preparing the subfloor.' },
+      { title: 'Baseboards and transitions', text: 'Trim, thresholds, and transition strips that finish each room.' }
+    ],
+    sections: [
+      {
+        title: 'Choosing the right floor',
+        body: [
+          'Think about where the floor goes and how it will be used. Kitchens, bathrooms, and laundry rooms need materials that tolerate moisture. Homes with pets or kids benefit from scratch-resistant surfaces. Living areas and bedrooms open up more options.',
+          'Product quality varies widely within each category. Wear layer thickness for vinyl plank, AC rating for laminate, and veneer thickness for engineered wood are useful numbers to compare.'
+        ]
+      },
+      {
+        title: 'Subfloor preparation',
+        body: [
+          'Before new flooring goes down, the subfloor needs to be clean, dry, and flat within the tolerance the product requires. That can mean fixing loose subfloor panels, leveling low spots, or addressing moisture on concrete slabs. Many manufacturers also recommend letting flooring acclimate to the home before installation.'
+        ]
+      },
+      {
+        title: 'Finishing details',
+        body: [
+          'Transitions between rooms, door clearances, stair edges, and baseboards make the difference between a floor that looks installed and one that looks finished. We discuss these details with you before work starts.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Total square footage and number of rooms',
+      'Flooring material and product line',
+      'Removal and disposal of existing flooring',
+      'Subfloor repair or leveling',
+      'Stairs, transitions, and door adjustments',
+      'Baseboard and trim work'
+    ],
+    expectations: [
+      'Tell us the rooms, approximate size, and flooring you have in mind',
+      'Site visit to measure and check the subfloor',
+      'Estimate with preparation and materials explained',
+      'Material delivered and acclimated if required',
+      'Removal, preparation, installation, and trim',
+      'Final walkthrough and care guidance'
+    ],
+    related: ['epoxy-flooring', 'tile-installation', 'baseboard-installation', 'kitchen-remodeling'],
+    faqCategory: 'flooring',
+    projectCategory: 'flooring',
+    images: []
+  },
+
+  // ───────────────────────── Epoxy ─────────────────────────
+  {
+    slug: 'epoxy-flooring',
+    name: 'Epoxy Flooring',
+    shortName: 'Epoxy flooring',
+    group: 'flooring',
+    enabled: true,
+    icon: 'PaintBucket',
+    seoTitle: `Epoxy Flooring in ${SAC}, CA | Garage & Concrete Floors`,
+    metaDescription:
+      'Epoxy flooring in Sacramento for garages, workshops, and commercial concrete floors. Proper surface preparation for a durable finish. Free estimates.',
+    heroTitle: 'Epoxy flooring in Sacramento',
+    heroLead:
+      'Turn a bare concrete floor into a durable, easy-to-clean surface. We prepare the concrete properly and apply epoxy coatings for garages, workshops, and commercial spaces.',
+    cardText: 'Durable coatings for garages and concrete floors.',
+    intro: [
+      'An epoxy floor coating protects concrete from stains, dust, and wear while making it easier to clean and brighter to work on. It is a popular upgrade for garages, workshops, and some commercial spaces.',
+      'The finished look gets the attention, but preparation decides how long an epoxy floor lasts. Coatings that peel or lift usually trace back to concrete that was not properly cleaned, profiled, or checked for moisture.'
+    ],
+    scopeTitle: 'Epoxy flooring work',
+    scope: [
+      { title: 'Garage floors', text: 'A clean, durable surface for parking, storage, and projects.' },
+      { title: 'Workshops and utility areas', text: 'Coatings that hold up to foot traffic, tools, and spills.' },
+      { title: 'Commercial concrete', text: 'Floors for commercial spaces, scheduled around operations.' },
+      { title: 'Decorative flake finishes', text: 'Color flakes broadcast into the coating for texture and a finished look.' },
+      { title: 'Crack and surface repair', text: 'Filling cracks and repairing damaged areas before coating.' },
+      { title: 'Old coating removal', text: 'Removing failing coatings or paint before a new system goes down.' }
+    ],
+    sections: [
+      {
+        title: 'Why preparation matters',
+        body: [
+          'Epoxy needs a clean, open concrete surface to bond. Preparation typically includes removing oil and contaminants, opening the surface mechanically, and repairing cracks. Concrete that holds moisture can cause a coating to fail, so moisture is something to check before coating.'
+        ]
+      },
+      {
+        title: 'Indoor and outdoor use',
+        body: [
+          'Many epoxy coatings can yellow or fade with prolonged sun exposure. For areas that get direct sunlight, a UV-stable topcoat or a different coating system may be a better fit. We discuss the right approach for your space during the estimate.'
+        ]
+      },
+      {
+        title: 'Cure time',
+        body: [
+          'Each coating has its own cure schedule set by the manufacturer. Expect a period before light foot traffic and a longer period before vehicles can park on the floor. We give you the schedule for your specific system.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Floor area',
+      'Condition of the concrete, including cracks and stains',
+      'Removal of existing coatings',
+      'Coating system and finish (solid color or flake)',
+      'Moisture conditions in the slab',
+      'Access and clearing of the space'
+    ],
+    expectations: [
+      'Tell us the space, approximate size, and how it is used',
+      'Site visit to check the concrete condition',
+      'Estimate with preparation and coating system explained',
+      'Space cleared before the work begins',
+      'Preparation, repairs, coating, and cure',
+      'Final walkthrough and care guidance'
+    ],
+    related: ['flooring-installation', 'power-washing', 'tile-installation', 'handyman-services'],
+    faqCategory: 'flooring',
+    projectCategory: 'flooring',
     images: []
   },
 
@@ -197,7 +482,7 @@ export const services: Service[] = [
     slug: 'tile-installation',
     name: 'Tile Installation',
     shortName: 'Tile installation',
-    group: 'tile',
+    group: 'flooring',
     enabled: true,
     icon: 'Grid3x3',
     adsLanding: true,
@@ -259,9 +544,74 @@ export const services: Service[] = [
       'Prep, layout, setting, grouting, and sealing where required',
       'Final cleanup and care guidance'
     ],
-    related: ['bathroom-remodeling', 'home-remodeling', 'interior-painting', 'wall-installation'],
-    faqCategory: 'tile',
+    related: ['bathroom-remodeling', 'kitchen-remodeling', 'flooring-installation', 'baseboard-installation'],
+    faqCategory: 'flooring',
     projectCategory: 'tile',
+    images: []
+  },
+
+  // ───────────────────────── Baseboards ─────────────────────────
+  {
+    slug: 'baseboard-installation',
+    name: 'Baseboard Installation',
+    shortName: 'Baseboard installation',
+    group: 'flooring',
+    enabled: true,
+    icon: 'Ruler',
+    seoTitle: `Baseboard Installation in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Baseboard installation in Sacramento: new or replacement baseboards, tight corners, caulk, and paint. Often paired with new flooring. Free estimates.',
+    heroTitle: 'Baseboard installation in Sacramento',
+    heroLead:
+      'Baseboards finish the line between floor and wall. We install new and replacement baseboards with tight joints, clean corners, and a painted finish.',
+    cardText: 'New and replacement baseboards with clean corners.',
+    intro: [
+      'Baseboards cover the gap between flooring and drywall, protect walls from bumps and vacuum cleaners, and give a room a finished look. Taller or more detailed profiles can make an ordinary room feel more custom.',
+      'Baseboards are often replaced together with new flooring, since old trim rarely lines up with a new floor height. We also install baseboards as a standalone upgrade.'
+    ],
+    scopeTitle: 'Baseboard work',
+    scope: [
+      { title: 'New baseboards', text: 'Installing baseboards in new rooms, additions, or areas without trim.' },
+      { title: 'Baseboard replacement', text: 'Removing old, damaged, or dated baseboards and installing new ones.' },
+      { title: 'With new flooring', text: 'Installing trim after flooring so the transition looks clean.' },
+      { title: 'Taller profiles', text: 'Upgrading to taller or more detailed baseboards.' },
+      { title: 'Shoe molding and quarter round', text: 'Trim that covers small gaps along the floor where needed.' },
+      { title: 'Caulk and paint', text: 'Filling nail holes and seams, caulking, and painting for a finished look.' }
+    ],
+    sections: [
+      {
+        title: 'Materials and profiles',
+        body: [
+          'MDF baseboards are affordable, smooth, and take paint well, which makes them a common choice for painted trim. Solid wood is more resistant to moisture and impact and can be stained. In bathrooms and laundry rooms, moisture-resistant options are worth considering.',
+          'Profile height should suit the room. Taller baseboards tend to look better with higher ceilings, while simpler profiles fit modern interiors.'
+        ]
+      },
+      {
+        title: 'The details that show',
+        body: [
+          'Inside corners are usually coped rather than simply mitered, so the joint stays tight even as the house moves slightly over time. Outside corners, scarf joints on long walls, and transitions at door casings all affect how finished the result looks.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Linear footage and number of rooms',
+      'Baseboard material and profile',
+      'Removal of existing trim',
+      'Number of corners and door openings',
+      'Wall and floor conditions',
+      'Caulking and painting'
+    ],
+    expectations: [
+      'Tell us the rooms and the look you want',
+      'Measurement and profile selection',
+      'Estimate covering trim, installation, and finishing',
+      'Installation, caulking, and paint',
+      'Final walkthrough'
+    ],
+    related: ['flooring-installation', 'interior-painting', 'drywall-repair', 'handyman-services'],
+    faqCategory: 'flooring',
+    faqIds: ['estimate-info'],
+    projectCategory: 'flooring',
     images: []
   },
 
@@ -270,7 +620,7 @@ export const services: Service[] = [
     slug: 'interior-painting',
     name: 'Interior Painting',
     shortName: 'Interior painting',
-    group: 'remodeling',
+    group: 'exterior',
     enabled: true,
     icon: 'PaintRoller',
     seoTitle: `Interior Painting in ${SAC}, CA | True Arm Construction`,
@@ -324,7 +674,7 @@ export const services: Service[] = [
       'Protection, prep, priming where needed, and painting',
       'Touch-ups and final walkthrough'
     ],
-    related: ['exterior-painting', 'home-remodeling', 'wall-installation', 'bathroom-remodeling'],
+    related: ['exterior-painting', 'drywall-repair', 'baseboard-installation', 'home-remodeling'],
     faqCategory: 'painting',
     projectCategory: 'interior-painting',
     images: []
@@ -344,25 +694,25 @@ export const services: Service[] = [
     heroTitle: 'Exterior painting in Sacramento',
     heroLead:
       'Sacramento summers are hard on exterior paint. We clean, repair, and prime the surfaces that need it, then apply coatings suited to the material and the sun exposure.',
-    cardText: 'Prep, repairs, and durable coatings for siding, trim, and stucco.',
+    cardText: 'Prep, repairs, and durable coatings for walls, trim, and stucco.',
     intro: [
       'Exterior paint protects your building as much as it improves how it looks. Long, hot, dry summers and strong UV exposure in the Sacramento Valley can cause fading, chalking, and cracking, especially on south- and west-facing walls.',
-      'We paint home and commercial exteriors, including siding, trim, fascia, doors, and stucco. Before painting, we look at the condition of the surface and note any areas that need repair so the new paint has a sound base.'
+      'We paint home and commercial exteriors, including wood and fiber cement exteriors, stucco, trim, fascia, and doors. Before painting, we look at the condition of the surface and note any areas that need repair so the new paint has a sound base.'
     ],
     scopeTitle: 'Exterior painting work',
     scope: [
-      { title: 'Siding', text: 'Wood, fiber cement, and other paintable siding materials.' },
+      { title: 'Wood and fiber cement exteriors', text: 'Paintable exterior wall surfaces, cleaned and prepared before coating.' },
       { title: 'Stucco', text: 'Coatings suited to stucco, with crack repair before painting.' },
       { title: 'Trim, fascia, and eaves', text: 'The details that frame the house and take the most weather.' },
       { title: 'Doors and garage doors', text: 'Entry and garage doors finished to match your color plan.' },
-      { title: 'Fences and outbuildings', text: 'Fences, sheds, and gazebos painted or refreshed.' },
+      { title: 'Fences and gates', text: 'Fences and gates painted or stained to protect the wood.' },
       { title: 'Commercial exteriors', text: 'Storefronts and commercial buildings, scheduled around operations.' }
     ],
     sections: [
       {
         title: 'Surface prep comes first',
         body: [
-          'Paint only lasts as long as the surface underneath it. Exterior prep can include washing, scraping loose paint, sanding, replacing damaged wood, caulking gaps, and spot-priming bare areas. Pressure washing is often part of this step, with enough drying time before paint goes on.'
+          'Paint only lasts as long as the surface underneath it. Exterior prep can include washing, scraping loose paint, sanding, replacing rotted wood, caulking gaps, and spot-priming bare areas. Pressure washing is often part of this step, with enough drying time before paint goes on.'
         ]
       },
       {
@@ -394,195 +744,9 @@ export const services: Service[] = [
       'Cleaning, prep, priming, and painting',
       'Final inspection walk with you'
     ],
-    related: ['power-washing', 'siding', 'fence-repair', 'interior-painting'],
+    related: ['power-washing', 'dry-rot-repair', 'fences-gates', 'interior-painting'],
     faqCategory: 'painting',
     projectCategory: 'exterior-painting',
-    images: []
-  },
-
-  // ───────────────────────── Fence repair ─────────────────────────
-  {
-    slug: 'fence-repair',
-    name: 'Fence Repair',
-    shortName: 'Fence repair',
-    group: 'exterior',
-    enabled: true,
-    icon: 'Fence',
-    seoTitle: `Fence Repair in ${SAC}, CA | True Arm Construction`,
-    metaDescription:
-      'Fence repair in Sacramento: leaning posts, broken boards, sagging gates, and storm damage. Request a free fence repair estimate.',
-    heroTitle: 'Fence repair in Sacramento',
-    heroLead:
-      'A leaning section, a gate that will not latch, or boards that blew out in a winter storm. We assess the problem and repair what is needed to make the fence solid again.',
-    cardText: 'Posts, boards, gates, and storm damage repaired.',
-    intro: [
-      'Most fence problems start at the posts. When a post rots at ground level or loosens in its footing, the whole section begins to lean, and boards and gates follow. Repairing the cause instead of only the visible damage makes the fix last.',
-      'We repair fences for homes and commercial properties around Sacramento. During the estimate we look at posts, rails, boards, and gates and tell you whether a repair makes sense or whether a section is past saving.'
-    ],
-    scopeTitle: 'Fence repairs we handle',
-    scope: [
-      { title: 'Leaning or broken posts', text: 'Resetting or replacing posts that have rotted or loosened.' },
-      { title: 'Board replacement', text: 'Replacing cracked, missing, or warped boards and pickets.' },
-      { title: 'Rails and stringers', text: 'Fixing the horizontal members that hold the fence together.' },
-      { title: 'Gates', text: 'Sagging gates, hinges, and latches adjusted or rebuilt.' },
-      { title: 'Storm damage', text: 'Sections damaged by wind, falling branches, or impact.' },
-      { title: 'Paint or stain', text: 'Finishing repaired sections so they match and last longer.' }
-    ],
-    sections: [
-      {
-        title: 'Repair or replace?',
-        body: [
-          'If the damage is limited to a few posts or boards and the rest of the fence is sound, repair is usually the practical choice. When rot or leaning affects much of the fence, replacing sections may cost less over time. We will explain what we see so you can make the call.'
-        ]
-      },
-      {
-        title: 'Shared fences and property lines',
-        body: [
-          'Many residential fences sit on or near a property line and are shared with a neighbor. California has rules about shared boundary fences (Civil Code section 841). It is a good idea to talk with your neighbor before work begins on a shared fence.'
-        ]
-      }
-    ],
-    costFactors: [
-      'Number of posts and sections involved',
-      'Fence material and height',
-      'Condition of footings',
-      'Gate repairs or hardware replacement',
-      'Matching existing boards and finishes',
-      'Access along the fence line'
-    ],
-    expectations: [
-      'Tell us what is damaged and roughly how much',
-      'On-site look at posts, rails, and gates',
-      'Estimate with repair recommendations',
-      'Materials matched as closely as practical',
-      'Repairs completed and the area cleaned up'
-    ],
-    related: ['exterior-painting', 'power-washing', 'gazebo-construction', 'siding'],
-    faqCategory: 'exterior',
-    projectCategory: 'fence',
-    images: []
-  },
-
-  // ───────────────────────── Siding ─────────────────────────
-  {
-    slug: 'siding',
-    name: 'Siding Services',
-    shortName: 'Siding',
-    group: 'exterior',
-    enabled: true,
-    icon: 'PanelsTopLeft',
-    seoTitle: `Siding Services in ${SAC}, CA | Repair & Installation`,
-    metaDescription:
-      'Siding services in Sacramento: damaged siding repair, section replacement, and new siding for homes and commercial buildings. Free estimates.',
-    heroTitle: 'Siding services in Sacramento',
-    heroLead:
-      'Siding is the outer layer that keeps weather out of your walls. We repair damaged areas and install siding for homes and commercial buildings, with attention to the details that keep water out.',
-    cardText: 'Repair and installation that protects the building envelope.',
-    intro: [
-      'Cracked, warped, or loose siding is more than a cosmetic issue. Gaps let water and pests reach the sheathing and framing behind it, and that damage tends to spread out of sight.',
-      'We provide siding services for Sacramento-area properties. During the estimate we identify the existing siding material, check the condition of the wall behind any damaged areas when accessible, and recommend repair or replacement based on what we find.'
-    ],
-    scopeTitle: 'Siding work',
-    scope: [
-      { title: 'Damaged siding repair', text: 'Replacing cracked, rotted, or impact-damaged boards and panels.' },
-      { title: 'Section replacement', text: 'Replacing larger areas while blending with existing siding.' },
-      { title: 'New siding installation', text: 'Full or partial re-siding projects, scoped during the estimate.' },
-      { title: 'Trim and flashing details', text: 'Corners, window and door trim, and flashing that keep water out.' },
-      { title: 'Paint-ready finishing', text: 'Coordinating siding work with exterior painting.' }
-    ],
-    scopeNote:
-      'Available siding materials and full re-siding scope are confirmed during your estimate.',
-    sections: [
-      {
-        title: 'Common siding materials',
-        body: [
-          'Sacramento homes commonly have wood, fiber cement, stucco, or vinyl exteriors. Each material has different repair methods and lifespans. Fiber cement is popular for its fire and rot resistance; wood offers a traditional look but needs regular painting.'
-        ]
-      },
-      {
-        title: 'What happens behind the siding',
-        body: [
-          'Siding works together with a water-resistive barrier and flashing at windows, doors, and roof lines. When we remove damaged siding, we look at the barrier and sheathing underneath. If there is water damage, we will show you and discuss options before continuing.'
-        ]
-      }
-    ],
-    costFactors: [
-      'Siding material and profile',
-      'Area of repair or replacement',
-      'Damage to sheathing or framing found behind the siding',
-      'Trim, flashing, and corner details',
-      'Building height and access',
-      'Painting after installation'
-    ],
-    expectations: [
-      'Share photos or describe the damaged areas',
-      'Inspection of the siding and visible wall conditions',
-      'Estimate with repair or replacement options',
-      'Material ordered and matched where possible',
-      'Installation, sealing, and coordination with painting'
-    ],
-    related: ['exterior-painting', 'power-washing', 'window-services', 'fence-repair'],
-    faqCategory: 'exterior',
-    projectCategory: 'siding',
-    images: []
-  },
-
-  // ───────────────────────── Wall installation (scope TBC) ─────────────────────────
-  {
-    slug: 'wall-installation',
-    name: 'Wall Installation',
-    shortName: 'Wall installation',
-    group: 'remodeling',
-    enabled: true,
-    icon: 'BrickWall',
-    seoTitle: `Wall Installation in ${SAC}, CA | True Arm Construction`,
-    metaDescription:
-      'Wall installation projects in Sacramento for homes and commercial spaces. Tell us about your space and we will scope the work. Free estimates.',
-    heroTitle: 'Wall installation in Sacramento',
-    heroLead:
-      'Need a new wall to divide a room, close off a space, or change how an area works? Tell us what you have in mind and we will look at the space and scope the work with you.',
-    cardText: 'New walls scoped to your space and how you want to use it.',
-    intro: [
-      'Adding a wall can create a home office, a separate bedroom, or a more practical commercial floor plan. The right approach depends on the space: what is above and below, whether the wall needs electrical outlets or switches, and how it will be finished.',
-      'Because every wall project is different, we confirm the exact scope during your estimate. Describe the space and what you want the wall to do, and we will explain what the project involves.'
-    ],
-    scopeTitle: 'What to tell us about your wall project',
-    scope: [
-      { title: 'Where the wall will go', text: 'The room, approximate length, and ceiling height.' },
-      { title: 'What it is for', text: 'Dividing a room, creating privacy, closing an opening, or a feature wall.' },
-      { title: 'Doors or openings', text: 'Whether the new wall needs a doorway or pass-through.' },
-      { title: 'Electrical needs', text: 'Outlets, switches, or lighting you want in or near the wall.' },
-      { title: 'Finish', text: 'Paint, texture, tile, or other finishes you have in mind.' }
-    ],
-    scopeNote:
-      'Wall installation scope varies by project and is confirmed during your estimate. Structural changes, such as removing or altering load-bearing walls, are evaluated case by case.',
-    sections: [
-      {
-        title: 'Planning considerations',
-        body: [
-          'A new wall affects lighting, airflow, and how people move through a space. Check that heating and cooling vents, windows, and existing outlets will still work once the wall is in place. For bedrooms, building codes include requirements such as emergency escape openings, which is one reason scope is confirmed on site.',
-          'Adding walls may require a permit, especially when electrical work is involved or when a space is being converted to a bedroom. We discuss this with you during the estimate.'
-        ]
-      }
-    ],
-    costFactors: [
-      'Length and height of the wall',
-      'Doors or openings in the wall',
-      'Electrical work',
-      'Finish level, texture, and paint',
-      'Flooring and ceiling conditions where the wall meets them',
-      'Permit requirements'
-    ],
-    expectations: [
-      'Describe the space and what the wall should do',
-      'Site visit to measure and check conditions',
-      'Scope and estimate confirmed with you',
-      'Work scheduled and completed with cleanup'
-    ],
-    related: ['home-remodeling', 'interior-painting', 'tile-installation', 'window-services'],
-    faqCategory: 'general',
-    faqIds: ['permits', 'estimate-info'],
-    projectCategory: 'general-construction',
     images: []
   },
 
@@ -596,28 +760,28 @@ export const services: Service[] = [
     icon: 'Droplets',
     seoTitle: `Pressure Washing & Power Washing in ${SAC}, CA`,
     metaDescription:
-      'Pressure washing and power washing in Sacramento for driveways, walkways, patios, siding, and fences. Request a free estimate.',
+      'Pressure washing and power washing in Sacramento for driveways, walkways, patios, house exteriors, and fences. Request a free estimate.',
     heroTitle: 'Pressure washing in Sacramento',
     heroLead:
-      'Remove dirt, mildew, and buildup from driveways, patios, siding, and fences, either as a standalone service or as prep before exterior painting.',
-    cardText: 'Driveways, patios, siding, and fences, or prep before painting.',
+      'Remove dirt, mildew, and buildup from driveways, patios, house exteriors, and fences, either as a standalone service or as prep before exterior painting.',
+    cardText: 'Driveways, patios, walls, and fences, or prep before painting.',
     intro: [
-      'Pressure washing restores surfaces that have collected dirt, algae, and stains, and it is often the first step before painting or sealing. The key is matching pressure and technique to the surface: concrete can take far more than painted wood or older siding.',
+      'Pressure washing restores surfaces that have collected dirt, algae, and stains, and it is often the first step before painting or sealing. The key is matching pressure and technique to the surface: concrete can take far more than painted wood or older exterior surfaces.',
       'We offer pressure washing for homes and commercial properties in the Sacramento area, and we include it as surface prep in many exterior painting projects.'
     ],
     scopeTitle: 'Surfaces we clean',
     scope: [
       { title: 'Driveways and walkways', text: 'Concrete and pavers cleaned of dirt and surface stains.' },
       { title: 'Patios and pool decks', text: 'Outdoor living areas cleaned and refreshed.' },
-      { title: 'Siding and exterior walls', text: 'Appropriate pressure for the material to avoid damage.' },
-      { title: 'Fences and gazebos', text: 'Wood and other outdoor structures cleaned before staining or painting.' },
+      { title: 'House exterior walls', text: 'Appropriate pressure for stucco, wood, and painted surfaces to avoid damage.' },
+      { title: 'Fences and gates', text: 'Wood fences and gates cleaned before staining or painting.' },
       { title: 'Pre-paint prep', text: 'Removing chalk, dirt, and loose material so paint bonds well.' }
     ],
     sections: [
       {
         title: 'Pressure washing versus soft washing',
         body: [
-          'High pressure works well on concrete and masonry. Painted surfaces, wood, and some siding materials need lower pressure and a gentler approach to avoid gouging, forcing water behind siding, or stripping finishes. We choose the method for each surface.'
+          'High pressure works well on concrete and masonry. Painted surfaces, wood, and some exterior wall materials need lower pressure and a gentler approach to avoid gouging, forcing water into walls, or stripping finishes. We choose the method for each surface.'
         ]
       },
       {
@@ -640,219 +804,296 @@ export const services: Service[] = [
       'Plants and fixtures protected before washing',
       'Cleaning completed with appropriate methods'
     ],
-    related: ['exterior-painting', 'fence-repair', 'siding', 'gazebo-construction'],
+    related: ['exterior-painting', 'fences-gates', 'epoxy-flooring', 'dry-rot-repair'],
     faqCategory: 'exterior',
     projectCategory: 'exterior-painting',
     images: []
   },
 
-  // ───────────────────────── Window services (scope TBC) ─────────────────────────
+  // ───────────────────────── Fences & gates (two groups) ─────────────────────────
   {
-    slug: 'window-services',
-    name: 'Window Services',
-    shortName: 'Window services',
-    group: 'remodeling',
+    slug: 'fences-gates',
+    name: 'Fences & Gates',
+    shortName: 'Fences & gates',
+    group: 'exterior',
     enabled: true,
-    icon: 'AppWindow',
-    seoTitle: `Window Services in ${SAC}, CA | True Arm Construction`,
+    icon: 'Fence',
+    seoTitle: `Fence & Gate Installation and Repair in ${SAC}, CA`,
     metaDescription:
-      'Window services for Sacramento homes and commercial buildings. Describe your window project and request a free estimate.',
-    heroTitle: 'Window services in Sacramento',
+      'Fence and gate installation and repair in Sacramento: new fences, replacement sections, posts, boards, and sagging gates. Request a free estimate.',
+    heroTitle: 'Fences and gates in Sacramento',
     heroLead:
-      'Have a window project in mind? Tell us what is going on with your windows and what you want to achieve, and we will review it and explain the options.',
-    cardText: 'Window projects reviewed and scoped case by case.',
+      'Whether you need a new fence around your yard or a repair to a leaning section or sagging gate, we build and fix fences and gates that stay solid and look right.',
+    cardText: 'New fences and gates, plus repairs to posts, boards, and gates.',
     intro: [
-      'Window projects range widely, from trim and finishing work around existing windows to larger changes. Since every situation is different, we review window work case by case and confirm exactly what we can take on during your estimate.',
-      'When you contact us, describe the windows involved, what you have noticed (drafts, damage, stuck sashes, or simply a dated look), and what result you want.'
+      'A good fence gives you privacy, security, and a clear boundary, and a gate should open and latch easily for years. Both depend on the same fundamentals: well-set posts, straight lines, and hardware suited to the weight it carries.',
+      'We build new fences and gates and repair existing ones for Sacramento homes and commercial properties. During the estimate we look at your property and the existing fence, and recommend a new fence, a replacement, or a repair based on what we find.'
     ],
-    scopeTitle: 'What to include in your request',
-    scope: [
-      { title: 'Number of windows', text: 'How many windows are involved and which rooms they are in.' },
-      { title: 'What you have noticed', text: 'Drafts, condensation, damaged trim, or difficulty opening and closing.' },
-      { title: 'Your goal', text: 'Repair, improved appearance, or a broader update.' },
-      { title: 'Related work', text: 'Trim, siding, or painting around the windows.' },
-      { title: 'Photos', text: 'Photos help us understand the situation before the site visit.' }
-    ],
-    scopeNote:
-      'Window services are scoped case by case. The exact work available for your project is confirmed during your estimate.',
-    sections: [
+    scopeTitle: 'Fence and gate services',
+    scope: [],
+    scopeGroups: [
       {
-        title: 'Windows and energy rules in California',
-        body: [
-          'In California, replacing windows is regulated by the state energy code (Title 24), and window replacement typically requires a permit. If your project involves new windows, this is something to plan for. The [California Energy Commission](https://www.energy.ca.gov/programs-and-topics/programs/building-energy-efficiency-standards) publishes the current standards.'
-        ]
-      }
-    ],
-    costFactors: [
-      'Number and size of windows',
-      'Type of work involved',
-      'Condition of trim and surrounding wall',
-      'Interior and exterior finishing',
-      'Access, including upper floors',
-      'Permit requirements'
-    ],
-    expectations: [
-      'Describe the windows and what you want to change',
-      'Site review to confirm scope',
-      'Estimate with the work clearly described',
-      'Work scheduled once scope is agreed'
-    ],
-    related: ['siding', 'interior-painting', 'exterior-painting', 'home-remodeling'],
-    faqCategory: 'general',
-    faqIds: ['permits', 'estimate-info'],
-    projectCategory: 'window',
-    images: []
-  },
-
-  // ───────────────────────── Gazebo ─────────────────────────
-  {
-    slug: 'gazebo-construction',
-    name: 'Gazebo Construction',
-    shortName: 'Gazebo construction',
-    group: 'outdoor',
-    enabled: true,
-    icon: 'Tent',
-    seoTitle: `Gazebo Construction in ${SAC}, CA | True Arm Construction`,
-    metaDescription:
-      'Custom gazebo construction in Sacramento for shade and outdoor living. Planning, footings, framing, and finishing. Request a free estimate.',
-    heroTitle: 'Gazebo construction in Sacramento',
-    heroLead:
-      'A gazebo gives you shade through Sacramento summers and a place to gather outside. We build gazebos sized for your yard and finished to suit your home.',
-    cardText: 'Shade structures built for Sacramento summers.',
-    intro: [
-      'With long, hot summers, shade can make a backyard usable for months longer each year. A well-built gazebo needs solid footings, correct framing, and a roof that handles both sun and winter rain.',
-      'We build gazebos for Sacramento-area homes and commercial properties. We start with how you want to use the space, then plan size, placement, and finishes around your yard.'
-    ],
-    scopeTitle: 'Gazebo project details',
-    scope: [
-      { title: 'Size and placement', text: 'Planning around your yard, setbacks, sun angle, and views.' },
-      { title: 'Footings and foundation', text: 'A solid base suited to the structure and soil.' },
-      { title: 'Framing and roof', text: 'Structure and roofing built to handle sun and rain.' },
-      { title: 'Finishes', text: 'Paint or stain, trim, and details that match your home.' },
-      { title: 'Lighting and fans', text: 'Planned in advance if you want electrical in the structure.' }
-    ],
-    sections: [
-      {
-        title: 'Planning your gazebo',
-        body: [
-          'Think about how many people you want to seat, whether you want a dining table or lounge furniture, and where the shade will fall during the hottest part of the day. Placement also matters for drainage, access, and setbacks from property lines.',
-          'Depending on size, height, location, and whether electrical work is included, a gazebo may require a permit. Your HOA may also have rules about outdoor structures. We review this during the estimate.'
+        id: 'installation',
+        title: 'Installation',
+        intro: 'New fences, full replacements, and gates built from the posts up.',
+        items: [
+          { title: 'New fence installation', text: 'Privacy, property line, and yard fences laid out and built to your plan.' },
+          { title: 'Fence replacement', text: 'Removing an old fence and building a new one in its place.' },
+          { title: 'Gates', text: 'Walk-through gates and wider gates sized to the opening, with sturdy frames and hardware.' },
+          { title: 'Posts and footings', text: 'Posts set at proper depth so the fence stays straight over time.' },
+          { title: 'Paint or stain', text: 'Finishing new fences and gates to protect the wood and match your property.' }
         ]
       },
       {
-        title: 'Materials',
+        id: 'repair',
+        title: 'Repair',
+        intro: 'Fixing the cause of the problem so the repair lasts, not just the visible damage.',
+        items: [
+          { title: 'Leaning or broken posts', text: 'Resetting or replacing posts that have rotted or loosened.' },
+          { title: 'Boards and pickets', text: 'Replacing cracked, missing, or warped boards.' },
+          { title: 'Rails', text: 'Repairing the horizontal members that hold the fence together.' },
+          { title: 'Sagging gates', text: 'Re-squaring gate frames and replacing hinges and latches.' },
+          { title: 'Storm damage', text: 'Sections damaged by wind, fallen branches, or impact.' }
+        ]
+      }
+    ],
+    sections: [
+      {
+        title: 'Repair or replace?',
         body: [
-          'Wood gazebos offer a classic look and can be painted or stained. Material choice affects maintenance; for example, wood benefits from periodic refinishing in strong sun. We discuss options and trade-offs with you.'
+          'If the damage is limited to a few posts, boards, or a gate and the rest of the fence is sound, repair is usually the practical choice. When rot or leaning affects much of the fence, replacing sections or the whole fence may cost less over time. We explain what we see so you can decide.'
+        ]
+      },
+      {
+        title: 'Planning a new fence',
+        body: [
+          'Before building, confirm where the property line is, any HOA rules, and local height limits for front and back yards. Fences above certain heights, or in certain locations, may need a permit; check with the [City of Sacramento Building Division](https://www.cityofsacramento.gov/community-development/building) or [Sacramento County](https://development.saccounty.gov/us/en/building-permits-inspection/frequently-asked-questions.html). Underground utilities should be marked before digging; call 811 or visit [California 811](https://california811.org/).'
+        ]
+      },
+      {
+        title: 'Shared fences',
+        body: [
+          'Many residential fences sit on or near a property line and are shared with a neighbor. California has rules about shared boundary fences (Civil Code section 841). It is a good idea to talk with your neighbor before work begins on a shared fence.'
+        ]
+      },
+      {
+        title: 'Gates that keep working',
+        body: [
+          'Gates carry more stress than any other part of a fence. A solid frame, a well-set hinge post, and hardware rated for the gate size help prevent sagging. Wider openings may call for a double gate.'
         ]
       }
     ],
     costFactors: [
-      'Size and shape of the gazebo',
-      'Footing and foundation requirements',
-      'Material and roofing choices',
-      'Electrical for lights or fans',
-      'Site access and ground preparation',
-      'Permit and HOA requirements'
+      'Length and height of the fence',
+      'Fence material and style',
+      'Number and size of gates',
+      'Removal of an existing fence',
+      'Ground conditions and access along the line',
+      'Paint or stain'
     ],
     expectations: [
-      'Share how you want to use the space and your yard size',
-      'Site visit to review placement and ground conditions',
-      'Design direction and estimate',
-      'Materials confirmed and work scheduled',
-      'Footings, framing, roof, and finishing'
+      'Tell us whether you need a new fence, a replacement, or a repair',
+      'Site visit to measure and check posts, lines, and gates',
+      'Estimate with recommendations',
+      'Materials confirmed and utilities marked before digging',
+      'Installation or repair, then cleanup'
     ],
-    related: ['fence-repair', 'exterior-painting', 'power-washing', 'new-construction'],
+    related: ['exterior-painting', 'power-washing', 'dry-rot-repair', 'handyman-services'],
     faqCategory: 'exterior',
-    faqIds: ['permits'],
-    projectCategory: 'gazebo',
+    projectCategory: 'fence',
     images: []
   },
 
-  // ───────────────────────── New construction (Ads campaign 3) ─────────────────────────
+  // ───────────────────────── Drywall ─────────────────────────
   {
-    slug: 'new-construction',
-    name: 'New Construction',
-    shortName: 'New construction',
-    group: 'construction',
+    slug: 'drywall-repair',
+    name: 'Drywall Repair',
+    shortName: 'Drywall repair',
+    group: 'repairs',
     enabled: true,
-    icon: 'Building2',
-    adsLanding: true,
-    seoTitle: `New Construction Contractor in ${SAC}, CA | True Arm Construction`,
+    icon: 'PanelTop',
+    seoTitle: `Drywall Repair in ${SAC}, CA | True Arm Construction`,
     metaDescription:
-      'Ground-up residential and commercial construction in Sacramento by a California Class B General Building Contractor. Discuss your project and get an estimate.',
-    heroTitle: 'New construction in Sacramento',
+      'Drywall repair in Sacramento: holes, cracks, water damage, and texture matching, ready for paint. Request a free estimate.',
+    heroTitle: 'Drywall repair in Sacramento',
     heroLead:
-      'Ground-up residential and commercial projects, planned carefully from the first conversation. We help you understand scope, sequencing, and what to prepare before construction begins.',
-    cardText: 'Ground-up residential and commercial building projects.',
+      'From small holes to water-damaged sections, we repair drywall so the patch disappears: solid backing, smooth finishing, matched texture, and paint.',
+    cardText: 'Holes, cracks, and water damage repaired and texture matched.',
     intro: [
-      'New construction is a larger commitment than a remodel, with more decisions, more coordination, and more people involved. The early stages, before anything is built, have the biggest effect on cost, schedule, and the finished result.',
-      'True Arm Construction holds a California Class B General Building Contractor license (#1128503), the classification for projects involving multiple building trades. We work with property owners on residential and commercial projects in the Sacramento area. Every project starts with a consultation to understand what you want to build, where you are in the process, and what is still needed.'
+      'Drywall damage happens in every home: doorknob holes, cracks above doors and windows, nail pops, and damage left behind by plumbing leaks or electrical work. The goal of a good repair is that you cannot tell where it was.',
+      'We repair drywall in homes and commercial spaces around Sacramento, as a standalone job or before painting. During the estimate we look at the damage and, for water-related damage, check whether the source has been addressed.'
     ],
-    scopeTitle: 'How a new construction project comes together',
+    scopeTitle: 'Drywall repairs we handle',
     scope: [
-      { title: 'Initial consultation', text: 'Your goals, the property, budget range, and where you are in planning.' },
-      { title: 'Scope evaluation', text: 'Reviewing plans if you have them and identifying open questions.' },
-      { title: 'Planning and coordination', text: 'Sequencing the work and coordinating the trades involved.' },
-      { title: 'Design and permits', text: 'Working with your design professionals and the permitting process.' },
-      { title: 'Construction phases', text: 'Site work, foundation, framing, systems, and finishes.' },
-      { title: 'Completion', text: 'Final inspections, walkthrough, and project close-out.' }
+      { title: 'Holes and dents', text: 'From small dings to larger holes that need a new piece of drywall.' },
+      { title: 'Cracks', text: 'Cracks at corners, seams, and above doors and windows.' },
+      { title: 'Water damage', text: 'Replacing stained or soft drywall after the leak has been fixed.' },
+      { title: 'Nail pops and seams', text: 'Resetting fasteners and refinishing loose or visible seams.' },
+      { title: 'Texture matching', text: 'Matching common textures such as orange peel and knockdown.' },
+      { title: 'Paint-ready finish', text: 'Primed and ready for paint, or painted as part of the job.' }
     ],
     sections: [
       {
-        title: 'Before you build: what to have ready',
+        title: 'Why patches show',
         body: [
-          'It helps to know the property details (address, lot size, and any known easements or restrictions), your intended use, and your target budget range. If you already have architectural or engineering drawings, share them. If not, that is fine: tell us where you are in the process.',
-          'Most new construction requires plans prepared by licensed design professionals and a building permit from the local jurisdiction. Depending on the project, you may also deal with zoning review, utility connections, and fees.'
+          'A patch usually shows for one of three reasons: the surface is not flat, the texture does not match, or the paint sheen is different from the rest of the wall. Careful feathering, texture matching, primer, and painting the full wall section where needed help a repair blend in.'
         ]
       },
       {
-        title: 'Construction phases',
+        title: 'Water-damaged drywall',
         body: [
-          'Projects typically move through site preparation, foundation, framing, rough mechanical, electrical, and plumbing work, insulation, drywall, and finishes, with inspections at required milestones. Each phase depends on the one before it, which is why planning and material lead times matter.'
-        ]
-      },
-      {
-        title: 'What affects cost and timeline',
-        body: [
-          'Size and complexity, site conditions, material selections, design changes after work starts, permit review times, inspection scheduling, and weather all affect new construction. We give you an estimate based on your specific scope and explain the assumptions behind it.'
-        ]
-      }
-    ],
-    anchors: [
-      {
-        id: 'residential',
-        title: 'Residential construction',
-        body: [
-          'Residential projects can include new homes and other new structures on residential property. We talk through how you will use the building, your design and finish priorities, and how the build will fit your property.'
-        ]
-      },
-      {
-        id: 'commercial',
-        title: 'Commercial construction',
-        body: [
-          'Commercial projects bring additional considerations such as occupancy type, accessibility requirements, and coordination with business operations or tenants. We discuss these during the consultation so the scope reflects how the space will be used.'
+          'Drywall that has been wet can lose strength and may develop mold. Before repairing, the source of the water needs to be fixed and the area dried. Severely damaged sections are cut out and replaced rather than patched.'
         ]
       }
     ],
     costFactors: [
-      'Building size and complexity',
-      'Site conditions, grading, and utilities',
-      'Foundation type',
-      'Material and finish selections',
-      'Design, engineering, and permit requirements',
-      'Changes after construction begins'
+      'Size and number of repairs',
+      'Wall or ceiling location',
+      'Water damage and section replacement',
+      'Texture type and matching',
+      'Painting after the repair',
+      'Access and furniture moving'
     ],
     expectations: [
-      'Initial consultation about your project and property',
-      'Review of plans, documents, and open questions',
-      'Scope evaluation and estimate',
-      'Planning, permits, and scheduling',
-      'Construction with inspections at required stages',
-      'Final walkthrough and close-out'
+      'Send photos or describe the damage',
+      'Assessment on site',
+      'Estimate covering repair and finishing',
+      'Repair, texture, prime, and paint as agreed',
+      'Cleanup and final walkthrough'
     ],
-    related: ['home-remodeling', 'bathroom-remodeling', 'tile-installation', 'exterior-painting'],
-    faqCategory: 'construction',
-    projectCategory: 'general-construction',
+    related: ['interior-painting', 'baseboard-installation', 'handyman-services', 'dry-rot-repair'],
+    faqCategory: 'repairs',
+    projectCategory: 'repairs',
+    images: []
+  },
+
+  // ───────────────────────── Dry rot ─────────────────────────
+  {
+    slug: 'dry-rot-repair',
+    name: 'Dry Rot Repair',
+    shortName: 'Dry rot repair',
+    group: 'repairs',
+    enabled: true,
+    icon: 'TreeDeciduous',
+    seoTitle: `Dry Rot Repair in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Dry rot repair in Sacramento: rotted fascia, trim, window sills, door frames, and exterior wood replaced and sealed. Request a free estimate.',
+    heroTitle: 'Dry rot repair in Sacramento',
+    heroLead:
+      'Rotted wood weakens your home and lets more water in. We remove the damaged wood, replace it with sound material, and seal and paint it to help prevent the problem from returning.',
+    cardText: 'Rotted fascia, trim, sills, and exterior wood replaced.',
+    intro: [
+      'Despite its name, dry rot starts with moisture. When wood stays wet long enough, fungi break it down, and the wood becomes soft, crumbly, or cracked. Fascia boards, window sills, door frames, exterior trim, and the bottoms of posts are common trouble spots.',
+      'We repair dry rot on homes and commercial properties around Sacramento. Good repair means removing all of the damaged wood, replacing it with sound material, and addressing the moisture source where possible.'
+    ],
+    scopeTitle: 'Dry rot repairs',
+    scope: [
+      { title: 'Fascia and eaves', text: 'Replacing rotted fascia boards and trim along the roof edge.' },
+      { title: 'Window sills and trim', text: 'Repairing exterior trim around windows where water collects.' },
+      { title: 'Door frames and thresholds', text: 'Replacing rotted jambs and trim at exterior doors.' },
+      { title: 'Exterior trim and wood surfaces', text: 'Corner boards, wood exterior boards, and decorative trim.' },
+      { title: 'Posts and fence wood', text: 'Rotted posts and wood at ground level.' },
+      { title: 'Seal and paint', text: 'Priming, caulking, and painting the new wood to protect it.' }
+    ],
+    sections: [
+      {
+        title: 'Finding the full extent',
+        body: [
+          'Rot is often larger than it looks from the outside. Probing the wood shows how far the damage goes. Patching over soft wood or filling only the visible area tends to fail, so damaged sections are cut back to solid material.'
+        ]
+      },
+      {
+        title: 'Pest inspection reports',
+        body: [
+          'In California, a wood destroying pests and organisms inspection is common during home sales, and these reports often list fungus or dry rot that needs repair. If you have a report, share it with us when you request an estimate. Termite treatment itself is performed by licensed pest control companies.'
+        ]
+      },
+      {
+        title: 'Preventing it from coming back',
+        body: [
+          'Keeping wood painted, keeping gutters clear, sealing gaps, and directing water away from wood surfaces all help prevent new rot. We point out moisture sources we see during the repair.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Extent of the damaged wood',
+      'Location and height (ladders or scaffolding)',
+      'Type and profile of trim to match',
+      'Hidden damage found when wood is opened',
+      'Priming and painting',
+      'Number of separate areas'
+    ],
+    expectations: [
+      'Share photos or a pest inspection report if you have one',
+      'Inspection and probing of affected areas',
+      'Estimate with the areas to be replaced',
+      'Removal, replacement, sealing, and paint',
+      'Final walkthrough'
+    ],
+    related: ['exterior-painting', 'fences-gates', 'drywall-repair', 'handyman-services'],
+    faqCategory: 'repairs',
+    projectCategory: 'repairs',
+    images: []
+  },
+
+  // ───────────────────────── Handyman ─────────────────────────
+  {
+    slug: 'handyman-services',
+    name: 'Handyman Services',
+    shortName: 'Handyman services',
+    group: 'repairs',
+    enabled: true,
+    icon: 'Wrench',
+    seoTitle: `Handyman Services in ${SAC}, CA | Licensed Contractor`,
+    metaDescription:
+      'Handyman services in Sacramento from a licensed Class B contractor: small repairs, installations, and punch lists for homes and businesses.',
+    heroTitle: 'Handyman services in Sacramento',
+    heroLead:
+      'Small jobs still deserve careful work. We take care of repairs, installations, and punch-list items around your home or business, handled by a licensed general contractor.',
+    cardText: 'Small repairs, installations, and punch lists.',
+    intro: [
+      'Most homes collect a list of small jobs: a door that sticks, a loose trim piece, a patch that needs paint, something to install. Handling several of them in one visit is often the most efficient way to get them done.',
+      'True Arm Construction is a licensed Class B General Building Contractor (#1128503). Send us your list, and we will tell you which items we can take care of and put together an estimate.'
+    ],
+    scopeTitle: 'Common handyman jobs',
+    scope: [
+      { title: 'Small repairs', text: 'Doors, trim, cabinets, and other wear-and-tear fixes.' },
+      { title: 'Drywall touch-ups', text: 'Patching holes and dings, with paint touch-ups.' },
+      { title: 'Installations', text: 'Shelving, hardware, fixtures, and similar items.' },
+      { title: 'Trim and baseboards', text: 'Replacing damaged trim or adding baseboard sections.' },
+      { title: 'Move-in and move-out lists', text: 'Getting a home ready for new occupants or a sale.' },
+      { title: 'Rental property upkeep', text: 'Repairs between tenants for owners and property managers.' }
+    ],
+    sections: [
+      {
+        title: 'Make a list',
+        body: [
+          'Write down every item, with a photo of each if possible. Grouping tasks into one visit usually costs less than separate trips, and it helps us plan the materials and time needed.'
+        ]
+      },
+      {
+        title: 'When a small job is bigger',
+        body: [
+          'Sometimes a small job reveals a larger problem, like a soft floor near a toilet or a stain on a ceiling. When that happens, we explain what we found and the options before doing more work.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Number and type of tasks',
+      'Materials and parts needed',
+      'Access and working height',
+      'Whether painting or finishing is included',
+      'Conditions found during the work'
+    ],
+    expectations: [
+      'Send your list, ideally with photos',
+      'Review and estimate',
+      'Scheduled visit with materials planned',
+      'Work completed and checked with you'
+    ],
+    related: ['drywall-repair', 'dry-rot-repair', 'baseboard-installation', 'interior-painting'],
+    faqCategory: 'repairs',
+    projectCategory: 'repairs',
     images: []
   }
 ]
@@ -869,10 +1110,10 @@ export function servicesByGroup(group: ServiceGroupId): Service[] {
 
 /** Services featured on the homepage, in order */
 export const featuredServiceSlugs = [
+  'kitchen-remodeling',
   'bathroom-remodeling',
-  'tile-installation',
-  'new-construction',
+  'room-additions',
+  'flooring-installation',
   'interior-painting',
-  'exterior-painting',
-  'siding'
+  'fences-gates'
 ]

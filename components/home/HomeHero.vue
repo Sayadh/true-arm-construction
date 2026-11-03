@@ -16,8 +16,8 @@ import { estimatePath } from '~/data/navigation'
           Construction and remodeling, built around you.
         </h1>
         <p class="mt-6 max-w-[38rem] text-lead text-stone/80">
-          Residential and commercial construction, remodeling, and property improvements in Sacramento. From bathroom
-          renovations and custom tile work to ground-up projects, we help you turn a plan into a finished space.
+          Residential and commercial construction, remodeling, and property improvements in Sacramento. From kitchen and
+          bathroom remodels to room additions, flooring, and fences, we help you turn a plan into a finished space.
         </p>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
           <AppButton :to="estimatePath" size="lg" track="estimate_cta_click" track-label="hero">Get a Free Estimate</AppButton>

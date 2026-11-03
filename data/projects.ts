@@ -1,15 +1,16 @@
 import type { Project, ProjectCategory } from '../types'
 
 export const projectCategories: ProjectCategory[] = [
+  { id: 'kitchen', name: 'Kitchen' },
   { id: 'bathroom', name: 'Bathroom' },
+  { id: 'remodeling', name: 'Home remodeling' },
+  { id: 'room-addition', name: 'Room addition' },
+  { id: 'flooring', name: 'Flooring' },
   { id: 'tile', name: 'Tile' },
   { id: 'interior-painting', name: 'Interior painting' },
   { id: 'exterior-painting', name: 'Exterior painting' },
-  { id: 'siding', name: 'Siding' },
-  { id: 'fence', name: 'Fence' },
-  { id: 'window', name: 'Window' },
-  { id: 'gazebo', name: 'Gazebo' },
-  { id: 'general-construction', name: 'General construction' }
+  { id: 'fence', name: 'Fences & gates' },
+  { id: 'repairs', name: 'Repairs' }
 ]
 
 /**

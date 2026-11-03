@@ -3,7 +3,7 @@ import { featuredFaqs } from '~/data/faqs'
 
 const title = 'General Contractor in Sacramento, CA | True Arm Construction'
 const description =
-  'Residential and commercial construction, remodeling, tile, painting, and property improvements in Sacramento, CA. Licensed Class B contractor. Free estimates.'
+  'Kitchen and bathroom remodeling, room additions, flooring, painting, fences, and repairs in Sacramento, CA. Licensed Class B contractor. Free estimates.'
 
 usePageSeo({ title, description, path: '/', absoluteTitle: true })
 useJsonLd([

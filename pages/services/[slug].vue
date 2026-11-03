@@ -23,6 +23,7 @@ const faqItems = (() => {
   return list.filter((f, i) => list.findIndex((x) => x.id === f.id) === i).slice(0, 6)
 })()
 const estimateLink = `${estimatePath}?service=${service.slug}`
+const { track } = useAnalytics()
 const path = `/services/${service.slug}`
 const crumbs = [
   { name: 'Services', path: '/services' },
@@ -103,7 +104,45 @@ useJsonLd([
     <section class="section border-y border-stone-300 bg-white" aria-labelledby="scope-heading">
       <div class="wrap">
         <h2 id="scope-heading" class="max-w-2xl text-h2">{{ service.scopeTitle }}</h2>
-        <ul class="mt-12 grid gap-px overflow-hidden rounded border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Grouped scope (e.g. Installation / Repair) -->
+        <div v-if="service.scopeGroups?.length" class="mt-12 grid gap-6 lg:grid-cols-2">
+          <article
+            v-for="(g, gi) in service.scopeGroups"
+            :id="g.id"
+            :key="g.id"
+            class="flex scroll-mt-32 flex-col overflow-hidden rounded border border-stone-300"
+          >
+            <header class="relative p-7 sm:p-8" :class="gi === 0 ? 'bg-ink text-stone' : 'bg-stone-50'">
+              <div class="flex items-center gap-3">
+                <span
+                  class="flex h-9 w-9 items-center justify-center rounded-full border text-sm font-bold"
+                  :class="gi === 0 ? 'border-bronze text-bronze-light' : 'border-bronze-dark text-bronze-dark'"
+                  aria-hidden="true"
+                >{{ gi === 0 ? '+' : '↺' }}</span>
+                <h3 class="text-h3" :class="gi === 0 ? 'text-paper' : 'text-ink'">{{ g.title }}</h3>
+              </div>
+              <p v-if="g.intro" class="mt-3 text-[0.9375rem]" :class="gi === 0 ? 'text-stone/75' : 'text-muted'">{{ g.intro }}</p>
+            </header>
+            <ul class="flex-1 divide-y divide-stone-300 bg-white">
+              <li v-for="item in g.items" :key="item.title" class="flex gap-4 px-7 py-5 sm:px-8">
+                <span class="mt-[0.8em] h-px w-4 shrink-0 bg-bronze" aria-hidden="true" />
+                <div>
+                  <h4 class="font-bold text-ink">{{ item.title }}</h4>
+                  <p class="mt-1 text-[0.9375rem] text-muted">{{ item.text }}</p>
+                </div>
+              </li>
+            </ul>
+            <div class="border-t border-stone-300 bg-white px-7 py-5 sm:px-8">
+              <NuxtLink
+                :to="`${estimateLink}`"
+                class="text-sm font-semibold text-ink underline decoration-bronze decoration-2 underline-offset-4 hover:decoration-ink"
+                @click="track('service_cta_click', { label: `${service.slug}_${g.id}` })"
+              >Request {{ /^[aeiou]/i.test(g.title) ? 'an' : 'a' }} {{ g.title.toLowerCase() }} estimate</NuxtLink>
+            </div>
+          </article>
+        </div>
+
+        <ul v-else class="mt-12 grid gap-px overflow-hidden rounded border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
           <li v-for="item in service.scope" :key="item.title" class="bg-white p-6 sm:p-7">
             <h3 class="text-lg font-bold text-ink">{{ item.title }}</h3>
             <p class="mt-2 text-[0.9375rem] text-muted">{{ item.text }}</p>

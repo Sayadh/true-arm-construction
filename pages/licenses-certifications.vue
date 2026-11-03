@@ -35,7 +35,7 @@ const fmt = (d?: string) => (d ? new Date(`${d}T12:00:00`).toLocaleDateString('e
             </p>
             <p>
               A Class B license allows a contractor to take on projects that involve two or more unrelated building trades, which is typical
-              for remodels and new construction. Some specialty work, depending on scope, may require a specialty-licensed contractor.
+              for remodels and room additions. Some specialty work, depending on scope, may require a specialty-licensed contractor.
             </p>
             <p>
               The CSLB website shows each license’s current status, business details, bond information, and workers’ compensation

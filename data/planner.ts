@@ -18,23 +18,81 @@ export interface PlannerQuestion {
 }
 
 export const plannerServiceOptions: { slug: string; label: string }[] = [
+  { slug: 'kitchen-remodeling', label: 'Kitchen remodeling' },
   { slug: 'bathroom-remodeling', label: 'Bathroom remodeling' },
+  { slug: 'room-additions', label: 'Room addition' },
+  { slug: 'flooring-installation', label: 'Flooring installation' },
+  { slug: 'epoxy-flooring', label: 'Epoxy flooring' },
   { slug: 'tile-installation', label: 'Tile installation' },
+  { slug: 'baseboard-installation', label: 'Baseboard installation' },
   { slug: 'interior-painting', label: 'Interior painting' },
   { slug: 'exterior-painting', label: 'Exterior painting' },
-  { slug: 'siding', label: 'Siding' },
-  { slug: 'fence-repair', label: 'Fence repair' },
   { slug: 'power-washing', label: 'Pressure washing' },
-  { slug: 'wall-installation', label: 'Wall installation' },
-  { slug: 'window-services', label: 'Window services' },
-  { slug: 'gazebo-construction', label: 'Gazebo construction' },
-  { slug: 'new-construction', label: 'New construction' },
+  { slug: 'fences-gates', label: 'Fences & gates' },
+  { slug: 'drywall-repair', label: 'Drywall repair' },
+  { slug: 'dry-rot-repair', label: 'Dry rot repair' },
+  { slug: 'handyman-services', label: 'Handyman services' },
   { slug: 'home-remodeling', label: 'Other remodeling / not sure' }
 ]
 
 const notSure: PlannerOption = { value: 'not-sure', label: 'Not sure yet' }
 
 export const plannerQuestions: Record<string, PlannerQuestion[]> = {
+  'kitchen-remodeling': [
+    { id: 'kitchen-scope', label: 'What kind of kitchen project?', type: 'choice', options: [
+      { value: 'full', label: 'Full remodel' }, { value: 'cabinets-counters', label: 'Cabinets and countertops' },
+      { value: 'refresh', label: 'Refresh (backsplash, paint, fixtures)' }, notSure] },
+    { id: 'layout', label: 'Will the layout change?', type: 'choice', options: [
+      { value: 'same', label: 'Keep the same layout' }, { value: 'change', label: 'Change the layout' }, notSure] }
+  ],
+  'room-additions': [
+    { id: 'addition-use', label: 'What will the new space be used for?', type: 'choice', options: [
+      { value: 'bedroom', label: 'Bedroom' }, { value: 'living', label: 'Family or living room' },
+      { value: 'office', label: 'Office' }, { value: 'suite', label: 'Primary suite' }, { value: 'other', label: 'Something else' }] },
+    { id: 'planning-stage', label: 'Where are you in planning?', type: 'choice', options: [
+      { value: 'idea', label: 'Early idea' }, { value: 'design', label: 'Working on designs' },
+      { value: 'plans-ready', label: 'Plans are ready' }] },
+    { id: 'size', label: 'Approximate size, if known', type: 'text', placeholder: 'e.g. about 200 sq ft' }
+  ],
+  'flooring-installation': [
+    { id: 'material', label: 'What flooring are you considering?', type: 'choice', options: [
+      { value: 'lvp', label: 'Vinyl plank (LVP)' }, { value: 'laminate', label: 'Laminate' },
+      { value: 'engineered-wood', label: 'Engineered wood' }, { value: 'tile', label: 'Tile' }, notSure] },
+    { id: 'area', label: 'Approximate area, if known', type: 'text', placeholder: 'e.g. 3 bedrooms, about 600 sq ft' }
+  ],
+  'epoxy-flooring': [
+    { id: 'space', label: 'Which space?', type: 'choice', options: [
+      { value: 'garage', label: 'Garage' }, { value: 'workshop', label: 'Workshop or utility area' },
+      { value: 'commercial', label: 'Commercial space' }, { value: 'other', label: 'Other' }] },
+    { id: 'area', label: 'Approximate area, if known', type: 'text', placeholder: 'e.g. 2-car garage' }
+  ],
+  'baseboard-installation': [
+    { id: 'baseboard-scope', label: 'What do you need?', type: 'choice', options: [
+      { value: 'with-flooring', label: 'Baseboards with new flooring' }, { value: 'replace', label: 'Replace existing baseboards' },
+      { value: 'new', label: 'Add baseboards' }, notSure] }
+  ],
+  'fences-gates': [
+    { id: 'fence-scope', label: 'What do you need?', type: 'choice', options: [
+      { value: 'new', label: 'New fence' }, { value: 'replace', label: 'Replace an old fence' },
+      { value: 'repair', label: 'Repair a fence' }, { value: 'gate', label: 'Gate only' }] },
+    { id: 'length', label: 'Approximate length, if known', type: 'text', placeholder: 'e.g. backyard, about 120 ft' }
+  ],
+  'drywall-repair': [
+    { id: 'damage', label: 'What kind of damage?', type: 'choice', options: [
+      { value: 'holes', label: 'Holes or dents' }, { value: 'cracks', label: 'Cracks' },
+      { value: 'water', label: 'Water damage' }, { value: 'multiple', label: 'Several issues' }] }
+  ],
+  'dry-rot-repair': [
+    { id: 'location', label: 'Where is the rot?', type: 'choice', options: [
+      { value: 'fascia', label: 'Fascia or eaves' }, { value: 'windows-doors', label: 'Window or door trim' },
+      { value: 'exterior-trim', label: 'Other exterior wood' }, { value: 'multiple', label: 'Several areas' }, notSure] },
+    { id: 'report', label: 'Do you have a pest inspection report?', type: 'choice', options: [
+      { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }] }
+  ],
+  'handyman-services': [
+    { id: 'task-count', label: 'How many items are on your list?', type: 'choice', options: [
+      { value: '1', label: 'One' }, { value: '2-5', label: '2 to 5' }, { value: '6+', label: '6 or more' }] }
+  ],
   'tile-installation': [
     { id: 'surface', label: 'Where is the tile going?', type: 'choice', options: [
       { value: 'floor', label: 'Floor' }, { value: 'wall', label: 'Wall or backsplash' },
@@ -50,14 +108,6 @@ export const plannerQuestions: Record<string, PlannerQuestion[]> = {
       { value: 'shower', label: 'Shower or tub' }, { value: 'vanity', label: 'Vanity and sink' },
       { value: 'floor', label: 'Flooring' }, { value: 'everything', label: 'The whole room' }, notSure] }
   ],
-  'new-construction': [
-    { id: 'project-type', label: 'General project type', type: 'choice', options: [
-      { value: 'home', label: 'New home' }, { value: 'structure', label: 'Other residential structure' },
-      { value: 'commercial', label: 'Commercial building' }, { value: 'other', label: 'Something else' }] },
-    { id: 'planning-stage', label: 'Where are you in planning?', type: 'choice', options: [
-      { value: 'idea', label: 'Early idea' }, { value: 'design', label: 'Working on designs' },
-      { value: 'plans-ready', label: 'Plans are ready' }, { value: 'permitted', label: 'Permits in hand or in review' }] }
-  ],
   'interior-painting': [
     { id: 'rooms', label: 'What needs painting?', type: 'choice', options: [
       { value: 'one-room', label: 'One room' }, { value: 'several', label: 'Several rooms' },
@@ -67,28 +117,13 @@ export const plannerQuestions: Record<string, PlannerQuestion[]> = {
     { id: 'stories', label: 'How many stories?', type: 'choice', options: [
       { value: '1', label: 'One' }, { value: '2', label: 'Two' }, { value: '3+', label: 'Three or more' }, notSure] },
     { id: 'surface', label: 'Main exterior surface', type: 'choice', options: [
-      { value: 'stucco', label: 'Stucco' }, { value: 'wood', label: 'Wood siding' },
+      { value: 'stucco', label: 'Stucco' }, { value: 'wood', label: 'Wood' },
       { value: 'fiber-cement', label: 'Fiber cement' }, notSure] }
-  ],
-  'fence-repair': [
-    { id: 'damage', label: 'What needs repair?', type: 'choice', options: [
-      { value: 'posts', label: 'Leaning or broken posts' }, { value: 'boards', label: 'Boards or pickets' },
-      { value: 'gate', label: 'Gate' }, { value: 'multiple', label: 'Several issues' }] },
-    { id: 'length', label: 'Approximate length affected, if known', type: 'text', placeholder: 'e.g. two sections, about 16 ft' }
-  ],
-  siding: [
-    { id: 'siding-scope', label: 'What do you need?', type: 'choice', options: [
-      { value: 'repair', label: 'Repair damaged areas' }, { value: 'replace-section', label: 'Replace a section' },
-      { value: 'full', label: 'New siding for the building' }, notSure] }
   ],
   'power-washing': [
     { id: 'surfaces', label: 'What needs cleaning?', type: 'choice', options: [
       { value: 'driveway', label: 'Driveway or walkways' }, { value: 'patio', label: 'Patio or deck' },
       { value: 'house', label: 'House exterior' }, { value: 'fence', label: 'Fence' }, { value: 'multiple', label: 'Several areas' }] }
-  ],
-  'gazebo-construction': [
-    { id: 'gazebo-stage', label: 'Do you have a design in mind?', type: 'choice', options: [
-      { value: 'idea', label: 'Just an idea' }, { value: 'examples', label: 'I have examples' }, { value: 'plans', label: 'I have plans' }] }
   ]
 }
 
@@ -112,19 +147,33 @@ export interface NavigatorChoice {
 
 export const navigatorChoices: NavigatorChoice[] = [
   {
-    label: 'Remodel a bathroom',
-    description: 'Showers, vanities, full renovations',
+    label: 'Remodel my kitchen or bath',
+    description: 'Kitchens, bathrooms, full renovations',
     icon: 'Bath',
     next: {
-      question: 'How much are you planning to change?',
+      question: 'Which room?',
       options: [
-        { label: 'The whole room', service: 'bathroom-remodeling' },
-        { label: 'Mainly the shower or tile', service: 'tile-installation' },
-        { label: 'Just paint and finishes', service: 'interior-painting' }
+        { label: 'Kitchen', service: 'kitchen-remodeling' },
+        { label: 'Bathroom', service: 'bathroom-remodeling' },
+        { label: 'Several rooms or the whole home', service: 'home-remodeling' }
       ]
     }
   },
-  { label: 'Install new tile', description: 'Floors, showers, backsplashes', icon: 'Grid3x3', service: 'tile-installation' },
+  { label: 'Add a room', description: 'More living space for your home', icon: 'HousePlus', service: 'room-additions' },
+  {
+    label: 'Install new floors',
+    description: 'Flooring, tile, epoxy, baseboards',
+    icon: 'Layers',
+    next: {
+      question: 'What kind of floor?',
+      options: [
+        { label: 'Vinyl plank, laminate, or wood', service: 'flooring-installation' },
+        { label: 'Tile', service: 'tile-installation' },
+        { label: 'Epoxy for a garage or concrete', service: 'epoxy-flooring' },
+        { label: 'Baseboards and trim', service: 'baseboard-installation' }
+      ]
+    }
+  },
   {
     label: 'Paint my property',
     description: 'Inside or outside',
@@ -133,29 +182,23 @@ export const navigatorChoices: NavigatorChoice[] = [
       question: 'Which part of the property?',
       options: [
         { label: 'Interior rooms', service: 'interior-painting' },
-        { label: 'Exterior walls and trim', service: 'exterior-painting' }
+        { label: 'Exterior walls and trim', service: 'exterior-painting' },
+        { label: 'Cleaning before painting', service: 'power-washing' }
       ]
     }
   },
+  { label: 'Build or fix a fence', description: 'New fences, gates, and repairs', icon: 'Fence', service: 'fences-gates' },
   {
-    label: 'Improve my exterior',
-    description: 'Siding, fences, cleaning',
-    icon: 'House',
+    label: 'Repairs and small jobs',
+    description: 'Drywall, dry rot, handyman',
+    icon: 'Wrench',
     next: {
-      question: 'What needs attention?',
+      question: 'What needs fixing?',
       options: [
-        { label: 'Siding', service: 'siding' },
-        { label: 'Fence or gate', service: 'fence-repair' },
-        { label: 'Dirty surfaces', service: 'power-washing' },
-        { label: 'Faded paint', service: 'exterior-painting' }
+        { label: 'Drywall holes, cracks, or water damage', service: 'drywall-repair' },
+        { label: 'Rotted wood outside', service: 'dry-rot-repair' },
+        { label: 'A list of small jobs', service: 'handyman-services' }
       ]
     }
-  },
-  { label: 'Build an outdoor structure', description: 'Gazebos and shade', icon: 'Tent', service: 'gazebo-construction' },
-  {
-    label: 'Start a construction project',
-    description: 'Ground-up residential or commercial',
-    icon: 'Building2',
-    service: 'new-construction'
   }
 ]

@@ -10,7 +10,7 @@ const reasons = [
   {
     icon: 'Building2',
     title: 'Residential and commercial',
-    text: 'We work on homes and commercial properties, from single-room updates to new construction.'
+    text: 'We work on homes and commercial properties, from single-room updates to room additions.'
   },
   {
     icon: 'FileText',

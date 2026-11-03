@@ -3,7 +3,7 @@ import { serviceGroups, servicesByGroup } from '~/data/services'
 
 const title = 'Construction & Remodeling Services in Sacramento, CA'
 const description =
-  'Bathroom remodeling, tile installation, painting, siding, fence repair, pressure washing, gazebos, and new construction in Sacramento, CA.'
+  'Kitchen and bathroom remodeling, room additions, flooring, tile, painting, fences and gates, and repairs in Sacramento, CA.'
 const path = '/services'
 
 const groups = serviceGroups

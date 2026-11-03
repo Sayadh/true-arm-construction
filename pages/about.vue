@@ -50,12 +50,12 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
           <div class="rich mt-6 text-lead">
             <p>
               True Arm Construction works with homeowners, property owners, and businesses in {{ company.primaryArea.city }} on
-              projects ranging from bathroom remodels and tile work to exterior improvements and ground-up construction.
+              projects ranging from kitchen and bathroom remodels, flooring, and painting to room additions, fences, and repairs.
             </p>
             <p>
               We hold a California contractor license, #{{ company.license.number }}, in Class {{ company.license.classification }}
               ({{ company.license.classificationName }}). That classification covers projects involving multiple building trades,
-              which describes most remodeling and new construction work.
+              which describes most remodeling and room addition work.
             </p>
             <p>
               Every project starts with a conversation. We want to understand what you are trying to achieve, how you use the space,

@@ -67,7 +67,8 @@ export default defineNuxtConfig({
   nitro: {
     // Always output plain static files, even when building on Cloudflare/Netlify/Vercel CI
     // (otherwise Nitro auto-detects the platform and emits a server Worker).
-    preset: 'static',
+    // (Spread because Nuxt's typed Nitro subset omits `preset`, though Nitro supports it.)
+    ...({ preset: 'static' } as Record<string, unknown>),
     prerender: {
       crawlLinks: true,
       failOnError: true,

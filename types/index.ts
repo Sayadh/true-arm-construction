@@ -74,7 +74,7 @@ export interface CompanyConfig {
   defaultOgImage: string
 }
 
-export type ServiceGroupId = 'remodeling' | 'tile' | 'exterior' | 'outdoor' | 'construction'
+export type ServiceGroupId = 'remodeling' | 'flooring' | 'exterior' | 'repairs'
 
 export interface ServiceGroup {
   id: ServiceGroupId
@@ -85,6 +85,14 @@ export interface ServiceGroup {
 export interface ServiceScopeItem {
   title: string
   text: string
+}
+
+/** Optional grouped scope (e.g. Installation / Repair) shown instead of a flat list */
+export interface ServiceScopeGroup {
+  id: string
+  title: string
+  intro?: string
+  items: ServiceScopeItem[]
 }
 
 export interface ServiceSection {
@@ -111,6 +119,7 @@ export interface Service {
   intro: string[]
   scopeTitle: string
   scope: ServiceScopeItem[]
+  scopeGroups?: ServiceScopeGroup[]
   /** Shown when the exact scope still needs confirmation with the company */
   scopeNote?: string
   sections: ServiceSection[]
@@ -130,15 +139,16 @@ export interface Service {
 }
 
 export type ProjectCategoryId =
+  | 'kitchen'
   | 'bathroom'
+  | 'remodeling'
+  | 'room-addition'
+  | 'flooring'
   | 'tile'
   | 'interior-painting'
   | 'exterior-painting'
-  | 'siding'
   | 'fence'
-  | 'window'
-  | 'gazebo'
-  | 'general-construction'
+  | 'repairs'
 
 export interface ProjectCategory {
   id: ProjectCategoryId
@@ -175,11 +185,13 @@ export interface Project {
 
 export type FaqCategoryId =
   | 'general'
+  | 'kitchen'
   | 'bathroom'
-  | 'tile'
+  | 'additions'
+  | 'flooring'
   | 'painting'
   | 'exterior'
-  | 'construction'
+  | 'repairs'
   | 'estimates'
 
 export interface FaqCategory {
