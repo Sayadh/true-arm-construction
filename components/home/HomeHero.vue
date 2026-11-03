@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowUpRight, Building2, FileCheck2, ShieldCheck } from 'lucide-vue-next'
 import { company } from '~/data/company'
 import { estimatePath } from '~/data/navigation'
 
@@ -58,21 +59,38 @@ onBeforeUnmount(() => observer?.disconnect())
           <AppButton to="/projects" variant="outline-light" size="lg">View Projects</AppButton>
         </div>
 
-        <!-- Trust detail: measured like a drawing annotation -->
-        <div class="intro-item mt-12 max-w-[38rem]" style="--d: 760ms">
-          <div class="dim-line text-bronze/70" aria-hidden="true" />
-          <dl class="spec-list mt-6 grid grid-cols-1 text-sm sm:grid-cols-3">
-            <div class="spec-item">
-              <dt class="text-stone/60">California license</dt>
-              <dd class="mt-1 font-semibold text-paper">#{{ company.license.number }}, Class {{ company.license.classification }}</dd>
+        <!-- Trust detail: a credential strip. License leads (full width on mobile), the two facts share a row. -->
+        <div class="intro-item mt-12 max-w-[40rem]" style="--d: 760ms">
+          <dl class="trust grid grid-cols-2 overflow-hidden rounded-lg border border-paper/10 bg-deep/45 backdrop-blur-md sm:grid-cols-[1.25fr,1fr,1fr]">
+            <div class="trust-item col-span-2 border-b border-paper/10 sm:col-span-1 sm:border-b-0 sm:border-r">
+              <span class="trust-icon" aria-hidden="true"><ShieldCheck :size="18" /></span>
+              <div>
+                <dt class="text-xs font-semibold text-bronze-light">California license</dt>
+                <dd class="mt-1.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span class="font-display text-[1.75rem] font-extrabold leading-none text-paper [font-stretch:76%]">#{{ company.license.number }}</span>
+                  <span class="rounded-sm border border-paper/20 px-1.5 py-0.5 text-[0.6875rem] font-semibold text-stone/80">Class {{ company.license.classification }}</span>
+                </dd>
+                <a
+                  :href="company.license.verifyUrl"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-stone/70 underline decoration-bronze/60 underline-offset-4 hover:text-paper"
+                >Verify on CSLB<ArrowUpRight :size="12" aria-hidden="true" /></a>
+              </div>
             </div>
-            <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="spec-item">
-              <dt class="text-stone/60">Property types</dt>
-              <dd class="mt-1 font-semibold text-paper">Residential and commercial</dd>
+            <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="trust-item trust-item--stack border-r border-paper/10">
+              <span class="trust-icon" aria-hidden="true"><Building2 :size="18" /></span>
+              <div>
+                <dt class="text-xs font-semibold text-stone/60">Property types</dt>
+                <dd class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Residential &amp; commercial</dd>
+              </div>
             </div>
-            <div v-if="company.confirmedFacts.freeEstimates" class="spec-item">
-              <dt class="text-stone/60">Estimates</dt>
-              <dd class="mt-1 font-semibold text-paper">Free, project-specific</dd>
+            <div v-if="company.confirmedFacts.freeEstimates" class="trust-item trust-item--stack">
+              <span class="trust-icon" aria-hidden="true"><FileCheck2 :size="18" /></span>
+              <div>
+                <dt class="text-xs font-semibold text-stone/60">Estimates</dt>
+                <dd class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Free, project-specific</dd>
+              </div>
             </div>
           </dl>
         </div>
@@ -184,43 +202,29 @@ onBeforeUnmount(() => observer?.disconnect())
 @keyframes sweep { to { transform: translateX(100%); } }
 @keyframes cell-in { to { opacity: 1; transform: none; } }
 
-/*
- * Trust-detail row: subdivided like the dimension line above it, instead of
- * three text blocks floating in whitespace. Each item after the first gets a
- * hairline + a short bronze tick where the "measurement" continues.
- */
-.spec-item {
-  position: relative;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+/* Credential strip: icon in a brass ring, label, value */
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1.125rem 1.125rem 1.25rem;
 }
-.spec-item:first-child { padding-top: 0; }
-.spec-item + .spec-item {
-  border-top: 1px solid rgb(232 229 223 / 0.12);
-}
-.spec-item + .spec-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -1px;
-  width: 0.625rem;
-  height: 1px;
-  background: #b98a4b;
-}
+/* Half-width cells on mobile: icon above the text so values don't wrap word by word */
+.trust-item--stack { flex-direction: column; gap: 0.75rem; }
 @media (min-width: 640px) {
-  .spec-item {
-    padding: 0 1.25rem;
-  }
-  .spec-item:first-child { padding-left: 0; }
-  .spec-item + .spec-item {
-    border-top: 0;
-    border-left: 1px solid rgb(232 229 223 / 0.12);
-  }
-  .spec-item + .spec-item::before {
-    left: -1px;
-    top: 0;
-    width: 1px;
-    height: 0.625rem;
-  }
+  .trust-item { padding: 1.25rem 1.375rem; }
+  .trust-item--stack { flex-direction: row; gap: 0.875rem; }
+}
+.trust-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(185 138 75 / 0.55);
+  color: #d9b27a;
+  background: rgb(185 138 75 / 0.08);
 }
 </style>
