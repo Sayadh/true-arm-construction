@@ -1,113 +1,125 @@
 <script setup lang="ts">
-import { ArrowRight, ArrowLeft } from 'lucide-vue-next'
+import { ArrowRight, ChevronDown } from 'lucide-vue-next'
 import { navigatorChoices } from '~/data/planner'
-import { getService } from '~/data/services'
-import { estimatePath } from '~/data/navigation'
 
 /**
- * Lightweight service finder. Direct choices are plain links (work without JS);
- * choices with follow-ups expand inline and recommend a service page.
+ * Service finder. Direct choices are plain links (work without JS); choices
+ * with a follow-up question open a panel of answers. On phones the panel opens
+ * right under the tapped card; on larger screens it opens under the grid and
+ * scrolls into view, so the next step is never off screen.
  */
 withDefaults(defineProps<{ showAllLink?: boolean }>(), { showAllLink: true })
 
+const NuxtLink = resolveComponent('NuxtLink')
 const { track } = useAnalytics()
 const active = ref<number | null>(null)
-const panel = ref<HTMLElement | null>(null)
+const desktopPanel = ref<HTMLElement | null>(null)
+const mobilePanel = ref<HTMLElement[] | null>(null)
 
 const current = computed(() => (active.value === null ? null : navigatorChoices[active.value]))
 
 async function open(i: number) {
   active.value = active.value === i ? null : i
+  if (active.value === null) return
   await nextTick()
-  panel.value?.focus()
+  const isPhone = window.matchMedia('(max-width: 639px)').matches
+  const el = isPhone ? mobilePanel.value?.[0] : desktopPanel.value
+  if (!el) return
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' })
+  el.focus({ preventScroll: true })
 }
 
 function recommend(service: string) {
   track('navigator_recommendation', { service })
 }
-
-const svc = (slug: string) => getService(slug)
 </script>
 
 <template>
   <div>
-    <ul class="grid gap-px overflow-hidden rounded border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-4">
-      <li v-for="(c, i) in navigatorChoices" :key="c.label" class="bg-paper">
+    <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <template v-for="(c, i) in navigatorChoices" :key="c.label">
+        <li>
+          <component
+            :is="c.service ? NuxtLink : 'button'"
+            v-bind="c.service ? { to: `/services/${c.service}` } : { type: 'button', 'aria-expanded': active === i, 'aria-controls': 'navigator-panel' }"
+            class="choice group flex h-full w-full flex-col rounded-lg border bg-white p-5 text-left transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-[0_22px_50px_-30px_rgba(30,58,48,0.55)] sm:p-6"
+            :class="active === i ? 'border-bronze shadow-[0_22px_50px_-30px_rgba(30,58,48,0.55)] ring-1 ring-bronze' : 'border-stone-300'"
+            @click="c.service ? recommend(c.service) : open(i)"
+          >
+            <span
+              class="flex h-12 w-12 items-center justify-center rounded-md transition-colors duration-300"
+              :class="active === i ? 'bg-ink text-bronze-light' : 'bg-ink/[0.06] text-bronze-dark group-hover:bg-ink group-hover:text-bronze-light'"
+            >
+              <AppIcon :name="c.icon" :size="24" />
+            </span>
+            <span class="mt-5 block text-lg font-bold leading-snug text-ink">{{ c.label }}</span>
+            <span class="mt-1 block text-[0.9375rem] text-muted">{{ c.description }}</span>
+
+            <span class="block min-h-[1.25rem] flex-1" aria-hidden="true" />
+            <span class="flex items-center justify-between gap-3 border-t border-stone-300 pt-4">
+              <span class="text-sm font-semibold text-ink">
+                {{ c.service ? 'See the service' : `${c.next?.options.length} options to choose from` }}
+              </span>
+              <span
+                class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300"
+                :class="active === i ? 'bg-bronze text-deep' : 'bg-paper text-ink group-hover:bg-ink group-hover:text-paper'"
+                aria-hidden="true"
+              >
+                <ArrowRight v-if="c.service" :size="16" class="transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ChevronDown v-else :size="16" class="transition-transform duration-300" :class="active === i ? 'rotate-180' : ''" />
+              </span>
+            </span>
+          </component>
+        </li>
+
+        <!-- Phones: the follow-up opens directly under the tapped card -->
+        <li v-if="active === i && current?.next" class="sm:hidden">
+          <div id="navigator-panel-mobile" ref="mobilePanel" tabindex="-1" class="scroll-mt-28 outline-none" aria-live="polite">
+            <NavigatorPanel :choice="current" @close="active = null" @pick="recommend" />
+          </div>
+        </li>
+      </template>
+
+      <li v-if="showAllLink" class="sm:col-span-2 lg:col-span-2">
         <NuxtLink
-          v-if="c.service"
-          :to="`/services/${c.service}`"
-          class="group flex h-full min-h-[9.5rem] flex-col justify-between gap-6 p-6 transition-colors hover:bg-white"
-          @click="recommend(c.service)"
+          to="/services"
+          class="group relative flex h-full min-h-[11rem] flex-col justify-between overflow-hidden rounded-lg bg-ink p-6 text-paper transition-transform duration-300 hover:-translate-y-1"
         >
-          <AppIcon :name="c.icon" :size="30" class="text-bronze-dark" />
-          <span>
-            <span class="flex items-center justify-between gap-3 text-lg font-bold text-ink">
-              {{ c.label }}
-              <ArrowRight :size="18" aria-hidden="true" class="shrink-0 transition-transform group-hover:translate-x-0.5" />
-            </span>
-            <span class="mt-1 block text-[0.9375rem] text-muted">{{ c.description }}</span>
+          <span class="graph-paper-dark absolute inset-0" aria-hidden="true" />
+          <span class="relative flex h-12 w-12 items-center justify-center rounded-md bg-paper/10 text-bronze-light">
+            <AppIcon name="ClipboardList" :size="24" />
           </span>
-        </NuxtLink>
-        <button
-          v-else
-          type="button"
-          class="group flex h-full min-h-[9.5rem] w-full flex-col justify-between gap-6 p-6 text-left transition-colors hover:bg-white"
-          :class="active === i ? 'bg-white ring-2 ring-inset ring-bronze' : ''"
-          :aria-expanded="active === i"
-          aria-controls="navigator-panel"
-          @click="open(i)"
-        >
-          <AppIcon :name="c.icon" :size="30" class="text-bronze-dark" />
-          <span>
-            <span class="flex items-center justify-between gap-3 text-lg font-bold text-ink">
-              {{ c.label }}
-              <span class="text-sm font-semibold text-bronze-dark">{{ active === i ? 'Close' : 'Choose' }}</span>
+          <span class="relative mt-6 flex items-end justify-between gap-4">
+            <span>
+              <span class="block font-display text-[1.875rem] font-extrabold leading-none [font-stretch:78%]">Not sure? See every service</span>
+              <span class="mt-2 block text-sm text-stone/70">Remodeling, flooring, painting, fences and repairs in one place.</span>
             </span>
-            <span class="mt-1 block text-[0.9375rem] text-muted">{{ c.description }}</span>
-          </span>
-        </button>
-      </li>
-      <li v-if="showAllLink" class="bg-ink sm:col-span-2 lg:col-span-2">
-        <NuxtLink to="/services" class="group flex h-full min-h-[9.5rem] flex-col justify-between gap-6 p-6 text-paper">
-          <AppIcon name="ClipboardList" :size="30" class="text-bronze-light" />
-          <span class="flex items-center justify-between gap-3 text-lg font-bold">
-            Explore all services
-            <ArrowRight :size="18" aria-hidden="true" class="shrink-0 transition-transform group-hover:translate-x-0.5" />
+            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-bronze text-deep transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+              <ArrowRight :size="18" />
+            </span>
           </span>
         </NuxtLink>
       </li>
     </ul>
 
-    <div
-      v-if="current?.next"
-      id="navigator-panel"
-      ref="panel"
-      tabindex="-1"
-      class="mt-4 rounded border border-stone-300 bg-white p-6 outline-none sm:p-8"
-      aria-live="polite"
-    >
-      <div class="flex items-start justify-between gap-4">
-        <p class="text-h3 text-ink">{{ current.next.question }}</p>
-        <button type="button" class="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-muted hover:text-ink" @click="active = null">
-          <ArrowLeft :size="16" aria-hidden="true" /> Back
-        </button>
+    <!-- Tablets and desktops: the follow-up opens under the grid -->
+    <Transition name="drop">
+      <div
+        v-if="current?.next"
+        id="navigator-panel"
+        ref="desktopPanel"
+        tabindex="-1"
+        class="mt-4 hidden scroll-mt-32 outline-none sm:block"
+        aria-live="polite"
+      >
+        <NavigatorPanel :choice="current" @close="active = null" @pick="recommend" />
       </div>
-      <ul class="mt-6 grid gap-3 md:grid-cols-2">
-        <li v-for="o in current.next.options" :key="o.service" class="flex flex-col justify-between gap-4 rounded border border-stone-300 p-5">
-          <div>
-            <p class="font-bold text-ink">{{ o.label }}</p>
-            <p class="mt-1 text-[0.9375rem] text-muted">We recommend: {{ svc(o.service)?.name }}</p>
-          </div>
-          <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <NuxtLink :to="`/services/${o.service}`" class="inline-flex items-center gap-1.5 font-semibold text-ink underline decoration-bronze decoration-2 underline-offset-4" @click="recommend(o.service)">
-              View {{ svc(o.service)?.shortName.toLowerCase() }}
-            </NuxtLink>
-            <NuxtLink :to="`${estimatePath}?service=${o.service}`" class="text-sm font-semibold text-bronze-dark hover:underline" @click="recommend(o.service)">
-              Start an estimate
-            </NuxtLink>
-          </div>
-        </li>
-      </ul>
-    </div>
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.drop-enter-active, .drop-leave-active { transition: opacity 0.3s ease, transform 0.3s cubic-bezier(.2, .7, .2, 1); }
+.drop-enter-from, .drop-leave-to { opacity: 0; transform: translateY(-8px); }
+</style>
