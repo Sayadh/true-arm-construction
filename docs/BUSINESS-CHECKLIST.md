@@ -37,3 +37,14 @@ Items the client must supply or confirm before launch. Edit the listed file, the
 
 ## Never publish without written confirmation
 Years in business, project counts, ratings, reviews/testimonials, awards, insurance or bonding claims, warranty terms, prices or financing.
+
+## Stock photography (temporary)
+
+The homepage uses licensed stock photos (Unsplash License) from `public/images/stock/` as
+atmosphere: hero slideshow, service-group tiles, "Why choose" photo, process section and the
+closing CTA band. They are never captioned or presented as True Arm projects.
+
+- [ ] Replace with real project photos as they become available (same file names, or update
+      `company.heroSlides` in `data/company.ts` and the `groupImages` map in
+      `components/home/HomeServices.vue`).
+- [ ] Never move stock photos into `data/projects.ts` or service galleries.

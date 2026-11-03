@@ -8,6 +8,9 @@ import { estimatePath } from '~/data/navigation'
  * with the rest of the hero — it reads as the drawing being signed off.
  * Gated behind IntersectionObserver so it never fires off-screen on mobile.
  */
+const headline = 'Construction and remodeling, built around you.'
+const headlineWords = headline.split(' ')
+
 const captionEl = ref<HTMLElement | null>(null)
 const captionInView = ref(false)
 const captionBaseDelay = company.heroImage ? '0.15s' : '2.2s'
@@ -34,29 +37,29 @@ onBeforeUnmount(() => observer?.disconnect())
 </script>
 
 <template>
-  <section class="on-dark relative overflow-hidden bg-ink text-stone">
+  <section class="on-dark relative overflow-hidden bg-deep text-stone">
     <HeroSlideshow :slides="company.heroSlides" />
-    <div class="graph-paper-dark absolute inset-0" aria-hidden="true" />
-    <div class="wrap relative grid gap-12 pb-16 pt-12 sm:pt-16 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-20">
-      <div class="flex flex-col justify-center lg:col-span-7">
-        <p class="flex items-center gap-3 text-[0.9375rem] font-semibold text-bronze-light">
+    <div class="graph-paper-dark absolute inset-0 opacity-30" aria-hidden="true" />
+    <div class="wrap relative grid gap-12 pb-16 pt-14 sm:pt-20 lg:min-h-[calc(100svh-var(--header-offset))] lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-16">
+      <div class="intro flex flex-col justify-center lg:col-span-7">
+        <p class="intro-item flex items-center gap-3 text-[0.9375rem] font-semibold text-bronze-light" style="--d: 0ms">
           <span class="h-px w-8 bg-bronze" aria-hidden="true" />
           General contractor in {{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}
         </p>
-        <h1 class="mt-6 text-display text-paper">
-          Construction and remodeling, built around you.
+        <h1 class="mt-6 text-display text-paper" :aria-label="headline">
+          <template v-for="(w, i) in headlineWords" :key="i"><span class="word" aria-hidden="true"><span class="word-in" :style="{ '--d': `${120 + i * 55}ms` }">{{ w }}</span></span>{{ ' ' }}</template>
         </h1>
-        <p class="mt-6 max-w-[38rem] text-lead text-stone/80">
+        <p class="intro-item mt-7 max-w-[36rem] text-lead text-stone/85" style="--d: 520ms">
           Residential and commercial construction, remodeling, and property improvements in Sacramento. From kitchen and
           bathroom remodels to room additions, flooring, and fences, we help you turn a plan into a finished space.
         </p>
-        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <div class="intro-item mt-9 flex flex-col gap-3 sm:flex-row" style="--d: 640ms">
           <AppButton :to="estimatePath" size="lg" data-primary-cta track="estimate_cta_click" track-label="hero">Get a Free Estimate</AppButton>
           <AppButton to="/projects" variant="outline-light" size="lg">View Projects</AppButton>
         </div>
 
         <!-- Trust detail: measured like a drawing annotation -->
-        <div class="mt-12 max-w-[38rem]">
+        <div class="intro-item mt-12 max-w-[38rem]" style="--d: 760ms">
           <div class="dim-line text-bronze/70" aria-hidden="true" />
           <dl class="spec-list mt-6 grid grid-cols-1 text-sm sm:grid-cols-3">
             <div class="spec-item">
@@ -76,7 +79,7 @@ onBeforeUnmount(() => observer?.disconnect())
       </div>
 
       <div class="lg:col-span-5">
-        <figure class="relative rounded border border-slate-line bg-deep/60 p-4 sm:p-6">
+        <figure class="relative rounded-lg border border-paper/10 bg-deep/55 p-4 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] backdrop-blur-md sm:p-6">
           <div v-if="company.heroImage" class="aspect-[4/5] overflow-hidden rounded-sm">
             <NuxtImg
               format="webp"
@@ -127,6 +130,24 @@ onBeforeUnmount(() => observer?.disconnect())
 </template>
 
 <style scoped>
+.word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.word-in { display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Page-load sequence: eyebrow, headline word by word, then copy and actions */
+  .word-in {
+    transform: translateY(105%);
+    animation: word-up 0.9s cubic-bezier(.2, .8, .2, 1) var(--d, 0ms) forwards;
+  }
+  .intro-item {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: intro-in 0.8s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms) forwards;
+  }
+}
+@keyframes word-up { to { transform: none; } }
+@keyframes intro-in { to { opacity: 1; transform: none; } }
+
 @media (prefers-reduced-motion: no-preference) {
   /* Frame placed first, empty; cells "plotted" in one by one after. */
   .title-block { opacity: 0; }
@@ -184,7 +205,7 @@ onBeforeUnmount(() => observer?.disconnect())
   top: -1px;
   width: 0.625rem;
   height: 1px;
-  background: #b88957;
+  background: #b98a4b;
 }
 @media (min-width: 640px) {
   .spec-item {

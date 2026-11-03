@@ -63,7 +63,13 @@ export const company: CompanyConfig = {
   //   { src: '/images/hero/slides/slide-1.jpg', alt: 'Finished kitchen remodel in Sacramento, CA' },
   //   { src: '/images/hero/slides/slide-2.jpg', alt: 'New fence and gate installation' }
   // ],
-  heroSlides: [],
+  // Currently: licensed stock photos (Unsplash License) as atmosphere only. They are
+  // never labeled or presented as True Arm projects. Replace with real work when available.
+  heroSlides: [
+    { src: '/images/stock/hero-kitchen.jpg', alt: '' },
+    { src: '/images/stock/hero-dusk-house.jpg', alt: '' },
+    { src: '/images/stock/hero-bathroom.jpg', alt: '' }
+  ],
 
   defaultOgImage: '/images/social/og-default.png'
 }

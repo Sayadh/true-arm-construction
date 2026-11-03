@@ -20,10 +20,21 @@ withDefaults(
 </script>
 
 <template>
-  <section class="on-dark relative overflow-hidden bg-ink text-stone">
-    <div class="graph-paper-dark absolute inset-0 opacity-60" aria-hidden="true" />
-    <div class="wrap relative grid gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:py-24">
-      <div class="lg:col-span-7">
+  <section class="on-dark relative isolate overflow-hidden bg-ink text-stone">
+    <!-- Licensed stock interior as atmosphere, washed in forest so the copy stays the focus -->
+    <NuxtImg
+      format="webp"
+      src="/images/stock/cta-living-room.jpg"
+      alt=""
+      aria-hidden="true"
+      sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
+      loading="lazy"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-deep via-deep/85 to-deep/50" aria-hidden="true" />
+    <div class="graph-paper-dark absolute inset-0 -z-10 opacity-50" aria-hidden="true" />
+    <div class="wrap relative grid gap-10 py-20 sm:py-24 lg:grid-cols-12 lg:items-end lg:py-32">
+      <div v-reveal class="lg:col-span-7">
         <h2 class="text-h2 text-paper">{{ title }}</h2>
         <p class="mt-5 max-w-prose text-lead text-stone/80">{{ text }}</p>
       </div>

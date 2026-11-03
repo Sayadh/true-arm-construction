@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
 
-  css: ['@fontsource-variable/manrope/index.css', '~/assets/css/main.css'],
+  css: ['@fontsource-variable/manrope/index.css', '@fontsource-variable/archivo/wdth.css', '~/assets/css/main.css'],
 
   // Components are referenced by file name (e.g. <AppButton>), not folder-prefixed names.
   components: [{ path: '~/components', pathPrefix: false }],

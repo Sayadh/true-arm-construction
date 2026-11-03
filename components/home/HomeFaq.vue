@@ -7,7 +7,7 @@ const items = featuredFaqs.slice(0, 6)
 <template>
   <section class="section bg-stone-50" aria-labelledby="faq-heading">
     <div class="wrap grid gap-12 lg:grid-cols-12">
-      <div class="lg:col-span-4">
+      <div v-reveal class="lg:col-span-4">
         <h2 id="faq-heading" class="text-h2">Common questions</h2>
         <p class="mt-5 text-lead text-muted">Practical answers about estimates, permits, and planning.</p>
         <div class="mt-8 flex flex-col items-start gap-2">
@@ -15,7 +15,7 @@ const items = featuredFaqs.slice(0, 6)
           <AppButton to="/resources" variant="quiet">Homeowner resources</AppButton>
         </div>
       </div>
-      <div class="lg:col-span-8">
+      <div v-reveal="{ delay: 120 }" class="lg:col-span-8">
         <FaqAccordion :items="items" />
       </div>
     </div>

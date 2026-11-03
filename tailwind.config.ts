@@ -13,24 +13,28 @@ export default {
   corePlugins: { container: false },
   theme: {
     extend: {
+      // "City of Trees" palette: forest green + brass on warm limestone.
+      // Token names kept from the original theme so every page re-themes at once.
       colors: {
-        ink: '#172126',
-        deep: '#101719',
-        paper: '#FAF9F6',
-        stone: { DEFAULT: '#E8E5DF', 50: '#F3F1EC', 200: '#E8E5DF', 300: '#D8D3CA', 400: '#BDB6AA' },
-        bronze: { DEFAULT: '#B88957', light: '#CFA67A', dark: '#85602F' },
-        body: '#334047',
-        muted: '#5B676D',
-        slate: { line: '#2A363C', soft: '#93A0A6' }
+        ink: '#1E3A30', // forest: dark sections, headings
+        deep: '#142821', // deepest forest: overlays, footer
+        paper: '#F4F0E8', // limestone page background
+        stone: { DEFAULT: '#E6E0D4', 50: '#EDE8DD', 200: '#E6E0D4', 300: '#D3CBBB', 400: '#B3AA97' },
+        bronze: { DEFAULT: '#B98A4B', light: '#D9B27A', dark: '#875F2B' }, // brass accent
+        body: '#2B332E',
+        muted: '#5C665F',
+        slate: { line: '#33503F', soft: '#9DB0A5' }
       },
       fontFamily: {
-        sans: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+        sans: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        // Condensed grotesk for headlines: reads like job-site signage and drawing title blocks
+        display: ['"Archivo Variable"', 'Archivo', '"Manrope Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif']
       },
       fontSize: {
-        // Modular scale (~1.25) tuned for Manrope
-        'display': ['clamp(2.5rem, 1.6rem + 4vw, 4.75rem)', { lineHeight: '1.02', letterSpacing: '-0.035em', fontWeight: '700' }],
-        'h1': ['clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.03em', fontWeight: '700' }],
-        'h2': ['clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem)', { lineHeight: '1.12', letterSpacing: '-0.025em', fontWeight: '700' }],
+        // Display sizes are set in Archivo at a condensed width (see main.css)
+        'display': ['clamp(3rem, 1.8rem + 5.4vw, 6.25rem)', { lineHeight: '0.92', letterSpacing: '-0.012em', fontWeight: '800' }],
+        'h1': ['clamp(2.5rem, 1.8rem + 3vw, 4.25rem)', { lineHeight: '0.98', letterSpacing: '-0.01em', fontWeight: '800' }],
+        'h2': ['clamp(2.125rem, 1.6rem + 2.2vw, 3.5rem)', { lineHeight: '1', letterSpacing: '-0.008em', fontWeight: '780' }],
         'h3': ['clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem)', { lineHeight: '1.25', letterSpacing: '-0.015em', fontWeight: '650' }],
         'lead': ['clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)', { lineHeight: '1.6' }]
       },

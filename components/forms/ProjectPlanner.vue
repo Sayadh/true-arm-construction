@@ -197,7 +197,7 @@ const recommendedService = computed(() => getService(form.service))
               class="relative flex min-h-[56px] cursor-pointer items-center gap-3 rounded border px-4 py-3 font-semibold text-ink transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bronze"
               :class="form.service === o.slug ? 'border-ink bg-ink/[0.03] ring-1 ring-ink' : 'border-stone-300 hover:border-ink/50'"
             >
-              <input v-model="form.service" type="radio" name="service" :value="o.slug" class="h-4 w-4 accent-[#172126]">
+              <input v-model="form.service" type="radio" name="service" :value="o.slug" class="h-4 w-4 accent-[#1E3A30]">
               {{ o.label }}
             </label>
           </div>
@@ -216,7 +216,7 @@ const recommendedService = computed(() => getService(form.service))
                 class="flex min-h-[48px] cursor-pointer items-center gap-3 rounded border px-5 font-semibold text-ink has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bronze"
                 :class="form.propertyType === t ? 'border-ink ring-1 ring-ink' : 'border-stone-300'"
               >
-                <input v-model="form.propertyType" type="radio" name="propertyType" :value="t" class="h-4 w-4 accent-[#172126]" :aria-invalid="errors.propertyType ? 'true' : undefined">
+                <input v-model="form.propertyType" type="radio" name="propertyType" :value="t" class="h-4 w-4 accent-[#1E3A30]" :aria-invalid="errors.propertyType ? 'true' : undefined">
                 {{ t }}
               </label>
             </div>
@@ -253,7 +253,7 @@ const recommendedService = computed(() => getService(form.service))
                     class="flex min-h-[44px] cursor-pointer items-center gap-2.5 rounded border px-4 text-[0.9375rem] font-semibold text-ink has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bronze"
                     :class="form.details[q.id] === o.value ? 'border-ink ring-1 ring-ink' : 'border-stone-300'"
                   >
-                    <input v-model="form.details[q.id]" type="radio" :name="q.id" :value="o.value" class="h-4 w-4 accent-[#172126]">
+                    <input v-model="form.details[q.id]" type="radio" :name="q.id" :value="o.value" class="h-4 w-4 accent-[#1E3A30]">
                     {{ o.label }}
                   </label>
                 </div>
@@ -281,7 +281,7 @@ const recommendedService = computed(() => getService(form.service))
               class="flex min-h-[56px] cursor-pointer items-center gap-3 rounded border px-4 font-semibold text-ink has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-bronze"
               :class="form.timeline === t.value ? 'border-ink ring-1 ring-ink' : 'border-stone-300'"
             >
-              <input v-model="form.timeline" type="radio" name="timeline" :value="t.value" class="h-4 w-4 accent-[#172126]" :aria-invalid="errors.timeline ? 'true' : undefined">
+              <input v-model="form.timeline" type="radio" name="timeline" :value="t.value" class="h-4 w-4 accent-[#1E3A30]" :aria-invalid="errors.timeline ? 'true' : undefined">
               {{ t.label }}
             </label>
           </div>
@@ -315,7 +315,7 @@ const recommendedService = computed(() => getService(form.service))
           </div>
           <div>
             <label class="flex cursor-pointer items-start gap-3 text-[0.9375rem]">
-              <input v-model="form.consent" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#172126]" :aria-invalid="errors.consent ? 'true' : undefined" :aria-describedby="errors.consent ? 'err-consent' : undefined">
+              <input v-model="form.consent" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#1E3A30]" :aria-invalid="errors.consent ? 'true' : undefined" :aria-describedby="errors.consent ? 'err-consent' : undefined">
               <span>I agree that {{ company.name }} may contact me about this estimate request. See the <NuxtLink to="/privacy-policy" class="font-semibold underline decoration-bronze underline-offset-4">Privacy Policy</NuxtLink>.</span>
             </label>
             <p v-if="errors.consent" id="err-consent" class="field-error">{{ errors.consent }}</p>

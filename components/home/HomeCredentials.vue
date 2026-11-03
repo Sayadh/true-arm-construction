@@ -5,7 +5,7 @@ import { publishedCredentials } from '~/data/credentials'
 <template>
   <section class="section bg-stone-50" aria-labelledby="cred-heading">
     <div class="wrap grid gap-12 lg:grid-cols-12 lg:items-center">
-      <div class="lg:col-span-5">
+      <div v-reveal class="lg:col-span-5">
         <h2 id="cred-heading" class="text-h2">Licensed by the State of California</h2>
         <p class="mt-5 text-lead text-muted">
           A Class B General Building Contractor license covers projects that involve two or more building trades, such as remodels and room additions.
@@ -15,7 +15,7 @@ import { publishedCredentials } from '~/data/credentials'
           <AppButton to="/licenses-certifications" variant="outline">Licenses &amp; certifications</AppButton>
         </div>
       </div>
-      <div class="space-y-4 lg:col-span-6 lg:col-start-7">
+      <div v-reveal="{ delay: 150 }" class="space-y-4 lg:col-span-6 lg:col-start-7">
         <LicenseCard />
         <p v-if="publishedCredentials.length" class="text-sm text-muted">
           Plus {{ publishedCredentials.length }} additional credential{{ publishedCredentials.length > 1 ? 's' : '' }}.

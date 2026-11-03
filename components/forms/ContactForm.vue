@@ -88,7 +88,7 @@ async function onSubmit() {
       </div>
       <div>
         <label class="flex cursor-pointer items-start gap-3 text-[0.9375rem]">
-          <input v-model="form.consent" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#172126]" :aria-invalid="errors.consent ? 'true' : undefined">
+          <input v-model="form.consent" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#1E3A30]" :aria-invalid="errors.consent ? 'true' : undefined">
           <span>I agree that {{ company.name }} may contact me about my message. See the <NuxtLink to="/privacy-policy" class="font-semibold underline decoration-bronze underline-offset-4">Privacy Policy</NuxtLink>.</span>
         </label>
         <p v-if="errors.consent" class="field-error">{{ errors.consent }}</p>

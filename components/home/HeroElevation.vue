@@ -73,16 +73,16 @@ onBeforeUnmount(() => observer?.disconnect())
       <path class="ln seq-6b" pathLength="1" d="M75 345 H100 M192 345 H236 M284 345 H325" stroke-opacity=".25" stroke-dasharray="3 5" />
       <!-- wing cladding lines + window -->
       <path class="ln seq-6b" pathLength="1" d="M325 336 H432 M325 352 H432 M325 368 H432 M325 384 H432 M325 400 H432" stroke-opacity=".18" />
-      <rect class="fd seq-7" x="352" y="344" width="54" height="40" fill="#101719" />
+      <rect class="fd seq-7" x="352" y="344" width="54" height="40" fill="#142821" />
     </g>
 
     <!-- dimension lines -->
-    <g stroke="#B88957" stroke-width="1" fill="none">
+    <g stroke="#B98A4B" stroke-width="1" fill="none">
       <path class="ln seq-8" pathLength="1" d="M75 455 H432 M75 447 V463 M432 447 V463 M325 451 V459" />
       <path class="ln seq-8" pathLength="1" d="M462 120 V420 M454 120 H470 M454 420 H470 M456 228 H468" />
       <path class="ln seq-8" pathLength="1" d="M30 228 V420 M22 228 H38 M22 420 H38" stroke-opacity=".6" />
     </g>
-    <g fill="#CFA67A" font-family="inherit" font-size="12" font-weight="600">
+    <g fill="#D9B27A" font-family="inherit" font-size="12" font-weight="600">
       <text x="196" y="478" text-anchor="middle" class="lbl">Built around your vision</text>
     </g>
   </svg>
