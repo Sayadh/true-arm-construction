@@ -65,6 +65,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    // Always output plain static files, even when building on Cloudflare/Netlify/Vercel CI
+    // (otherwise Nitro auto-detects the platform and emits a server Worker).
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       failOnError: true,
