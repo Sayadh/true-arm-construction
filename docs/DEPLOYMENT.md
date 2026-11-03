@@ -1,0 +1,130 @@
+# Deployment
+
+The site is fully static. Every option below serves the files in `.output/public/`.
+
+## 1. Build
+
+```bash
+npm ci
+NUXT_PUBLIC_SITE_ENV=production \
+NUXT_PUBLIC_SITE_URL=https://truearmconstruction.com \
+NUXT_PUBLIC_FORM_ENDPOINT=https://formspree.io/f/XXXXXXX \
+npm run generate
+npm run check:links
+```
+
+(Or put the same values in `.env` before running `npm run generate`.)
+Requires Node.js 20.19+ (22 LTS recommended) on the build machine only.
+
+Output structure: each route is a folder with `index.html` (e.g. `about/index.html`), plus `404.html`, `sitemap.xml`, `robots.txt`, `_nuxt/` assets.
+
+## 2a. Static shared hosting / cPanel (e.g. HayHost)
+
+1. Upload the **contents** of `.output/public/` into `public_html/` (File Manager or FTP/SFTP).
+2. Add `public_html/.htaccess` (Apache):
+
+```apache
+ErrorDocument 404 /404.html
+Options -MultiViews
+DirectorySlash On
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS and non-www
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://truearmconstruction.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+```
+
+3. Enable SSL (Let's Encrypt / AutoSSL) in cPanel.
+
+## 2b. Cloudflare Pages
+
+- Connect the Git repository → Framework preset: **Nuxt.js** (or None).
+- Build command: `npm run generate` · Output directory: `.output/public`
+- Environment variables: `NUXT_PUBLIC_SITE_ENV=production`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_FORM_ENDPOINT`, analytics IDs, `NODE_VERSION=22`.
+- Custom domain: add `truearmconstruction.com` under the project's Custom domains. If DNS is on Cloudflare, records are created automatically. Add a redirect rule `www → apex` if you also use `www`.
+- `404.html` is served automatically for unknown routes.
+
+## 2c. Nginx (DigitalOcean, DreamHost VPS, any Linux server)
+
+Build locally or in CI, then sync:
+
+```bash
+rsync -avz --delete .output/public/ user@SERVER:/var/www/truearmconstruction/
+```
+
+`/etc/nginx/sites-available/truearmconstruction`:
+
+```nginx
+server {
+  listen 80;
+  listen [::]:80;
+  server_name truearmconstruction.com www.truearmconstruction.com;
+  return 301 https://truearmconstruction.com$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  server_name truearmconstruction.com;
+
+  ssl_certificate     /etc/letsencrypt/live/truearmconstruction.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/truearmconstruction.com/privkey.pem;
+
+  root /var/www/truearmconstruction;
+  index index.html;
+
+  # /about and /about/ both serve about/index.html
+  location / {
+    try_files $uri $uri/index.html $uri.html =404;
+  }
+
+  error_page 404 /404.html;
+
+  location /_nuxt/ {
+    add_header Cache-Control "public, max-age=31536000, immutable";
+    try_files $uri =404;
+  }
+  location /_ipx/ {
+    add_header Cache-Control "public, max-age=2592000";
+    try_files $uri =404;
+  }
+  location ~* \.(?:png|jpg|jpeg|webp|svg|ico|woff2)$ {
+    add_header Cache-Control "public, max-age=2592000";
+  }
+
+  gzip on;
+  gzip_types text/css application/javascript application/json image/svg+xml application/xml text/plain;
+
+  add_header X-Content-Type-Options nosniff;
+  add_header Referrer-Policy strict-origin-when-cross-origin;
+}
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/truearmconstruction /etc/nginx/sites-enabled/
+sudo certbot --nginx -d truearmconstruction.com -d www.truearmconstruction.com
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+No PM2/Node process is needed: Nginx only serves files.
+
+## 3. After the first production deploy
+
+- [ ] `https://truearmconstruction.com/robots.txt` shows `Allow: /` and the sitemap URL
+- [ ] View source on any page: `<meta name="robots" content="index, follow…">`
+- [ ] Submit `https://truearmconstruction.com/sitemap.xml` in Google Search Console
+- [ ] Send a real test request through `/free-estimate` and confirm it arrives
+- [ ] Test the site at https://search.google.com/test/rich-results and https://pagespeed.web.dev
