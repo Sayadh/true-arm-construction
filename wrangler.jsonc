@@ -1,0 +1,14 @@
+// Cloudflare Workers (Static Assets) config.
+// Build: `npm run generate` → static files in .output/public, served as-is (no Worker script).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "true-arm-construction",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./.output/public",
+    // /about serves about/index.html; /about/ redirects to /about (matches canonical URLs)
+    "html_handling": "drop-trailing-slash",
+    // Unknown URLs get the custom 404.html with a real 404 status
+    "not_found_handling": "404-page"
+  }
+}
