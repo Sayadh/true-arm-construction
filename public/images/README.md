@@ -2,7 +2,7 @@
 
 | Folder | What goes here | Wired up in |
 |---|---|---|
-| `brand/` | Official logo (SVG preferred) | `data/company.ts` → `logo.src` |
+| `brand/` | Official logo (`logo.png` + `logo.webp`, master `true-arm-construction-logo.png`) | `data/company.ts` → `logo.src` |
 | `hero/` | Homepage hero photo (min 2000px wide) | `data/company.ts` → `heroImage` |
 | `services/` | Service photos, e.g. `services/bathroom-1.jpg` | `data/services.ts` → `images` of each service |
 | `projects/<slug>/` | Real project photos (cover, gallery, before/after) | `data/projects.ts` |

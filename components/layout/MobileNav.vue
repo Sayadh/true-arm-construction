@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { X, ChevronDown, Instagram, Phone } from 'lucide-vue-next'
+import { X, ChevronDown, Instagram, Facebook, Phone } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 import { estimatePath } from '~/data/navigation'
 import type { NavLink } from '~/types'
@@ -110,9 +110,14 @@ const secondary: NavLink[] = [
           </div>
           <div class="mt-8 space-y-3 text-sm text-muted">
             <LicenseTag />
-            <a v-if="company.social.instagram" :href="company.social.instagram" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-ink">
-              <Instagram :size="16" aria-hidden="true" /> Instagram<span class="sr-only"> (opens in a new tab)</span>
-            </a>
+            <div class="flex flex-wrap gap-x-6 gap-y-2">
+              <a v-if="company.social.instagram" :href="company.social.instagram" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-ink">
+                <Instagram :size="16" aria-hidden="true" /> Instagram<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a v-if="company.social.facebook" :href="company.social.facebook" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-ink">
+                <Facebook :size="16" aria-hidden="true" /> Facebook<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
           </div>
         </nav>
       </div>

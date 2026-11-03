@@ -2,12 +2,23 @@
 
 All image references live in `data/`. Components never hardcode image paths.
 
-## Logo
-Put `logo.svg` in `public/images/brand/` and set in `data/company.ts`:
-```ts
-logo: { src: '/images/brand/logo.svg', alt: 'True Arm Construction' }
-```
-The typographic wordmark disappears everywhere automatically. Also replace `public/favicon.svg` and `public/apple-touch-icon.png` (180×180).
+## Logo and icons
+The official logo is wired in `data/company.ts` → `logo.src` (header, mobile menu, footer, and Organization schema for Google).
+
+| File | Size | Used for |
+|---|---|---|
+| `public/images/brand/true-arm-construction-logo.png` | 1085×952, transparent | Master file (print, Google Business Profile, social profiles) |
+| `public/images/brand/logo.png` | 600×526, transparent | Site logo + schema.org `logo` |
+| `public/images/brand/logo.webp` | 600×526 | Same, smaller; served first via `<picture>` |
+| `public/favicon.ico` | 16, 32, 48 | Browsers and Google Search results favicon |
+| `public/favicon-96x96.png` | 96×96 | Modern browsers, Google (multiple of 48px) |
+| `public/apple-touch-icon.png` | 180×180, white background | iPhone/iPad home screen |
+| `public/web-app-manifest-192x192.png`, `-512x512.png` | transparent | Android / `site.webmanifest` |
+| `public/web-app-manifest-512x512-maskable.png` | 512×512, white, safe-zone padding | Android adaptive icons |
+| `public/images/social/og-default.png` | 1200×630 | Facebook / iMessage / LinkedIn link previews |
+
+To replace the logo, regenerate every file above from the new master with the same names and sizes.
+Google picks up a new favicon only after it recrawls the homepage (days to weeks); requesting indexing of `/` in Search Console speeds it up.
 
 ## Homepage hero photo
 Until a photo is set, the hero shows a drawn house elevation. To use a real photo (min. 2000px wide, landscape or 4:5):

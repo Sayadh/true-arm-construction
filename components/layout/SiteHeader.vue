@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown, Menu, Instagram } from 'lucide-vue-next'
+import { ChevronDown, Menu, Instagram, Facebook } from 'lucide-vue-next'
 import { company } from '~/data/company'
 import { serviceGroups, servicesByGroup } from '~/data/services'
 import { estimatePath } from '~/data/navigation'
@@ -71,6 +71,9 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
           <NuxtLink to="/service-areas" class="hover:text-paper">Service Areas</NuxtLink>
           <a v-if="company.social.instagram" :href="company.social.instagram" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-paper">
             <Instagram :size="15" aria-hidden="true" /> Instagram<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+          <a v-if="company.social.facebook" :href="company.social.facebook" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-paper">
+            <Facebook :size="15" aria-hidden="true" /> Facebook<span class="sr-only"> (opens in a new tab)</span>
           </a>
         </nav>
       </div>

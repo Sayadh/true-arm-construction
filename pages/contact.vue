@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Instagram, Mail, MapPin, Phone, Clock } from 'lucide-vue-next'
+import { Instagram, Facebook, Mail, MapPin, Phone, Clock } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 
 const title = 'Contact True Arm Construction | Sacramento, CA'
@@ -46,6 +46,10 @@ const { track } = useAnalytics()
               <li v-if="company.social.instagram" class="flex items-center gap-3">
                 <Instagram :size="20" class="text-bronze-dark" aria-hidden="true" />
                 <a :href="company.social.instagram" target="_blank" rel="noopener" class="font-semibold text-ink underline decoration-bronze underline-offset-4">@truearmconstruction<span class="sr-only"> on Instagram (opens in a new tab)</span></a>
+              </li>
+              <li v-if="company.social.facebook" class="flex items-center gap-3">
+                <Facebook :size="20" class="text-bronze-dark" aria-hidden="true" />
+                <a :href="company.social.facebook" target="_blank" rel="noopener" class="font-semibold text-ink underline decoration-bronze underline-offset-4">True Arm Construction<span class="sr-only"> on Facebook (opens in a new tab)</span></a>
               </li>
               <li class="flex items-center gap-3">
                 <MapPin :size="20" class="text-bronze-dark" aria-hidden="true" />

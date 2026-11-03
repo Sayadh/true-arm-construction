@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Instagram } from 'lucide-vue-next'
+import { Instagram, Facebook } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 import { serviceGroups, servicesByGroup } from '~/data/services'
 import { enabledAreas } from '~/data/areas'
@@ -14,7 +14,7 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
   <footer class="on-dark bg-deep text-stone/75">
     <div class="wrap grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
       <div class="lg:col-span-4">
-        <Wordmark tone="light" />
+        <Wordmark tone="light" size="lg" />
         <p class="mt-6 max-w-sm text-[0.9375rem] leading-relaxed">{{ company.description }}</p>
         <div class="mt-6"><LicenseTag tone="dark" /></div>
         <ul class="mt-6 space-y-2 text-[0.9375rem]">
@@ -27,6 +27,11 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
           <li v-if="company.social.instagram">
             <a :href="company.social.instagram" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-paper hover:underline">
               <Instagram :size="16" aria-hidden="true" /> @truearmconstruction<span class="sr-only"> on Instagram (opens in a new tab)</span>
+            </a>
+          </li>
+          <li v-if="company.social.facebook">
+            <a :href="company.social.facebook" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-paper hover:underline">
+              <Facebook :size="16" aria-hidden="true" /> True Arm Construction<span class="sr-only"> on Facebook (opens in a new tab)</span>
             </a>
           </li>
         </ul>

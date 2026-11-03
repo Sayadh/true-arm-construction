@@ -42,12 +42,12 @@ export const company: CompanyConfig = {
 
   social: {
     instagram: 'https://www.instagram.com/truearmconstruction/',
-    facebook: null,
+    facebook: 'https://www.facebook.com/p/True-Arm-Construction-61567774326514/',
     google: null // Google Business Profile URL, when available
   },
 
   logo: {
-    src: null, // e.g. '/images/brand/logo.svg' — replaces the typographic wordmark
+    src: '/images/brand/logo.png', // official logo (transparent PNG, 600×526); master file: true-arm-construction-logo.png
     alt: 'True Arm Construction'
   },
 
