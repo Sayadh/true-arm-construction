@@ -58,18 +58,18 @@ onBeforeUnmount(() => observer?.disconnect())
         <!-- Trust detail: measured like a drawing annotation -->
         <div class="mt-12 max-w-[38rem]">
           <div class="dim-line text-bronze/70" aria-hidden="true" />
-          <dl class="mt-4 grid grid-cols-1 gap-4 text-sm sm:grid-cols-3">
-            <div>
+          <dl class="spec-list mt-6 grid grid-cols-1 text-sm sm:grid-cols-3">
+            <div class="spec-item">
               <dt class="text-stone/60">California license</dt>
-              <dd class="mt-0.5 font-semibold text-paper">#{{ company.license.number }}, Class {{ company.license.classification }}</dd>
+              <dd class="mt-1 font-semibold text-paper">#{{ company.license.number }}, Class {{ company.license.classification }}</dd>
             </div>
-            <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial">
+            <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="spec-item">
               <dt class="text-stone/60">Property types</dt>
-              <dd class="mt-0.5 font-semibold text-paper">Residential and commercial</dd>
+              <dd class="mt-1 font-semibold text-paper">Residential and commercial</dd>
             </div>
-            <div v-if="company.confirmedFacts.freeEstimates">
+            <div v-if="company.confirmedFacts.freeEstimates" class="spec-item">
               <dt class="text-stone/60">Estimates</dt>
-              <dd class="mt-0.5 font-semibold text-paper">Free, project-specific</dd>
+              <dd class="mt-1 font-semibold text-paper">Free, project-specific</dd>
             </div>
           </dl>
         </div>
@@ -162,4 +162,44 @@ onBeforeUnmount(() => observer?.disconnect())
 @keyframes frame-in { to { opacity: 1; } }
 @keyframes sweep { to { transform: translateX(100%); } }
 @keyframes cell-in { to { opacity: 1; transform: none; } }
+
+/*
+ * Trust-detail row: subdivided like the dimension line above it, instead of
+ * three text blocks floating in whitespace. Each item after the first gets a
+ * hairline + a short bronze tick where the "measurement" continues.
+ */
+.spec-item {
+  position: relative;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.spec-item:first-child { padding-top: 0; }
+.spec-item + .spec-item {
+  border-top: 1px solid rgb(232 229 223 / 0.12);
+}
+.spec-item + .spec-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 0.625rem;
+  height: 1px;
+  background: #b88957;
+}
+@media (min-width: 640px) {
+  .spec-item {
+    padding: 0 1.25rem;
+  }
+  .spec-item:first-child { padding-left: 0; }
+  .spec-item + .spec-item {
+    border-top: 0;
+    border-left: 1px solid rgb(232 229 223 / 0.12);
+  }
+  .spec-item + .spec-item::before {
+    left: -1px;
+    top: 0;
+    width: 1px;
+    height: 0.625rem;
+  }
+}
 </style>
