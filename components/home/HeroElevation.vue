@@ -1,13 +1,51 @@
+<script setup lang="ts">
+/**
+ * The draw-on only plays once this card actually scrolls into view, not on
+ * page load — on mobile in particular the hero stacks text above image, so
+ * firing on mount would burn the animation before anyone sees it.
+ */
+const svgEl = ref<SVGSVGElement | null>(null)
+const inView = ref(false)
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduceMotion || !svgEl.value) {
+    inView.value = true
+    return
+  }
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry?.isIntersecting) {
+        inView.value = true
+        observer?.disconnect()
+      }
+    },
+    // fire a little before the card is fully in frame so it's never caught mid-scroll
+    { threshold: 0.25, rootMargin: '0px 0px -10% 0px' }
+  )
+  observer.observe(svgEl.value)
+})
+onBeforeUnmount(() => observer?.disconnect())
+</script>
+
 <template>
   <!--
     Decorative architectural elevation drawing used until a real hero photo is supplied.
-    Lines "draw" once on load, roughly in build order (foundation -> frame -> roof ->
-    openings -> wing -> dimensions -> label). Disabled for reduced motion.
-    pathLength="1" normalizes every shape's dash animation to the same 0-1 scale,
-    regardless of its actual length, so the draw-on speed looks consistent across
-    both long walls and short window mullions.
+    Lines "draw" once this element scrolls into view, roughly in build order
+    (foundation -> frame -> roof -> openings -> wing -> dimensions -> label).
+    Disabled for reduced motion. pathLength="1" normalizes every shape's dash
+    animation to the same 0-1 scale, regardless of its actual length, so the
+    draw-on speed looks consistent across both long walls and short mullions.
   -->
-  <svg viewBox="0 96 480 400" class="elevation h-auto w-full" role="img" aria-label="Line drawing of a house elevation">
+  <svg
+    ref="svgEl"
+    viewBox="0 96 480 400"
+    class="elevation h-auto w-full"
+    :class="{ 'in-view': inView }"
+    role="img"
+    aria-label="Line drawing of a house elevation"
+  >
     <g fill="none" stroke="#E8E5DF" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
       <!-- ground -->
       <path class="ln seq-0" pathLength="1" d="M20 420 H460" stroke-opacity=".55" />
@@ -52,30 +90,37 @@
 
 <style scoped>
 @media (prefers-reduced-motion: no-preference) {
+  /* Pre-draw state: held until .in-view is added by the observer. */
   .elevation .ln {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
+  }
+  .elevation .fd,
+  .elevation .lbl {
+    opacity: 0;
+  }
+
+  .elevation.in-view .ln {
     animation: draw 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  .elevation .fd {
-    opacity: 0;
+  .elevation.in-view .fd {
     animation: fade 0.35s ease-out forwards;
   }
 
   /* Build order: foundation, frame, roof, wing, openings, dimensions, label.
      Delays overlap slightly so the drawing flows rather than ticking element by element. */
-  .elevation .seq-0 { animation-delay: 0s; }
-  .elevation .seq-1 { animation-delay: 0.12s; }
-  .elevation .seq-2 { animation-delay: 0.42s; }
-  .elevation .seq-3 { animation-delay: 0.68s; }
-  .elevation .seq-4 { animation-delay: 0.92s; }
-  .elevation .seq-5 { animation-delay: 1.0s; }
-  .elevation .seq-5b { animation-delay: 1.22s; animation-duration: 0.5s; }
-  .elevation .seq-6 { animation-delay: 1.32s; }
-  .elevation .seq-6b { animation-delay: 1.56s; animation-duration: 0.5s; }
-  .elevation .seq-7 { animation-delay: 1.78s; }
-  .elevation .seq-8 { animation-delay: 1.95s; animation-duration: 0.6s; }
-  .elevation .lbl { opacity: 0; animation: fade 0.6s ease-out 2.45s forwards; }
+  .elevation.in-view .seq-0 { animation-delay: 0s; }
+  .elevation.in-view .seq-1 { animation-delay: 0.12s; }
+  .elevation.in-view .seq-2 { animation-delay: 0.42s; }
+  .elevation.in-view .seq-3 { animation-delay: 0.68s; }
+  .elevation.in-view .seq-4 { animation-delay: 0.92s; }
+  .elevation.in-view .seq-5 { animation-delay: 1.0s; }
+  .elevation.in-view .seq-5b { animation-delay: 1.22s; animation-duration: 0.5s; }
+  .elevation.in-view .seq-6 { animation-delay: 1.32s; }
+  .elevation.in-view .seq-6b { animation-delay: 1.56s; animation-duration: 0.5s; }
+  .elevation.in-view .seq-7 { animation-delay: 1.78s; }
+  .elevation.in-view .seq-8 { animation-delay: 1.95s; animation-duration: 0.6s; }
+  .elevation.in-view .lbl { animation: fade 0.6s ease-out 2.45s forwards; }
 }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade { to { opacity: 1; } }
