@@ -51,7 +51,7 @@ onBeforeUnmount(() => observer?.disconnect())
           bathroom remodels to room additions, flooring, and fences, we help you turn a plan into a finished space.
         </p>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <AppButton :to="estimatePath" size="lg" track="estimate_cta_click" track-label="hero">Get a Free Estimate</AppButton>
+          <AppButton :to="estimatePath" size="lg" data-primary-cta track="estimate_cta_click" track-label="hero">Get a Free Estimate</AppButton>
           <AppButton to="/projects" variant="outline-light" size="lg">View Projects</AppButton>
         </div>
 
