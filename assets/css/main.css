@@ -6,12 +6,18 @@
   :root {
     color-scheme: light;
     --header-h: 4.5rem;
+    /* Total sticky header height: main bar, plus the utility bar on xl screens */
+    --header-offset: var(--header-h);
+  }
+
+  @media (min-width: 1280px) {
+    :root { --header-offset: calc(var(--header-h) + 2.25rem); }
   }
 
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
-    scroll-padding-top: calc(var(--header-h) + 1rem);
+    scroll-padding-top: calc(var(--header-offset) + 1rem);
   }
 
   body {

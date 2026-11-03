@@ -45,7 +45,7 @@ const fmt = (d: string) => new Date(`${d}T12:00:00`).toLocaleDateString('en-US',
           </div>
         </article>
         <aside class="lg:col-span-4 lg:col-start-9">
-          <div class="rounded border border-stone-300 p-6 lg:sticky lg:top-[calc(var(--header-h)+3.5rem)]">
+          <div class="rounded border border-stone-300 p-6 lg:sticky lg:top-[calc(var(--header-offset)+1.5rem)]">
             <h2 class="font-bold text-ink">Related services</h2>
             <ul class="mt-3 space-y-2">
               <li v-for="s in related" :key="s.slug">

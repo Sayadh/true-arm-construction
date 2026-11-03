@@ -86,7 +86,7 @@ useJsonLd([
           </div>
         </div>
         <aside class="lg:col-span-4 lg:col-start-9">
-          <div class="rounded bg-ink p-7 text-stone lg:sticky lg:top-[calc(var(--header-h)+3.5rem)]">
+          <div class="rounded bg-ink p-7 text-stone lg:sticky lg:top-[calc(var(--header-offset)+1.5rem)]">
             <p class="text-lg font-bold text-paper">Free estimate</p>
             <p class="mt-2 text-[0.9375rem] text-stone/75">Tell us about your {{ service.shortName.toLowerCase() }} project in a few short steps. Skip anything you are not sure about.</p>
             <ul class="mt-5 space-y-2 text-[0.9375rem]">
@@ -110,7 +110,7 @@ useJsonLd([
             v-for="(g, gi) in service.scopeGroups"
             :id="g.id"
             :key="g.id"
-            class="flex scroll-mt-32 flex-col overflow-hidden rounded border border-stone-300"
+            class="flex flex-col overflow-hidden rounded border border-stone-300"
           >
             <header class="relative p-7 sm:p-8" :class="gi === 0 ? 'bg-ink text-stone' : 'bg-stone-50'">
               <div class="flex items-center gap-3">
@@ -159,7 +159,7 @@ useJsonLd([
             <h2 class="text-h3">{{ sec.title }}</h2>
             <div class="mt-4"><RichParagraphs :paragraphs="sec.body" /></div>
           </article>
-          <article v-for="a in service.anchors ?? []" :id="a.id" :key="a.id" class="mt-12 scroll-mt-32 border-t border-stone-300 pt-10">
+          <article v-for="a in service.anchors ?? []" :id="a.id" :key="a.id" class="mt-12 border-t border-stone-300 pt-10">
             <h2 class="text-h3">{{ a.title }}</h2>
             <div class="mt-4"><RichParagraphs :paragraphs="a.body" /></div>
           </article>

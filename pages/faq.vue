@@ -13,6 +13,7 @@ useJsonLd([
   faqSchema(faqs)
 ])
 
+const { scrollToId } = useAnchorScroll()
 const groups = faqCategories.map((c) => ({ ...c, items: faqsByCategory(c.id) })).filter((g) => g.items.length)
 </script>
 
@@ -27,14 +28,14 @@ const groups = faqCategories.map((c) => ({ ...c, items: faqsByCategory(c.id) }))
     <section class="section">
       <div class="wrap grid gap-12 lg:grid-cols-12">
         <nav aria-label="FAQ categories" class="lg:col-span-3">
-          <ul class="flex flex-wrap gap-2 lg:sticky lg:top-[calc(var(--header-h)+3.5rem)] lg:flex-col lg:gap-1">
+          <ul class="flex flex-wrap gap-2 lg:sticky lg:top-[calc(var(--header-offset)+1.5rem)] lg:flex-col lg:gap-1">
             <li v-for="g in groups" :key="g.id">
-              <a :href="`#${g.id}`" class="inline-block rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:border-ink lg:rounded lg:border-0 lg:px-0 lg:py-1.5 lg:hover:text-bronze-dark">{{ g.name }}</a>
+              <a :href="`#${g.id}`" @click="scrollToId(g.id, $event)" class="inline-block rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:border-ink lg:rounded lg:border-0 lg:px-0 lg:py-1.5 lg:hover:text-bronze-dark">{{ g.name }}</a>
             </li>
           </ul>
         </nav>
         <div class="space-y-16 lg:col-span-8 lg:col-start-5">
-          <section v-for="g in groups" :id="g.id" :key="g.id" class="scroll-mt-32" :aria-labelledby="`h-${g.id}`">
+          <section v-for="g in groups" :id="g.id" :key="g.id" :aria-labelledby="`h-${g.id}`">
             <h2 :id="`h-${g.id}`" class="mb-4 text-h3">{{ g.name }}</h2>
             <FaqAccordion :items="g.items" />
           </section>
