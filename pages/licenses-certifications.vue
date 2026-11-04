@@ -4,7 +4,7 @@ import { company } from '~/data/company'
 import { publishedCredentials } from '~/data/credentials'
 
 const title = 'Licenses & Certifications | True Arm Construction'
-const description = `True Arm Construction holds California contractor license #${company.license.number}, Class ${company.license.classification} General Building Contractor. Verify it on the CSLB website.`
+const description = `True Arm Construction holds California contractor license #${company.license.number} (Class ${company.license.classification}) and is an EPA Lead-Safe Certified Firm. Verify our credentials yourself.`
 const path = '/licenses-certifications'
 usePageSeo({ title, description, path, absoluteTitle: true })
 useJsonLd([
@@ -54,7 +54,19 @@ const fmt = (d?: string) => (d ? new Date(`${d}T12:00:00`).toLocaleDateString('e
         <h2 id="certs-heading" class="text-h2">Additional certifications</h2>
         <div v-if="publishedCredentials.length" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <article v-for="c in publishedCredentials" :key="c.id" class="flex flex-col rounded border border-stone-300 bg-white">
-            <MediaFrame v-if="c.image" :image="c.image" aspect="aspect-[4/3]" :rounded="false" />
+            <!-- Logos and badges are shown whole (contained), never cropped -->
+            <div v-if="c.image" class="flex aspect-[4/3] items-center justify-center border-b border-stone-300 bg-white p-8">
+              <NuxtImg
+                format="webp"
+                :src="c.image.src"
+                :alt="c.image.alt"
+                :width="c.image.width"
+                :height="c.image.height"
+                sizes="xs:100vw sm:50vw lg:33vw"
+                loading="lazy"
+                class="max-h-full w-auto object-contain"
+              />
+            </div>
             <div class="flex flex-1 flex-col p-6">
               <p class="text-sm font-semibold text-bronze-dark">{{ c.issuer }}</p>
               <h3 class="mt-1 text-lg font-bold text-ink">{{ c.name }}</h3>
@@ -63,7 +75,7 @@ const fmt = (d?: string) => (d ? new Date(`${d}T12:00:00`).toLocaleDateString('e
                 <div v-if="c.credentialNumber" class="flex gap-2"><dt class="text-muted">Number:</dt><dd class="font-semibold">{{ c.credentialNumber }}</dd></div>
                 <div v-if="c.issuedOn" class="flex gap-2"><dt class="text-muted">Issued:</dt><dd class="font-semibold">{{ fmt(c.issuedOn) }}</dd></div>
                 <div v-if="c.expiresOn" class="flex gap-2"><dt class="text-muted">Expires:</dt><dd class="font-semibold">{{ fmt(c.expiresOn) }}</dd></div>
-                <div class="flex gap-2"><dt class="text-muted">Status:</dt><dd class="font-semibold">{{ c.status === 'confirmed' ? 'Verified' : 'Verification pending' }}</dd></div>
+                <div class="flex gap-2"><dt class="text-muted">Status:</dt><dd class="font-semibold">{{ c.status === 'confirmed' ? 'Verified with issuer' : 'Check with issuer' }}</dd></div>
               </dl>
               <div class="mt-auto flex flex-wrap gap-4 pt-5 text-sm font-semibold">
                 <a v-if="c.pdf" :href="c.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 underline decoration-bronze underline-offset-4"><FileText :size="16" aria-hidden="true" />View certificate (PDF)</a>

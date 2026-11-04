@@ -21,6 +21,22 @@ import type { Credential } from '../types'
  *   published: true
  * }
  */
-export const credentials: Credential[] = []
+export const credentials: Credential[] = [
+  {
+    id: 'epa-lead-safe',
+    name: 'EPA Lead-Safe Certified Firm',
+    issuer: 'U.S. Environmental Protection Agency (EPA)',
+    credentialNumber: 'NAT-F312370-1',
+    description:
+      'Certified under the EPA Renovation, Repair and Painting (RRP) Rule. Firms that disturb painted surfaces in homes, child-care facilities, and preschools built before 1978 must be certified and follow lead-safe work practices.',
+    // Set to 'confirmed' once the number has been checked in EPA's firm locator (verifyUrl).
+    status: 'pending-verification',
+    issuedOn: undefined, // TODO(client): issue date from the EPA certificate
+    expiresOn: undefined, // TODO(client): expiration date from the EPA certificate
+    verifyUrl: 'https://cdxapps.epa.gov/ocspp-oppt-lead/firm-location-search',
+    image: { src: '/images/certificates/epa-lead-safe-certified-firm.png', alt: 'EPA Lead-Safe Certified Firm logo, certification NAT-F312370-1', width: 800, height: 589 },
+    published: true
+  }
+]
 
 export const publishedCredentials = credentials.filter((c) => c.published)
