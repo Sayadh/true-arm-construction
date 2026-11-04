@@ -8,6 +8,8 @@ export const faqCategories: FaqCategory[] = [
   { id: 'flooring', name: 'Flooring & tile' },
   { id: 'painting', name: 'Interior & exterior painting' },
   { id: 'exterior', name: 'Fences, gates & pressure washing' },
+  { id: 'windows', name: 'Windows' },
+  { id: 'gazebos', name: 'Gazebos' },
   { id: 'repairs', name: 'Repairs & handyman' },
   { id: 'estimates', name: 'Estimates & project planning' }
 ]
@@ -15,6 +17,8 @@ export const faqCategories: FaqCategory[] = [
 const CITY_BUILDING = 'https://www.cityofsacramento.gov/community-development/building'
 const COUNTY_BUILDING = 'https://development.saccounty.gov/us/en/building-permits-inspection/frequently-asked-questions.html'
 const CSLB_VERIFY = 'https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1128503'
+const CSLB_CHECKLIST = 'https://www.cslb.ca.gov/consumers/hire_a_contractor/Home_Improvement_Contracts/Homeowner_Checklists.aspx'
+const CSLB_AB2622 = 'https://www.cslb.ca.gov/Resources/IndustryBulletins/2024/AB%202622%20Implementation.FINAL.pdf'
 
 export const faqs: FaqItem[] = [
   // ── General
@@ -59,8 +63,42 @@ export const faqs: FaqItem[] = [
     featured: true,
     question: 'When might a project require permits?',
     answer: [
-      'Permits are commonly required for work that changes structure, adds or moves plumbing or electrical, replaces windows, or builds new structures. Purely cosmetic work, such as painting, often does not need one. The exact rules depend on the scope and on whether the property is in the City of Sacramento or unincorporated Sacramento County.',
-      `For official guidance, see the [City of Sacramento Building Division](${CITY_BUILDING}) or [Sacramento County Building Permits & Inspection](${COUNTY_BUILDING}). We review permit needs for your specific project during the estimate.`
+      'Permits are commonly required for work that changes structure, adds or moves plumbing or electrical, replaces windows, or builds new structures. Purely cosmetic work, such as painting, often does not need one. The exact rules depend on the scope and on which office covers the address: the City of Sacramento, the City of West Sacramento, or Sacramento County for unincorporated communities such as Carmichael.',
+      `For official guidance, see the [City of Sacramento Building Division](${CITY_BUILDING}) or [Sacramento County Building Permits & Inspection](${COUNTY_BUILDING}). Our [service area pages](/service-areas) list the office for each area. We review permit needs for your specific project during the estimate.`
+    ]
+  },
+  {
+    id: 'areas-served',
+    category: 'general',
+    featured: true,
+    question: 'What areas do you serve?',
+    answer: [
+      'We work in [Sacramento](/service-areas/sacramento), [West Sacramento](/service-areas/west-sacramento), and [Carmichael](/service-areas/carmichael). If your property is nearby but outside these areas, include your ZIP code in your request and we will let you know whether we can take on the project.'
+    ]
+  },
+  {
+    id: 'license-small-jobs',
+    category: 'general',
+    question: 'Does a contractor need a license for small jobs in California?',
+    answer: [
+      `Yes, for most work. Since January 1, 2025, an unlicensed person may only take jobs under $1,000 in total, and only if the work needs no permit and they hire no workers. Anything larger, or any job that needs a permit, requires a licensed contractor. See the [CSLB bulletin on the $1,000 limit](${CSLB_AB2622}).`,
+      `True Arm Construction is licensed (CA #1128503, Class B), so this limit does not apply to us, but it is worth knowing when you compare bids. You can [verify our license](${CSLB_VERIFY}) on the CSLB website.`
+    ]
+  },
+  {
+    id: 'down-payment',
+    category: 'estimates',
+    question: 'How much down payment can a contractor ask for in California?',
+    answer: [
+      `For home improvement contracts, California law limits the down payment to 10% of the contract price or $1,000, whichever is less. Later payments should follow the work that has actually been completed. The [CSLB homeowner checklist](${CSLB_CHECKLIST}) explains this and other contract rules.`
+    ]
+  },
+  {
+    id: 'right-to-cancel',
+    category: 'estimates',
+    question: 'Can I cancel a home improvement contract after signing it?',
+    answer: [
+      `In most cases, yes. California home improvement contracts include a right to cancel within 3 business days, or 5 business days for homeowners 65 or older. The contract must include a notice explaining how to cancel. See the [CSLB homeowner checklist](${CSLB_CHECKLIST}) for details.`
     ]
   },
 
@@ -270,6 +308,66 @@ export const faqs: FaqItem[] = [
     ]
   },
 
+  // ── Windows
+  {
+    id: 'window-permit',
+    category: 'windows',
+    question: 'Do I need a permit to replace windows in Sacramento?',
+    answer: [
+      'In most cases, yes. Window replacement usually requires a building permit and inspection, and the new windows must meet the California Energy Code (Title 24). In unincorporated Sacramento County, inspections include a rough-frame check before exterior finishes go on and a final inspection. We confirm the requirements for your address during the estimate.'
+    ]
+  },
+  {
+    id: 'window-repair-or-replace',
+    category: 'windows',
+    question: 'Should I repair or replace my windows?',
+    answer: [
+      'Replace a window when the glass is fogged between panes, the frame is warped or cracked, or it no longer seals or stays open. If the frame is sound and the problem is rotted trim, a failed seal around the outside, or a stuck sash, a repair is often enough. We look at each window and tell you which applies.'
+    ]
+  },
+  {
+    id: 'window-time',
+    category: 'windows',
+    question: 'How long does it take to replace a window?',
+    answer: [
+      'The installation itself is usually done in a day for a few windows, room by room, so each opening is closed again the same day. Ordering windows to exact measurements takes longer than the installation, and depends on the product.'
+    ]
+  },
+  {
+    id: 'window-rot',
+    category: 'windows',
+    question: 'What if there is rot around the old window?',
+    answer: [
+      'Rot around sills and framing is common under failed windows, especially on walls that get sun and sprinkler spray. We repair it before the new window goes in, because a new window set into damaged framing will not stay sealed. See [dry rot repair](/services/dry-rot-repair).'
+    ]
+  },
+
+  // ── Gazebos
+  {
+    id: 'gazebo-permit',
+    category: 'gazebos',
+    question: 'Do I need a permit for a gazebo in Sacramento?',
+    answer: [
+      'Often not for a small detached gazebo, but it depends on the size, where it sits on the lot, and whether it has electrical work for lights or fans. Setbacks and HOA rules apply either way. We check the requirements for your address before scheduling.'
+    ]
+  },
+  {
+    id: 'gazebo-kit',
+    category: 'gazebos',
+    question: 'Can you install a gazebo I already bought?',
+    answer: [
+      'Yes. Send us the brand, model, and size, plus a photo of where it will go. We assemble it, set it level and square, install the roof and accessories, and anchor it to the surface.'
+    ]
+  },
+  {
+    id: 'gazebo-anchor',
+    category: 'gazebos',
+    question: 'Does a gazebo need to be anchored?',
+    answer: [
+      'Yes. A hardtop roof catches a lot of wind, and an unanchored gazebo can shift or tip. On concrete we use concrete anchors at each post; on a deck we fasten into the framing.'
+    ]
+  },
+
   // ── Estimates
   {
     id: 'free-estimates',
@@ -287,6 +385,14 @@ export const faqs: FaqItem[] = [
     question: 'What information should I include in an estimate request?',
     answer: [
       'Include the type of work, the property type (residential or commercial), your ZIP code, and a short description of what you want done. Approximate sizes, photos, and your preferred timing are helpful but not required. If you are unsure about something, say so; we will work it out together.'
+    ]
+  },
+  {
+    id: 'send-photos',
+    category: 'estimates',
+    question: 'Can I text you photos of my project?',
+    answer: [
+      'Yes. Photos of the space, the damage, or the area you want to change help us understand the project before a site visit. Text them to (213) 248-1273 or (213) 248-1760 with a short description and your ZIP code. You can also describe the project in the [project planner](/free-estimate).'
     ]
   },
   {

@@ -42,7 +42,7 @@
   ::selection { @apply bg-bronze/30 text-ink; }
 
   :focus-visible {
-    outline: 2px solid #B98A4B;
+    outline: 2px solid #C63D2C;
     outline-offset: 3px;
     border-radius: 3px;
   }
@@ -76,7 +76,7 @@
   .on-dark .kicker { @apply text-bronze-light; }
 
   .rich p + p { @apply mt-4; }
-  .rich a { @apply font-semibold text-ink underline decoration-bronze decoration-2 underline-offset-4 hover:decoration-ink; }
+  .rich :is(p, li, dd) a { @apply font-semibold text-ink underline decoration-bronze decoration-2 underline-offset-4 hover:decoration-ink; }
   .rich h2 { @apply mt-12 mb-4 text-h3; }
   .rich h3 { @apply mt-8 mb-3 text-lg font-bold; }
   .rich ul { @apply mt-4 space-y-2 pl-0; }
@@ -107,8 +107,8 @@
 @layer utilities {
   .graph-paper {
     background-image:
-      linear-gradient(to right, rgb(30 58 48 / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(30 58 48 / 0.07) 1px, transparent 1px);
+      linear-gradient(to right, rgb(19 41 75 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(19 41 75 / 0.07) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   /* v-reveal (plugins/reveal.ts) */
@@ -133,8 +133,8 @@
 
   .graph-paper-dark {
     background-image:
-      linear-gradient(to right, rgb(232 229 223 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(232 229 223 / 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgb(237 232 224 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(237 232 224 / 0.05) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 }

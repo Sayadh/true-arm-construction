@@ -24,7 +24,7 @@ const base =
   'inline-flex items-center justify-center gap-2 rounded font-semibold tracking-[-0.005em] transition-[background-color,color,border-color,box-shadow] duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60 select-none'
 
 const variants: Record<string, string> = {
-  primary: 'bg-bronze text-deep hover:bg-bronze-light active:bg-bronze',
+  primary: 'bg-bronze text-white hover:bg-bronze-dark active:bg-bronze-dark',
   dark: 'bg-ink text-paper hover:bg-deep',
   outline: 'border border-ink/25 text-ink hover:border-ink hover:bg-ink/[0.03]',
   'outline-light': 'border border-paper/30 text-paper hover:border-paper hover:bg-paper/5',

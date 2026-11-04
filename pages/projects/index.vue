@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { Search } from 'lucide-vue-next'
 import { projectCategories, publishedProjects } from '~/data/projects'
+import { workMedia, servicesWithWork, featuredWork } from '~/data/work'
+import { getService } from '~/data/services'
 
-const title = 'Our Projects | Construction & Remodeling Work in Sacramento'
+const title = 'Project Photos & Videos | Sacramento'
 const description =
-  'Browse completed construction and remodeling projects by True Arm Construction in Sacramento, including kitchens, bathrooms, flooring, painting, fences, and more.'
+  'Photos and videos of our remodeling, flooring, tile, painting, and fence work in Sacramento, CA. True Arm Construction, licensed Class B contractor.'
 const path = '/projects'
 // While no real projects are published, keep this page out of search results.
-usePageSeo({ title, description, path, noindex: publishedProjects.length === 0 })
+usePageSeo({ title, description, path, noindex: publishedProjects.length === 0 && workMedia.length === 0 })
 useJsonLd([
   organizationSchema(),
   webPageSchema({ path, title, description }),
@@ -30,6 +32,15 @@ const filtered = computed(() => {
     return inCat && inQuery
   })
 })
+
+// Work gallery (photos and videos by service)
+const workServices = computed(() => servicesWithWork().map((slug) => getService(slug)!).filter(Boolean))
+const workFilter = ref<string>(String(route.query.service || 'all'))
+const workItems = computed(() => (workFilter.value === 'all' ? featuredWork() : workMedia.filter((m) => m.service === workFilter.value)))
+function setWorkFilter(id: string) {
+  workFilter.value = id
+  router.replace({ query: id === 'all' ? {} : { service: id } })
+}
 
 function setCategory(id: string) {
   active.value = id
@@ -75,7 +86,25 @@ function setCategory(id: string) {
             <button type="button" class="mt-3 font-semibold text-bronze-dark underline underline-offset-4" @click="query = ''; setCategory('all')">Show all projects</button>
           </div>
         </template>
-        <ProjectsEmpty v-else />
+        <ProjectsEmpty v-else-if="!workMedia.length" />
+      </div>
+    </section>
+
+    <section v-if="workMedia.length" class="section" :class="publishedProjects.length ? 'bg-stone-50' : 'pt-0'" aria-labelledby="work-gallery-heading">
+      <div class="wrap">
+        <h2 id="work-gallery-heading" class="text-h2">Photos and videos of our work</h2>
+        <div v-if="workServices.length > 1" role="group" aria-label="Filter by service" class="mt-8 flex flex-wrap gap-2">
+          <button
+            v-for="c in [{ slug: 'all', shortName: 'All work' }, ...workServices]"
+            :key="c.slug"
+            type="button"
+            class="min-h-[40px] rounded-full border px-4 text-sm font-semibold transition-colors"
+            :class="workFilter === c.slug ? 'border-ink bg-ink text-paper' : 'border-stone-300 text-ink hover:border-ink'"
+            :aria-pressed="workFilter === c.slug"
+            @click="setWorkFilter(c.slug)"
+          >{{ c.shortName }}</button>
+        </div>
+        <div class="mt-8"><WorkGallery :key="workFilter" :items="workItems" :initial="13" :show-service="workFilter === 'all'" /></div>
       </div>
     </section>
 

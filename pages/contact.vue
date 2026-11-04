@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Instagram, Facebook, Mail, MapPin, Phone, Clock } from 'lucide-vue-next'
+import { Instagram, Facebook, Mail, MapPin, Phone, Clock, MessageSquare } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 
 const title = 'Contact True Arm Construction | Sacramento, CA'
@@ -38,6 +38,12 @@ const { track } = useAnalytics()
               <li v-if="company.phone" class="flex items-center gap-3">
                 <Phone :size="20" class="text-bronze-dark" aria-hidden="true" />
                 <a :href="`tel:${company.phone}`" class="font-semibold text-ink underline decoration-bronze underline-offset-4" @click="track('phone_click', { label: 'contact_page' })">{{ formatPhone(company.phone) }}</a>
+                <span class="text-sm text-muted">call or text</span>
+              </li>
+              <li v-if="company.textPhone" class="flex items-center gap-3">
+                <MessageSquare :size="20" class="text-bronze-dark" aria-hidden="true" />
+                <a :href="`sms:${company.textPhone}`" class="font-semibold text-ink underline decoration-bronze underline-offset-4" @click="track('sms_click', { label: 'contact_page' })">{{ formatPhone(company.textPhone) }}</a>
+                <span class="text-sm text-muted">text only</span>
               </li>
               <li v-if="company.email" class="flex items-center gap-3">
                 <Mail :size="20" class="text-bronze-dark" aria-hidden="true" />

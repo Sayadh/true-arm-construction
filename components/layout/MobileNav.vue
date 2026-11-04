@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { X, ChevronDown, Instagram, Facebook, Phone } from 'lucide-vue-next'
+import { X, ChevronDown, Instagram, Facebook, Phone, MessageSquare } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 import { estimatePath } from '~/data/navigation'
 import type { NavLink } from '~/types'
@@ -105,7 +105,10 @@ const secondary: NavLink[] = [
           <div class="mt-6 space-y-3">
             <AppButton :to="estimatePath" block size="lg" track="estimate_cta_click" track-label="mobile_menu">Get a Free Estimate</AppButton>
             <AppButton v-if="company.phone" :href="`tel:${company.phone}`" variant="outline" block size="lg" track="phone_click">
-              <Phone :size="18" aria-hidden="true" /> {{ formatPhone(company.phone) }}
+              <Phone :size="18" aria-hidden="true" /> Call {{ formatPhone(company.phone) }}
+            </AppButton>
+            <AppButton v-if="company.textPhone" :href="`sms:${company.textPhone}`" variant="outline" block size="lg" track="sms_click" track-label="mobile_menu">
+              <MessageSquare :size="18" aria-hidden="true" /> Text {{ formatPhone(company.textPhone) }}
             </AppButton>
           </div>
           <div class="mt-8 space-y-3 text-sm text-muted">

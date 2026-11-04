@@ -61,15 +61,15 @@ onBeforeUnmount(() => observer?.disconnect())
 
         <!-- Trust detail: a credential strip. License leads (full width on mobile), the two facts share a row. -->
         <div class="intro-item mt-12 max-w-[40rem]" style="--d: 760ms">
-          <dl class="trust grid grid-cols-2 overflow-hidden rounded-lg border border-paper/10 bg-deep/45 backdrop-blur-md sm:grid-cols-[1.25fr,1fr,1fr]">
+          <div class="trust grid grid-cols-2 overflow-hidden rounded-lg border border-paper/10 bg-deep/45 backdrop-blur-md sm:grid-cols-[1.25fr,1fr,1fr]">
             <div class="trust-item col-span-2 border-b border-paper/10 sm:col-span-1 sm:border-b-0 sm:border-r">
               <span class="trust-icon" aria-hidden="true"><ShieldCheck :size="18" /></span>
               <div>
-                <dt class="text-xs font-semibold text-bronze-light">California license</dt>
-                <dd class="mt-1.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <p class="text-xs font-semibold text-bronze-light">California license</p>
+                <div class="mt-1.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span class="font-display text-[1.75rem] font-extrabold leading-none text-paper [font-stretch:76%]">#{{ company.license.number }}</span>
                   <span class="rounded-sm border border-paper/20 px-1.5 py-0.5 text-[0.6875rem] font-semibold text-stone/80">Class {{ company.license.classification }}</span>
-                </dd>
+                </div>
                 <a
                   :href="company.license.verifyUrl"
                   target="_blank"
@@ -81,18 +81,18 @@ onBeforeUnmount(() => observer?.disconnect())
             <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="trust-item trust-item--stack border-r border-paper/10">
               <span class="trust-icon" aria-hidden="true"><Building2 :size="18" /></span>
               <div>
-                <dt class="text-xs font-semibold text-stone/60">Property types</dt>
-                <dd class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Residential &amp; commercial</dd>
+                <p class="text-xs font-semibold text-stone/60">Property types</p>
+                <div class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Residential &amp; commercial</div>
               </div>
             </div>
             <div v-if="company.confirmedFacts.freeEstimates" class="trust-item trust-item--stack">
               <span class="trust-icon" aria-hidden="true"><FileCheck2 :size="18" /></span>
               <div>
-                <dt class="text-xs font-semibold text-stone/60">Estimates</dt>
-                <dd class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Free, project-specific</dd>
+                <p class="text-xs font-semibold text-stone/60">Estimates</p>
+                <div class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Free, project-specific</div>
               </div>
             </div>
-          </dl>
+          </div>
         </div>
       </div>
 
@@ -181,7 +181,7 @@ onBeforeUnmount(() => observer?.disconnect())
   .cell .scan {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgb(184 137 87 / 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgb(198 61 44 / 0.4), transparent);
     transform: translateX(-100%);
   }
 
@@ -223,8 +223,8 @@ onBeforeUnmount(() => observer?.disconnect())
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 9999px;
-  border: 1px solid rgb(185 138 75 / 0.55);
-  color: #d9b27a;
-  background: rgb(185 138 75 / 0.08);
+  border: 1px solid rgb(198 61 44 / 0.55);
+  color: #F0907A;
+  background: rgb(198 61 44 / 0.08);
 }
 </style>

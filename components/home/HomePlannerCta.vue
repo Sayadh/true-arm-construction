@@ -7,7 +7,7 @@ const steps = ['Choose a service', 'Property details', 'Project details', 'Prefe
 <template>
   <section class="section" aria-labelledby="planner-heading">
     <div class="wrap">
-      <div v-reveal class="grid overflow-hidden rounded-lg border border-stone-300 bg-white shadow-[0_30px_70px_-40px_rgba(30,58,48,0.35)] lg:grid-cols-2">
+      <div v-reveal class="grid overflow-hidden rounded-lg border border-stone-300 bg-white shadow-[0_30px_70px_-40px_rgba(19,41,75,0.35)] lg:grid-cols-2">
         <div class="p-8 sm:p-12">
           <h2 id="planner-heading" class="text-h2">Let’s plan your next project.</h2>
           <p class="mt-5 text-lead text-muted">

@@ -7,7 +7,7 @@ import {
   Hammer, Bath, Grid3x3, PaintRoller, Paintbrush, Fence, Droplets,
   Building2, House, ShieldCheck, FileBadge, MapPin, ClipboardList, MessagesSquare,
   Ruler, CalendarClock, HardHat, Compass, FileText, Camera, Search,
-  CookingPot, HousePlus, Layers, PaintBucket, PanelTop, TreeDeciduous, Wrench
+  CookingPot, HousePlus, Layers, PaintBucket, PanelTop, TreeDeciduous, Wrench, Tent
 } from 'lucide-vue-next'
 import type { Component } from 'vue'
 
@@ -15,7 +15,7 @@ const icons: Record<string, Component> = {
   Hammer, Bath, Grid3x3, PaintRoller, Paintbrush, Fence, Droplets,
   Building2, House, ShieldCheck, FileBadge, MapPin, ClipboardList, MessagesSquare,
   Ruler, CalendarClock, HardHat, Compass, FileText, Camera, Search,
-  CookingPot, HousePlus, Layers, PaintBucket, PanelTop, TreeDeciduous, Wrench
+  CookingPot, HousePlus, Layers, PaintBucket, PanelTop, TreeDeciduous, Wrench, Tent
 }
 
 const props = withDefaults(defineProps<{ name: string; size?: number; strokeWidth?: number }>(), {

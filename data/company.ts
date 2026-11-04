@@ -11,7 +11,7 @@ import type { CompanyConfig } from '../types'
 export const company: CompanyConfig = {
   name: 'True Arm Construction',
   shortName: 'True Arm',
-  legalName: null, // TODO(client): exact legal business name as listed with CSLB
+  legalName: 'True Arm Construction', // as listed with CSLB
   domain: 'truearmconstruction.com',
   tagline: 'Built around your vision. Built to last.',
   description:
@@ -19,10 +19,19 @@ export const company: CompanyConfig = {
 
   primaryArea: { city: 'Sacramento', region: 'California', regionCode: 'CA', country: 'US' },
 
-  phone: null, // TODO(client): e.g. '+19165550100' (E.164). Leave null until confirmed.
-  email: null, // TODO(client): e.g. 'info@truearmconstruction.com'
+  phone: '+12132481760', // calls and texts
+  textPhone: '+12132481273', // texts only
+  email: 'truearmconstruction@gmail.com',
   address: null, // Only add a real, public business address. Never a placeholder.
-  hours: null, // TODO(client): e.g. [{ days: 'Mon–Fri', hours: '8:00 AM – 5:00 PM' }]
+  hours: [
+    {
+      days: 'Mon–Fri',
+      hours: '7:00 AM – 7:00 PM',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '19:00'
+    }
+  ],
 
   license: {
     number: '1128503',
@@ -30,8 +39,8 @@ export const company: CompanyConfig = {
     classificationName: 'General Building Contractor',
     authority: 'California Contractors State License Board (CSLB)',
     verifyUrl: 'https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1128503',
-    statusConfirmed: false, // Set true only after checking cslb.ca.gov
-    statusCheckedOn: null
+    statusConfirmed: true, // confirmed active by the owner
+    statusCheckedOn: '2026-11-04'
   },
 
   confirmedFacts: {
@@ -43,7 +52,7 @@ export const company: CompanyConfig = {
   social: {
     instagram: 'https://www.instagram.com/truearmconstruction/',
     facebook: 'https://www.facebook.com/p/True-Arm-Construction-61567774326514/',
-    google: null // Google Business Profile URL, when available
+    google: 'https://www.google.com/maps/place/True+Arm+Construction/@38.5616433,-121.626548,11z/data=!4m16!1m9!3m8!1s0xa42cf46361bfcdc7:0x30bd67b821a70632!2sTrue+Arm+Construction!8m2!3d38.5617588!4d-121.461739!9m1!1b1!16s%2Fg%2F11p2k642rv!3m5!1s0xa42cf46361bfcdc7:0x30bd67b821a70632!8m2!3d38.5617588!4d-121.461739!16s%2Fg%2F11p2k642rv' // Google Business Profile (Maps) URL
   },
 
   logo: {

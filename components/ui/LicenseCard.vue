@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ExternalLink } from 'lucide-vue-next'
 import { company } from '~/data/company'
+
+const checkedOn = company.license.statusCheckedOn
+  ? new Date(`${company.license.statusCheckedOn}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+  : ''
 </script>
 
 <template>
@@ -23,7 +27,7 @@ import { company } from '~/data/company'
       <div>
         <dt class="text-muted">Status</dt>
         <dd class="font-semibold text-ink">
-          <template v-if="company.license.statusConfirmed">Active as of {{ company.license.statusCheckedOn }}</template>
+          <template v-if="company.license.statusConfirmed">Active as of {{ checkedOn }}</template>
           <template v-else>Check current status on CSLB</template>
         </dd>
       </div>

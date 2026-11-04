@@ -19,7 +19,7 @@ Rebuild after changing any value.
 |---|---|
 | `estimate_cta_click` | Any "Get a Free Estimate" style button (param `label` = location) |
 | `service_cta_click` | Estimate buttons on service pages (`label` = service slug) |
-| `phone_click`, `email_click` | Tap on phone/email links (only exist once contact info is configured) |
+| `phone_click`, `sms_click`, `email_click` | Tap on phone, text (SMS) or email links (only exist once contact info is configured) |
 | `planner_start`, `planner_step` | Planner started / step changed |
 | `planner_submit` | Planner delivered successfully → also fires the Google Ads conversion |
 | `contact_form_start`, `contact_form_submit` | Contact form focused / delivered → submit also fires the Ads conversion |

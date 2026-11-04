@@ -1,10 +1,11 @@
 import { company } from '~/data/company'
 import { enabledAreas } from '~/data/areas'
-import type { FaqItem, ResourceArticle, Service } from '~/types'
+import { enabledServices } from '~/data/services'
+import type { FaqItem, ResourceArticle, Service, ServiceArea } from '~/types'
 
 /**
  * JSON-LD builders. Every value comes from verified central data.
- * No ratings, reviews, or invented addresses are ever emitted.
+ * No ratings, reviews, or invented addresses are ever emitted (without a public address only city and state are given).
  */
 
 type Json = Record<string, unknown>
@@ -22,10 +23,16 @@ export function organizationSchema(): Json {
     url: absoluteUrl('/'),
     description: company.description,
     image: absoluteUrl(company.defaultOgImage),
-    areaServed: enabledAreas.map((a) => ({
-      '@type': 'City',
-      name: `${a.name}, ${company.primaryArea.regionCode}`
-    })),
+    areaServed: enabledAreas.map(cityNode),
+    knowsAbout: enabledServices.map((s) => s.name),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Construction and remodeling services',
+      itemListElement: enabledServices.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.name, url: absoluteUrl(`/services/${s.slug}`) }
+      }))
+    },
     hasCredential: {
       '@type': 'EducationalOccupationalCredential',
       credentialCategory: 'license',
@@ -37,7 +44,21 @@ export function organizationSchema(): Json {
   if (company.legalName) node.legalName = company.legalName
   if (company.logo.src) node.logo = absoluteUrl(company.logo.src)
   if (company.phone) node.telephone = company.phone
+  if (company.phone || company.textPhone) {
+    node.contactPoint = [
+      company.phone && { '@type': 'ContactPoint', telephone: company.phone, contactType: 'customer service', description: 'Calls and text messages', areaServed: 'US-CA', availableLanguage: 'English' },
+      company.textPhone && { '@type': 'ContactPoint', telephone: company.textPhone, contactType: 'customer service', description: 'Text messages only', areaServed: 'US-CA', availableLanguage: 'English' }
+    ].filter(Boolean)
+  }
   if (company.email) node.email = company.email
+  if (company.hours?.length) {
+    node.openingHoursSpecification = company.hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.dayOfWeek,
+      opens: h.opens,
+      closes: h.closes
+    }))
+  }
   if (sameAs.length) node.sameAs = sameAs
   if (company.address) {
     node.address = {
@@ -48,8 +69,46 @@ export function organizationSchema(): Json {
       postalCode: company.address.postalCode,
       addressCountry: company.address.country
     }
+  } else {
+    // Service-area business without a public street address: city and state only (no invented details)
+    node.address = {
+      '@type': 'PostalAddress',
+      addressLocality: company.primaryArea.city,
+      addressRegion: company.primaryArea.regionCode,
+      addressCountry: company.primaryArea.country
+    }
   }
   return node
+}
+
+function cityNode(a: ServiceArea): Json {
+  return {
+    '@type': 'City',
+    name: `${a.name}, ${company.primaryArea.regionCode}`,
+    containedInPlace: { '@type': 'AdministrativeArea', name: `${a.county}, ${company.primaryArea.region}` }
+  }
+}
+
+/** Service node for a city landing page: what we offer in that city. */
+export function areaServicesSchema(area: ServiceArea): Json {
+  const path = `/service-areas/${area.slug}`
+  return {
+    '@type': 'Service',
+    '@id': `${absoluteUrl(path)}#service`,
+    name: `Construction and remodeling in ${area.name}, ${company.primaryArea.regionCode}`,
+    serviceType: 'General contracting',
+    url: absoluteUrl(path),
+    provider: { '@id': orgId() },
+    areaServed: cityNode(area),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `Services in ${area.name}`,
+      itemListElement: enabledServices.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.name, url: absoluteUrl(`/services/${s.slug}`) }
+      }))
+    }
+  }
 }
 
 export function websiteSchema(): Json {
@@ -85,7 +144,7 @@ export function serviceSchema(service: Service): Json {
     description: service.metaDescription,
     url: absoluteUrl(`/services/${service.slug}`),
     provider: { '@id': orgId() },
-    areaServed: enabledAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${company.primaryArea.regionCode}` }))
+    areaServed: enabledAreas.map(cityNode)
   }
 }
 

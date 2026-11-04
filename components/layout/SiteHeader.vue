@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ChevronDown, Menu, Instagram, Facebook } from 'lucide-vue-next'
-import { company } from '~/data/company'
+import { ChevronDown, Menu, Instagram, Facebook, Phone } from 'lucide-vue-next'
+import { company, formatPhone } from '~/data/company'
 import { serviceGroups, servicesByGroup } from '~/data/services'
 import { estimatePath } from '~/data/navigation'
 
 const route = useRoute()
+const { track } = useAnalytics()
 const megaOpen = ref(false)
 const drawerOpen = ref(false)
 const megaRoot = ref<HTMLElement | null>(null)
@@ -13,6 +14,7 @@ const megaButton = ref<HTMLButtonElement | null>(null)
 const mainLinks = [
   { label: 'Home', to: '/' },
   { label: 'Our Projects', to: '/projects' },
+  { label: 'Reviews', to: '/reviews' },
   { label: 'About Us', to: '/about' },
   { label: 'Resources / FAQ', to: '/resources' },
   { label: 'Contact', to: '/contact' }
@@ -54,7 +56,7 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
 
 <template>
   <header class="sticky top-0 z-40">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-bronze focus:px-4 focus:py-2 focus:font-semibold focus:text-deep">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-bronze focus:px-4 focus:py-2 focus:font-semibold focus:text-white">
       Skip to content
     </a>
 
@@ -62,6 +64,15 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
     <div class="hidden bg-deep text-[0.8125rem] text-stone/75 xl:block">
       <div class="wrap flex h-9 items-center justify-between">
         <p class="flex items-center gap-5">
+          <a
+            v-if="company.phone"
+            :href="`tel:${company.phone}`"
+            class="inline-flex items-center gap-1.5 font-semibold text-paper hover:text-bronze-light"
+            @click="track('phone_click', { label: 'utility_bar' })"
+          >
+            <Phone :size="14" aria-hidden="true" /><span class="sr-only">Call </span>{{ formatPhone(company.phone) }}
+          </a>
+          <span v-if="company.phone" class="h-3 w-px bg-stone/20" aria-hidden="true" />
           <span>Serving {{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}</span>
           <span class="h-3 w-px bg-stone/20" aria-hidden="true" />
           <span>CA License #{{ company.license.number }}, Class {{ company.license.classification }}</span>

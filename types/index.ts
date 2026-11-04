@@ -13,8 +13,14 @@ export interface ImageAsset {
 }
 
 export interface BusinessHours {
+  /** Shown on the site, e.g. 'Mon–Fri' */
   days: string
+  /** Shown on the site, e.g. '7:00 AM – 7:00 PM' */
   hours: string
+  /** For structured data: schema.org day names and 24h times */
+  dayOfWeek: ('Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday')[]
+  opens: string
+  closes: string
 }
 
 export interface CompanyConfig {
@@ -28,7 +34,10 @@ export interface CompanyConfig {
   /** Primary service area as shown to visitors */
   primaryArea: { city: string; region: string; regionCode: string; country: string }
   /** Leave null until real values are supplied. Null values are never rendered as links. */
+  /** Main number for calls and texts (E.164) */
   phone: string | null
+  /** Second number for text messages only (E.164). Rendered as an sms: link. */
+  textPhone: string | null
   email: string | null
   /** Only fill in if the company has a public, verified business address. */
   address: {
@@ -129,6 +138,12 @@ export interface Service {
   scopeGroups?: ServiceScopeGroup[]
   /** Shown when the exact scope still needs confirmation with the company */
   scopeNote?: string
+  /** Animated illustration that replaces the plain scope grid (used while a service has no photos) */
+  /** Work media id to use as the cover (card + hero) instead of the service's own first photo */
+  coverMedia?: string
+  scopeVisual?: 'room-addition' | 'epoxy' | 'baseboard' | 'handyman'
+  /** Step-by-step process shown as an animated walkthrough (scopeVisual 'epoxy' / 'baseboard' / 'handyman') */
+  process?: { title: string; intro?: string; steps: ServiceScopeItem[] }
   sections: ServiceSection[]
   costFactors: string[]
   expectations: string[]
@@ -155,6 +170,8 @@ export type ProjectCategoryId =
   | 'interior-painting'
   | 'exterior-painting'
   | 'fence'
+  | 'windows'
+  | 'gazebo'
   | 'repairs'
 
 export interface ProjectCategory {
@@ -198,6 +215,8 @@ export type FaqCategoryId =
   | 'flooring'
   | 'painting'
   | 'exterior'
+  | 'windows'
+  | 'gazebos'
   | 'repairs'
   | 'estimates'
 
@@ -238,6 +257,22 @@ export interface ServiceArea {
   /** Enable only when the company confirms coverage */
   enabled: boolean
   primary?: boolean
+  /** Local landing page content. A page at /service-areas/<slug> exists only when this is set and the area is enabled. */
+  page?: ServiceAreaPage
+}
+
+export interface ServiceAreaPage {
+  seoTitle: string
+  metaDescription: string
+  /** Opening paragraphs, plain text with optional [text](url) links */
+  intro: string[]
+  /** Who issues building permits for properties in this area */
+  permits: { authority: string; url: string; text: string }
+  /** Short, factual local notes (housing stock, climate, rules worth knowing) */
+  localNotes: { title: string; text: string }[]
+  /** Neighborhoods or districts, used only as plain text */
+  neighborhoods?: string[]
+  faqs: { question: string; answer: string[] }[]
 }
 
 export interface ResourceArticle {
@@ -262,3 +297,62 @@ export interface Crumb {
   name: string
   path: string
 }
+
+export type ReviewPlatformId = 'thumbtack' | 'yelp' | 'facebook' | 'google'
+
+/** Public rating shown on a third-party platform. Copy the numbers exactly as the platform shows them. */
+export interface ReviewPlatform {
+  id: ReviewPlatformId
+  name: string
+  /** Average as shown on the platform, e.g. 4.8 */
+  rating: number
+  reviewCount: number
+  /** Public profile URL where visitors can read every review */
+  url: string
+  /** Date the numbers were copied (YYYY-MM-DD) */
+  checkedOn: string
+}
+
+/** A real customer review copied word for word, with the customer's permission or from a public profile. */
+export interface Testimonial {
+  quote: string
+  /** First name + last initial only, e.g. "Maria G." */
+  author: string
+  platform: ReviewPlatformId
+  rating: 1 | 2 | 3 | 4 | 5
+  /** YYYY-MM or YYYY-MM-DD as shown on the platform */
+  date?: string
+  /** Service slug from data/services.ts, when the review is about a specific job */
+  service?: string
+  /** Show on the homepage (max 3 are used) */
+  featured?: boolean
+}
+
+/** Photo or video of completed work, shown on service pages, /projects and the homepage. */
+interface WorkMediaBase {
+  /** Stable id, derived from the file name */
+  id: string
+  /** Service slug from data/services.ts */
+  service: string
+  /** Shown first on the service page and eligible for the homepage */
+  featured?: boolean
+  caption?: string
+}
+export interface WorkPhoto extends WorkMediaBase {
+  kind: 'photo'
+  image: Required<ImageAsset>
+}
+export interface WorkVideo extends WorkMediaBase {
+  kind: 'video'
+  /** MP4 (H.264) under /public */
+  src: string
+  poster: Required<ImageAsset>
+  /** Seconds */
+  duration: number
+}
+export interface WorkBeforeAfter extends WorkMediaBase {
+  kind: 'beforeAfter'
+  before: Required<ImageAsset>
+  after: Required<ImageAsset>
+}
+export type WorkMedia = WorkPhoto | WorkVideo | WorkBeforeAfter

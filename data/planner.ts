@@ -29,6 +29,8 @@ export const plannerServiceOptions: { slug: string; label: string }[] = [
   { slug: 'exterior-painting', label: 'Exterior painting' },
   { slug: 'power-washing', label: 'Pressure washing' },
   { slug: 'fences-gates', label: 'Fences & gates' },
+  { slug: 'window-replacement', label: 'Window replacement or repair' },
+  { slug: 'gazebo-construction', label: 'Gazebo' },
   { slug: 'drywall-repair', label: 'Drywall repair' },
   { slug: 'dry-rot-repair', label: 'Dry rot repair' },
   { slug: 'handyman-services', label: 'Handyman services' },
@@ -120,6 +122,18 @@ export const plannerQuestions: Record<string, PlannerQuestion[]> = {
       { value: 'stucco', label: 'Stucco' }, { value: 'wood', label: 'Wood' },
       { value: 'fiber-cement', label: 'Fiber cement' }, notSure] }
   ],
+  'window-replacement': [
+    { id: 'window-work', label: 'What do you need?', type: 'choice', options: [
+      { value: 'replace', label: 'Replace windows' }, { value: 'repair', label: 'Repair windows' }, notSure] },
+    { id: 'window-count', label: 'How many windows?', type: 'choice', options: [
+      { value: '1', label: 'One' }, { value: '2-5', label: '2 to 5' }, { value: '6+', label: '6 or more' }, notSure] }
+  ],
+  'gazebo-construction': [
+    { id: 'gazebo-have', label: 'Do you already have the gazebo?', type: 'choice', options: [
+      { value: 'have-kit', label: 'Yes, I have it' }, { value: 'need-one', label: 'No, I need one' }, notSure] },
+    { id: 'gazebo-surface', label: 'Where will it go?', type: 'choice', options: [
+      { value: 'concrete', label: 'Concrete patio or pad' }, { value: 'pavers', label: 'Pavers' }, { value: 'deck', label: 'Deck' }, notSure] }
+  ],
   'power-washing': [
     { id: 'surfaces', label: 'What needs cleaning?', type: 'choice', options: [
       { value: 'driveway', label: 'Driveway or walkways' }, { value: 'patio', label: 'Patio or deck' },
@@ -187,16 +201,28 @@ export const navigatorChoices: NavigatorChoice[] = [
       ]
     }
   },
-  { label: 'Build or fix a fence', description: 'New fences, gates, and repairs', icon: 'Fence', service: 'fences-gates' },
+  {
+    label: 'Fences, gates, or a gazebo',
+    description: 'Build, replace, or repair',
+    icon: 'Fence',
+    next: {
+      question: 'What are you building?',
+      options: [
+        { label: 'A fence or gate', service: 'fences-gates' },
+        { label: 'A gazebo', service: 'gazebo-construction' }
+      ]
+    }
+  },
   {
     label: 'Repairs and small jobs',
-    description: 'Drywall, dry rot, handyman',
+    description: 'Drywall, dry rot, windows, handyman',
     icon: 'Wrench',
     next: {
       question: 'What needs fixing?',
       options: [
         { label: 'Drywall holes, cracks, or water damage', service: 'drywall-repair' },
         { label: 'Rotted wood outside', service: 'dry-rot-repair' },
+        { label: 'Windows: replace or repair', service: 'window-replacement' },
         { label: 'A list of small jobs', service: 'handyman-services' }
       ]
     }

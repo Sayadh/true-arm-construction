@@ -32,7 +32,8 @@ useJsonLd([
 
     <HomeServices />
     <HomeWhy />
-    <HomeProjects />
+    <HomeWork />
+    <HomeReviews />
     <HomeProcess />
     <HomePlannerCta />
     <HomeCredentials />

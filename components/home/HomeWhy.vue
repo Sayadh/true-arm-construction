@@ -49,7 +49,7 @@ const reasons = [
           </div>
           <div
             v-reveal="{ delay: 300 }"
-            class="absolute -bottom-6 left-6 right-6 rounded-lg bg-ink p-5 text-paper shadow-[0_24px_60px_-24px_rgba(20,40,33,0.7)] sm:left-auto sm:right-[-1.5rem] sm:w-72"
+            class="absolute -bottom-6 left-6 right-6 rounded-lg bg-ink p-5 text-paper shadow-[0_24px_60px_-24px_rgba(12,27,51,0.7)] sm:left-auto sm:right-[-1.5rem] sm:w-72"
           >
             <p class="text-xs font-semibold text-bronze-light">California license</p>
             <p class="mt-1 font-display text-3xl font-extrabold leading-none [font-stretch:78%]">#{{ company.license.number }}</p>
@@ -73,7 +73,7 @@ const reasons = [
             class="group grid grid-cols-[auto,1fr] gap-x-5 border-t border-ink/15 py-6 last:border-b"
           >
             <dt class="contents">
-              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-bronze-light transition-colors duration-300 group-hover:bg-bronze group-hover:text-deep">
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-bronze-light transition-colors duration-300 group-hover:bg-bronze group-hover:text-white">
                 <AppIcon :name="r.icon" :size="22" />
               </span>
               <span class="self-center text-lg font-bold text-ink">{{ r.title }}</span>

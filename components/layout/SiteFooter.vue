@@ -20,9 +20,17 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
         <ul class="mt-6 space-y-2 text-[0.9375rem]">
           <li v-if="company.phone">
             <a :href="`tel:${company.phone}`" class="font-semibold text-paper hover:underline" @click="track('phone_click', { label: 'footer' })">{{ formatPhone(company.phone) }}</a>
+            <span class="text-stone/60"> · call or text</span>
+          </li>
+          <li v-if="company.textPhone">
+            <a :href="`sms:${company.textPhone}`" class="font-semibold text-paper hover:underline" @click="track('sms_click', { label: 'footer' })">{{ formatPhone(company.textPhone) }}</a>
+            <span class="text-stone/60"> · text only</span>
           </li>
           <li v-if="company.email">
-            <a :href="`mailto:${company.email}`" class="font-semibold text-paper hover:underline">{{ company.email }}</a>
+            <a :href="`mailto:${company.email}`" class="font-semibold text-paper hover:underline" @click="track('email_click', { label: 'footer' })">{{ company.email }}</a>
+          </li>
+          <li v-for="h in company.hours ?? []" :key="h.days">
+            <span class="font-semibold text-paper">{{ h.days }}</span><span class="text-stone/60"> · {{ h.hours }}</span>
           </li>
           <li v-if="company.social.instagram">
             <a :href="company.social.instagram" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-paper hover:underline">
@@ -60,9 +68,11 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
           </ul>
         </nav>
         <div>
-          <p class="text-sm font-bold text-paper">Service area</p>
+          <p class="text-sm font-bold text-paper">Service areas</p>
           <ul class="mt-3 space-y-2 text-[0.9375rem]">
-            <li v-for="a in enabledAreas" :key="a.slug">{{ a.name }}, {{ company.primaryArea.regionCode }}</li>
+            <li v-for="a in enabledAreas" :key="a.slug">
+              <NuxtLink :to="a.page ? `/service-areas/${a.slug}` : '/service-areas'" class="hover:text-paper">{{ a.name }}, {{ company.primaryArea.regionCode }}</NuxtLink>
+            </li>
           </ul>
         </div>
       </div>

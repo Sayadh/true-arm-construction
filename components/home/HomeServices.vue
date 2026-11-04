@@ -63,7 +63,7 @@ const groups = serviceGroups
               <li v-for="s in g.items" :key="s.slug">
                 <NuxtLink
                   :to="`/services/${s.slug}`"
-                  class="inline-flex items-center gap-1 rounded-full border border-paper/25 bg-deep/30 px-3.5 py-1.5 text-sm font-semibold text-paper backdrop-blur-sm transition-colors hover:border-bronze-light hover:bg-bronze hover:text-deep"
+                  class="inline-flex items-center gap-1 rounded-full border border-paper/25 bg-deep/30 px-3.5 py-1.5 text-sm font-semibold text-paper backdrop-blur-sm transition-colors hover:border-bronze-light hover:bg-bronze hover:text-white"
                 >
                   {{ s.shortName }}
                   <ArrowUpRight :size="14" aria-hidden="true" class="opacity-60" />

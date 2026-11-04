@@ -13,7 +13,7 @@ const options = computed(() => props.choice.next?.options ?? [])
 </script>
 
 <template>
-  <div class="rounded-lg border border-bronze/40 bg-white p-5 shadow-[0_24px_60px_-36px_rgba(30,58,48,0.45)] sm:p-7">
+  <div class="rounded-lg border border-bronze/40 bg-white p-5 shadow-[0_24px_60px_-36px_rgba(19,41,75,0.45)] sm:p-7">
     <div class="flex items-start justify-between gap-4">
       <div>
         <p class="text-xs font-semibold text-bronze-dark">{{ choice.label }}</p>
@@ -54,7 +54,7 @@ const options = computed(() => props.choice.next?.options ?? [])
           >
             Start an estimate
           </NuxtLink>
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-paper transition-colors group-hover:bg-bronze group-hover:text-deep" aria-hidden="true">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-paper transition-colors group-hover:bg-bronze group-hover:text-white" aria-hidden="true">
             <ArrowRight :size="16" />
           </span>
         </div>

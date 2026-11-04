@@ -57,7 +57,7 @@ for (const file of pages) {
   }
 
   for (const [, href] of html.matchAll(/<a[^>]+href="([^"]+)"/g)) {
-    if (/^(https?:|mailto:|tel:|#)/.test(href)) continue
+    if (/^(https?:|mailto:|tel:|sms:|#)/.test(href)) continue
     if (!resolves(href)) problems.push(`${route}: broken internal link -> ${href}`)
   }
 }

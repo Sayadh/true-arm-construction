@@ -2,6 +2,5 @@
 /services/fence-repair          /services/fences-gates     301
 /services/wall-installation     /services/drywall-repair   301
 /services/siding                /services                  301
-/services/window-services       /services                  301
-/services/gazebo-construction   /services                  301
+/services/window-services       /services/window-replacement 301
 /services/new-construction      /services                  301

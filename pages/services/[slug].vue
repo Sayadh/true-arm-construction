@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { areaPages } from '~/data/areas'
 import { Phone, Info, Check } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 import { getService, serviceGroups } from '~/data/services'
 import { faqsByCategory, faqsByIds } from '~/data/faqs'
 import { projectsForService } from '~/data/projects'
+import { mediaForService, serviceCover } from '~/data/work'
 import { estimatePath } from '~/data/navigation'
 import type { Service } from '~/types'
 
@@ -18,6 +20,8 @@ const service = found as Service
 const group = serviceGroups.find((g) => g.id === service.group)
 const related = service.related.map(getService).filter((s): s is Service => Boolean(s))
 const projects = projectsForService(service.slug)
+const work = mediaForService(service.slug)
+const heroImage = serviceCover(service.slug) ?? service.images[0] ?? null
 const faqItems = (() => {
   const list = [...faqsByCategory(service.faqCategory), ...faqsByIds(service.faqIds ?? [])]
   return list.filter((f, i) => list.findIndex((x) => x.id === f.id) === i).slice(0, 6)
@@ -62,7 +66,7 @@ useJsonLd([
         </div>
         <div class="lg:col-span-5">
           <MediaFrame
-            :image="service.images[0] ?? null"
+            :image="heroImage"
             :icon="service.icon"
             :label="`${service.shortName} photo coming soon`"
             aspect="aspect-[4/3]"
@@ -92,11 +96,25 @@ useJsonLd([
             <ul class="mt-5 space-y-2 text-[0.9375rem]">
               <li v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />Residential and commercial</li>
               <li class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />CA License #{{ company.license.number }}, Class {{ company.license.classification }}</li>
-              <li class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />Serving {{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}</li>
+              <li class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" /><span>Serving <template v-for="(a, i) in areaPages" :key="a.slug"><NuxtLink :to="`/service-areas/${a.slug}`" class="underline decoration-bronze/60 underline-offset-4 hover:decoration-bronze">{{ a.name }}</NuxtLink><template v-if="i < areaPages.length - 2">, </template><template v-else-if="i === areaPages.length - 2"> and </template></template></span></li>
             </ul>
             <AppButton :to="estimateLink" block class="mt-6" track="service_cta_click" :track-label="`${service.slug}_aside`">Start your estimate</AppButton>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- Our work: real photos and videos -->
+    <section v-if="work.length" class="section bg-stone-50" aria-labelledby="work-heading">
+      <div class="wrap">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="max-w-2xl">
+            <h2 id="work-heading" class="text-h2">Our {{ service.shortName.toLowerCase() }} work</h2>
+            <p class="mt-3 text-lead text-muted">Photos and videos from our own projects{{ work.some((m) => m.kind === 'beforeAfter') ? ', including before and after' : '' }}.</p>
+          </div>
+          <AppButton to="/projects" variant="outline">See all our work</AppButton>
+        </div>
+        <div class="mt-10"><WorkGallery :items="work" /></div>
       </div>
     </section>
 
@@ -142,12 +160,39 @@ useJsonLd([
           </article>
         </div>
 
+        <LazyAdditionBuild hydrate-on-visible v-else-if="service.scopeVisual === 'room-addition'" :steps="service.scope" />
+
         <ul v-else class="mt-12 grid gap-px overflow-hidden rounded border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
           <li v-for="item in service.scope" :key="item.title" class="bg-white p-6 sm:p-7">
             <h3 class="text-lg font-bold text-ink">{{ item.title }}</h3>
             <p class="mt-2 text-[0.9375rem] text-muted">{{ item.text }}</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Animated process walkthrough (services without project photos yet) -->
+    <section v-if="service.process" class="section" aria-labelledby="process-heading">
+      <div class="wrap">
+        <h2 id="process-heading" class="max-w-2xl text-h2">{{ service.process.title }}</h2>
+        <p v-if="service.process.intro" class="mt-4 max-w-2xl text-muted">{{ service.process.intro }}</p>
+        <LazyEpoxyBuild hydrate-on-visible v-if="service.scopeVisual === 'epoxy'" :steps="service.process.steps" />
+        <LazyBaseboardBuild hydrate-on-visible v-else-if="service.scopeVisual === 'baseboard'" :steps="service.process.steps" />
+        <LazyHandymanBuild hydrate-on-visible v-else-if="service.scopeVisual === 'handyman'" :steps="service.process.steps" />
+      </div>
+    </section>
+
+    <!-- Interactive illustration -->
+    <section
+      v-if="service.scopeVisual"
+      class="section bg-stone-50"
+      :aria-labelledby="{ 'room-addition': 'plan-heading', epoxy: 'finish-heading', baseboard: 'profiles-heading', handyman: 'list-heading' }[service.scopeVisual]"
+    >
+      <div class="wrap">
+        <LazyAdditionPlan hydrate-on-visible v-if="service.scopeVisual === 'room-addition'" />
+        <LazyEpoxyFinish hydrate-on-visible v-else-if="service.scopeVisual === 'epoxy'" />
+        <LazyBaseboardProfiles hydrate-on-visible v-else-if="service.scopeVisual === 'baseboard'" />
+        <LazyHandymanList hydrate-on-visible v-else-if="service.scopeVisual === 'handyman'" />
       </div>
     </section>
 
@@ -190,16 +235,6 @@ useJsonLd([
             <span class="pt-1 text-paper">{{ e }}</span>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <!-- Photos (only when supplied) -->
-    <section v-if="service.images.length > 1" class="section" aria-labelledby="photos-heading">
-      <div class="wrap">
-        <h2 id="photos-heading" class="text-h2">{{ service.shortName }} photos</h2>
-        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <MediaFrame v-for="img in service.images.slice(1)" :key="img.src" :image="img" />
-        </div>
       </div>
     </section>
 

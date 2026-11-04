@@ -13,17 +13,17 @@ export default {
   corePlugins: { container: false },
   theme: {
     extend: {
-      // "City of Trees" palette: forest green + brass on warm limestone.
-      // Token names kept from the original theme so every page re-themes at once.
+      // Palette taken from the logo: navy + signal red on warm white, softened for long reading.
+      // Token names are kept from the original theme ("bronze" is now the red accent) so every page re-themes at once.
       colors: {
-        ink: '#1E3A30', // forest: dark sections, headings
-        deep: '#142821', // deepest forest: overlays, footer
-        paper: '#F4F0E8', // limestone page background
-        stone: { DEFAULT: '#E6E0D4', 50: '#EDE8DD', 200: '#E6E0D4', 300: '#D3CBBB', 400: '#B3AA97' },
-        bronze: { DEFAULT: '#B98A4B', light: '#D9B27A', dark: '#875F2B' }, // brass accent
-        body: '#2B332E',
-        muted: '#5C665F',
-        slate: { line: '#33503F', soft: '#9DB0A5' }
+        ink: '#13294B', // navy: dark sections, headings (logo navy, slightly lifted)
+        deep: '#0C1B33', // deepest navy: overlays, footer
+        paper: '#F8F6F2', // warm white page background
+        stone: { DEFAULT: '#E9E5DE', 50: '#F0EDE7', 200: '#E9E5DE', 300: '#D6D0C6', 400: '#ABA497' },
+        bronze: { DEFAULT: '#C63D2C', light: '#F0907A', dark: '#A2301F' }, // logo red, muted; light = on navy, dark = text on white
+        body: '#262B33',
+        muted: '#5D6370',
+        slate: { line: '#2A3F63', soft: '#9FB0C8' }
       },
       fontFamily: {
         sans: ['"Manrope Variable"', 'Manrope', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],

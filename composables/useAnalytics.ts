@@ -7,6 +7,7 @@
 
 export type AnalyticsEvent =
   | 'phone_click'
+  | 'sms_click'
   | 'email_click'
   | 'estimate_cta_click'
   | 'service_cta_click'

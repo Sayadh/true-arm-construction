@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { areaNames } from '~/data/areas'
 import { company } from '~/data/company'
 import { serviceGroups, servicesByGroup } from '~/data/services'
 
@@ -49,7 +50,7 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
           <h2 class="text-h2">Built around your vision</h2>
           <div class="rich mt-6 text-lead">
             <p>
-              True Arm Construction works with homeowners, property owners, and businesses in {{ company.primaryArea.city }} on
+              True Arm Construction works with homeowners, property owners, and businesses in {{ areaNames() }} on
               projects ranging from kitchen and bathroom remodels, flooring, and painting to room additions, fences, and repairs.
             </p>
             <p>

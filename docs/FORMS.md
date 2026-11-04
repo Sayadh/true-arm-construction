@@ -11,6 +11,10 @@ Both forms use `composables/useFormSubmit.ts`. No custom backend is required.
 - Spam protection: hidden honeypot field (`_gotcha`, Formspree-compatible) + minimum time-to-submit check. Formspree adds its own spam filtering.
 - Analytics events (`planner_submit`, `contact_form_submit`) contain **no personal data**.
 
+## Current setup
+
+Connected to Formspree form `https://formspree.io/f/xgaadkjb` (notifications go to truearmconstruction@gmail.com). The endpoint is the default in `nuxt.config.ts`, so no Cloudflare variable is needed. To switch forms, change it there or set `NUXT_PUBLIC_FORM_ENDPOINT`, which overrides the default.
+
 ## Connect Formspree (recommended)
 
 1. Create a form at https://formspree.io and set the notification email (the company inbox).

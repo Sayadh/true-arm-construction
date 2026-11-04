@@ -10,6 +10,8 @@ export const projectCategories: ProjectCategory[] = [
   { id: 'interior-painting', name: 'Interior painting' },
   { id: 'exterior-painting', name: 'Exterior painting' },
   { id: 'fence', name: 'Fences & gates' },
+  { id: 'windows', name: 'Windows' },
+  { id: 'gazebo', name: 'Gazebos' },
   { id: 'repairs', name: 'Repairs' }
 ]
 

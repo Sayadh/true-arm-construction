@@ -2,8 +2,15 @@
 import { services } from './data/services'
 import { publishedProjects } from './data/projects'
 import { publishedResources } from './data/resources'
+import { areaPages } from './data/areas'
 
 const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://truearmconstruction.com').replace(/\/$/, '')
+
+// Indexing switch. An explicit NUXT_PUBLIC_SITE_ENV always wins; otherwise a Cloudflare Workers Builds
+// build of the main branch is production, and everything else (local, preview branches) stays noindex.
+const siteEnv =
+  process.env.NUXT_PUBLIC_SITE_ENV ||
+  (process.env.WORKERS_CI === '1' && process.env.WORKERS_CI_BRANCH === 'main' ? 'production' : 'development')
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -25,10 +32,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl,
-      siteEnv: process.env.NUXT_PUBLIC_SITE_ENV || 'development',
+      siteEnv,
       // Form delivery (static-friendly hosted provider). See docs/FORMS.md
       formProvider: process.env.NUXT_PUBLIC_FORM_PROVIDER || 'formspree',
-      formEndpoint: process.env.NUXT_PUBLIC_FORM_ENDPOINT || '',
+      // Formspree form "True Arm website" (public by nature: it is visible in the browser). An env var overrides it.
+      formEndpoint: process.env.NUXT_PUBLIC_FORM_ENDPOINT || 'https://formspree.io/f/xgaadkjb',
       // Analytics / verification. See docs/ANALYTICS.md
       gtmId: process.env.NUXT_PUBLIC_GTM_ID || '',
       ga4Id: process.env.NUXT_PUBLIC_GA4_ID || '',
@@ -45,7 +53,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
       meta: [
-        { name: 'theme-color', content: '#172126' },
+        { name: 'theme-color', content: '#13294B' },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'apple-mobile-web-app-title', content: 'True Arm' }
       ],
@@ -81,6 +89,9 @@ export default defineNuxtConfig({
         '/',
         '/sitemap.xml',
         '/robots.txt',
+        '/llms.txt',
+        '/llms-full.txt',
+        ...areaPages.map((a) => `/service-areas/${a.slug}`),
         ...services.map((s) => `/services/${s.slug}`),
         ...publishedProjects.map((p) => `/projects/${p.slug}`),
         ...publishedResources.map((r) => `/resources/${r.slug}`)

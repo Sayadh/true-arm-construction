@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { serviceGroups, servicesByGroup } from '~/data/services'
 
-const title = 'Construction & Remodeling Services in Sacramento, CA'
+const title = 'Contractor Services in Sacramento, CA'
 const description =
   'Kitchen and bathroom remodeling, room additions, flooring, tile, painting, fences and gates, and repairs in Sacramento, CA.'
 const path = '/services'

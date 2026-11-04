@@ -1,7 +1,7 @@
 import type { Service, ServiceGroup, ServiceGroupId } from '../types'
 
 /**
- * Service catalogue. Source: client-confirmed categories (Interior & Exterior Painting,
+ * Service catalogue. Source: client-confirmed categories (Interior & Exterior Painting, Window Installation & Replacement, Gazebo Construction,
  * Home Remodeling, Bathroom Remodeling, Room Additions, Fences & Gates) and the
  * company business card (kitchen, flooring, tile, handyman, epoxy, baseboards,
  * drywall repair, dry rot repair, power wash).
@@ -25,7 +25,7 @@ export const serviceGroups: ServiceGroup[] = [
   {
     id: 'exterior',
     name: 'Painting & exterior',
-    description: 'Painting, pressure washing, fences and gates.'
+    description: 'Painting, pressure washing, fences, gates, windows, and gazebos.'
   },
   {
     id: 'repairs',
@@ -40,6 +40,7 @@ export const services: Service[] = [
   // ───────────────────────── Remodeling umbrella (Ads campaign 1) ─────────────────────────
   {
     slug: 'home-remodeling',
+    coverMedia: 'interior-painting-bedroom-accent-wall',
     name: 'Home Remodeling',
     shortName: 'Home remodeling',
     group: 'remodeling',
@@ -285,6 +286,7 @@ export const services: Service[] = [
       'True Arm Construction holds a California Class B General Building Contractor license (#1128503), the classification for projects that involve multiple building trades. Every addition starts with a consultation about how you want to use the new space and what your property allows.'
     ],
     scopeTitle: 'How a room addition comes together',
+    scopeVisual: 'room-addition',
     scope: [
       { title: 'Consultation and site review', text: 'Your goals, budget range, and a look at the lot, the house, and where an addition could go.' },
       { title: 'Design and plans', text: 'Coordinating with design professionals on plans that fit your needs and local requirements.' },
@@ -333,7 +335,14 @@ export const services: Service[] = [
     related: ['home-remodeling', 'kitchen-remodeling', 'bathroom-remodeling', 'flooring-installation'],
     faqCategory: 'additions',
     projectCategory: 'room-addition',
-    images: []
+    images: [
+      {
+        src: '/images/services/room-additions-illustration.jpg',
+        alt: 'Illustration of a single-story room addition tied into the side of an existing house',
+        width: 1800,
+        height: 1200
+      }
+    ]
   },
 
   // ───────────────────────── Flooring ─────────────────────────
@@ -427,6 +436,19 @@ export const services: Service[] = [
       'The finished look gets the attention, but preparation decides how long an epoxy floor lasts. Coatings that peel or lift usually trace back to concrete that was not properly cleaned, profiled, or checked for moisture.'
     ],
     scopeTitle: 'Epoxy flooring work',
+    scopeVisual: 'epoxy',
+    process: {
+      title: 'How an epoxy floor is built',
+      intro: 'Most of the work happens before any coating goes down. Scroll through the layers.',
+      steps: [
+        { title: 'Check the concrete', text: 'Cracks, stains, old coatings, and signs of moisture in the slab are checked before anything is applied.' },
+        { title: 'Clean off oil and old coatings', text: 'Oil, grease, and failing paint or coatings come off so nothing sits between the concrete and the epoxy.' },
+        { title: 'Open the surface', text: 'The concrete is opened mechanically so the coating has a profile to grip instead of a smooth, sealed face.' },
+        { title: 'Repair cracks', text: 'Cracks and damaged spots are filled and leveled so they do not telegraph through the finished floor.' },
+        { title: 'Base coat and flakes', text: 'The epoxy base coat goes down. For a flake finish, color flakes are broadcast into it while it is still wet.' },
+        { title: 'Topcoat and cure', text: "A clear topcoat seals the floor, UV-stable where sun reaches it. Then it cures on the manufacturer's schedule before foot traffic and vehicles." }
+      ]
+    },
     scope: [
       { title: 'Garage floors', text: 'A clean, durable surface for parking, storage, and projects.' },
       { title: 'Workshops and utility areas', text: 'Coatings that hold up to foot traffic, tools, and spills.' },
@@ -474,7 +496,14 @@ export const services: Service[] = [
     related: ['flooring-installation', 'power-washing', 'tile-installation', 'handyman-services'],
     faqCategory: 'flooring',
     projectCategory: 'flooring',
-    images: []
+    images: [
+      {
+        src: '/images/services/epoxy-flooring-illustration.jpg',
+        alt: 'Illustration of a garage floor, half bare concrete and half finished with an epoxy flake coating',
+        width: 1800,
+        height: 1200
+      }
+    ]
   },
 
   // ───────────────────────── Tile (Ads campaign 2) ─────────────────────────
@@ -570,6 +599,19 @@ export const services: Service[] = [
       'Baseboards are often replaced together with new flooring, since old trim rarely lines up with a new floor height. We also install baseboards as a standalone upgrade.'
     ],
     scopeTitle: 'Baseboard work',
+    scopeVisual: 'baseboard',
+    process: {
+      title: 'How baseboards are installed',
+      intro: 'Clean trim comes from the details. Scroll through each step.',
+      steps: [
+        { title: 'Measure and choose a profile', text: 'Linear footage, corners, and door openings are measured, and the profile height is matched to the room.' },
+        { title: 'Remove old trim', text: 'When replacing, the old baseboards come off carefully to protect the wall and the floor.' },
+        { title: 'Cut and cope the corners', text: 'Inside corners are coped rather than simply mitered, so the joint stays tight as the house moves slightly over time.' },
+        { title: 'Install and fasten', text: 'Boards are fastened into the wall framing, with scarf joints where a wall is longer than one board.' },
+        { title: 'Shoe molding where needed', text: 'Shoe molding or quarter round covers small gaps along floors that are not perfectly flat.' },
+        { title: 'Fill, caulk, and paint', text: 'Nail holes and seams are filled, the top edge is caulked to the wall, and the trim is painted.' }
+      ]
+    },
     scope: [
       { title: 'New baseboards', text: 'Installing baseboards in new rooms, additions, or areas without trim.' },
       { title: 'Baseboard replacement', text: 'Removing old, damaged, or dated baseboards and installing new ones.' },
@@ -612,12 +654,20 @@ export const services: Service[] = [
     faqCategory: 'flooring',
     faqIds: ['estimate-info'],
     projectCategory: 'flooring',
-    images: []
+    images: [
+      {
+        src: '/images/services/baseboard-installation-illustration.jpg',
+        alt: 'Illustration of a painted baseboard at an inside corner, with a close-up of the coped joint',
+        width: 1800,
+        height: 1200
+      }
+    ]
   },
 
   // ───────────────────────── Interior painting ─────────────────────────
   {
     slug: 'interior-painting',
+    coverMedia: 'interior-painting-staircase-walls-trim',
     name: 'Interior Painting',
     shortName: 'Interior painting',
     group: 'exterior',
@@ -811,6 +861,167 @@ export const services: Service[] = [
   },
 
   // ───────────────────────── Fences & gates (two groups) ─────────────────────────
+  {
+    slug: 'window-replacement',
+    name: 'Window Installation & Replacement',
+    shortName: 'Window replacement',
+    group: 'exterior',
+    enabled: true,
+    icon: 'PanelTop',
+    seoTitle: `Window Replacement in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Window replacement and repair in Sacramento: old windows out, new energy-compliant windows installed, sealed, and trimmed. Licensed contractor. Free estimates.',
+    heroTitle: 'Window replacement in Sacramento',
+    heroLead:
+      'We replace drafty, foggy, and hard-to-open windows with new ones that are sealed against the weather and finished with clean trim inside and out.',
+    cardText: 'Replacement windows installed, sealed, and trimmed, plus window repairs.',
+    intro: [
+      'A window is only as good as its installation. Most problems people blame on the window itself, such as drafts, leaks, and rot around the frame, come from how it was set, flashed, and sealed in the wall opening.',
+      'We remove the old window, check the opening for rot or water damage and repair it, install the new window level and square, seal and flash it, and finish the trim inside and out. When a window can be saved, we repair it instead.'
+    ],
+    scopeTitle: 'Window services',
+    scope: [],
+    scopeGroups: [
+      {
+        id: 'replacement',
+        title: 'Replacement',
+        intro: 'New windows in existing openings, from removal to finished trim.',
+        items: [
+          { title: 'Removal of old windows', text: 'Taking out the old window carefully to protect the surrounding wall, siding, and interior finishes.' },
+          { title: 'Opening inspection and repair', text: 'Checking the sill and framing for rot or water damage and repairing it before the new window goes in.' },
+          { title: 'Installation', text: 'Setting the new window level, plumb, and square so it opens, closes, and locks smoothly.' },
+          { title: 'Flashing and sealing', text: 'Weather-resistant flashing, insulation around the frame, and sealant to keep out water and drafts.' },
+          { title: 'Interior and exterior trim', text: 'New or restored casing, sills, and exterior trim, caulked and painted to match the house.' }
+        ]
+      },
+      {
+        id: 'repair',
+        title: 'Repair',
+        intro: 'Fixes for windows that are still worth keeping.',
+        items: [
+          { title: 'Rotted sills and trim', text: 'Replacing decayed wood around the window and sealing it against moisture.' },
+          { title: 'Sticking or hard-to-open windows', text: 'Adjusting, cleaning, and freeing sashes and tracks.' },
+          { title: 'Drafts and leaks', text: 'Resealing the exterior perimeter and replacing failed caulk and trim.' },
+          { title: 'Screens and hardware', text: 'Replacing torn screens, latches, and locks.' }
+        ]
+      }
+    ],
+    sections: [
+      {
+        title: 'Repair or replace?',
+        body: [
+          'Replacement usually makes sense when the glass is fogged between panes, the frame is warped or cracked, the window no longer seals, or the sashes will not stay open. If the frame is sound and the problem is a sill, the trim, or the seal around the outside, a repair often solves it for less. We tell you which applies to each window.'
+        ]
+      },
+      {
+        title: 'Energy code and permits',
+        body: [
+          'Replacement windows in California must meet the U-factor and solar heat gain limits of the California Energy Code (Title 24, Part 6). Compliant windows carry an NFRC label, which stays on the glass until the inspector has seen it.',
+          'Window replacement usually needs a building permit and inspection. In unincorporated Sacramento County, the county requires a rough-frame inspection before exterior finishes go on and a final inspection when the work is done; see its [window replacement policy](https://development.saccounty.gov/content/dam/cd/building/docs/transition/RS-22_1%20Window%20Replacement%20Policy.pdf). Inside city limits, contact the [City of Sacramento Building Division](https://www.cityofsacramento.gov/community-development/building). We confirm permit needs for your address during the estimate.'
+        ]
+      },
+      {
+        title: 'Bedroom windows and safety glass',
+        body: [
+          'Bedroom windows are emergency exits, so a replacement should open at least as wide as the one it replaces. Windows near doors, tubs, showers, and floors may require tempered safety glass. We account for both when we specify the new windows.'
+        ]
+      },
+      {
+        title: 'Older and historic homes',
+        body: [
+          'Homes built before 1978 may have lead-based paint on window frames and trim, which calls for lead-safe work practices during removal. Homes in Sacramento historic districts follow additional preservation review, and the City may require a condition report showing whether original windows can be repaired.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Number and size of windows',
+      'Window style and features you choose',
+      'Condition of the existing frame and sill',
+      'Interior and exterior trim and paint',
+      'Second-story or hard-to-reach openings',
+      'Permit and inspection requirements'
+    ],
+    expectations: [
+      'Tell us how many windows and what is wrong with them',
+      'Site visit to measure every opening and check the frames',
+      'Estimate with window options and any repairs needed',
+      'Windows ordered to exact measurements',
+      'Removal, installation, sealing, trim, and cleanup, room by room'
+    ],
+    related: ['dry-rot-repair', 'exterior-painting', 'interior-painting', 'home-remodeling'],
+    faqCategory: 'windows',
+    projectCategory: 'windows',
+    images: []
+  },
+
+  {
+    slug: 'gazebo-construction',
+    name: 'Gazebo Construction',
+    shortName: 'Gazebo construction',
+    group: 'exterior',
+    enabled: true,
+    icon: 'Tent',
+    seoTitle: `Gazebo Construction in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Gazebo construction in Sacramento: hardtop and wood gazebos assembled, squared, and anchored to your patio or pad. Licensed contractor. Free estimates.',
+    heroTitle: 'Gazebo construction in Sacramento',
+    heroLead:
+      'A shaded place to sit in a Sacramento summer. We build and install gazebos that stand square, stay anchored in the wind, and keep rain off the roof seams.',
+    cardText: 'Hardtop and wood gazebos built, installed, and anchored.',
+    intro: [
+      'A gazebo is a heavy structure with a large roof that catches wind, so it is only as good as how it is set out, squared, and anchored. Posts that are slightly out of plumb or a roof that is not aligned lead to leaks, rattles, and racking over time.',
+      'We build and install gazebos on concrete patios and pads, including hardtop gazebos with wood posts and metal roofs. We lay out the footprint, assemble the frame and roof, check that everything is level and square, and anchor each post with hardware suited to the surface.'
+    ],
+    scopeTitle: 'Gazebo services',
+    scope: [
+      { title: 'Site layout', text: 'Positioning the gazebo on your patio or pad, with clearances to walls, fences, and walkways.' },
+      { title: 'Frame assembly', text: 'Posts, beams, and braces assembled and checked for level and square before the roof goes on.' },
+      { title: 'Roof installation', text: 'Rafters and hardtop roof panels installed and aligned so seams shed water.' },
+      { title: 'Anchoring', text: 'Each post secured to concrete or another solid base with hardware suited to the surface and the wind load.' },
+      { title: 'Curtains and accessories', text: 'Curtains, netting, and other included accessories installed and adjusted.' },
+      { title: 'Cleanup', text: 'Packaging and debris removed when the work is done.' }
+    ],
+    sections: [
+      {
+        title: 'Choosing the spot',
+        body: [
+          'Pick a level, solid surface such as a concrete patio or pad, with room to walk around the gazebo. Leave clearance from walls, fences, and trees, and look at where the afternoon sun comes from; in Sacramento summers, the west side matters most.'
+        ]
+      },
+      {
+        title: 'Permits, setbacks, and HOA rules',
+        body: [
+          'Small detached structures are often exempt from a building permit under the California Residential Code, but setbacks from property lines, HOA rules, and any electrical work for lights or fans still apply. Requirements differ between the [City of Sacramento](https://www.cityofsacramento.gov/community-development/building) and [Sacramento County](https://development.saccounty.gov/us/en/building-permits-inspection/frequently-asked-questions.html), so we confirm them for your address before the work is scheduled.'
+        ]
+      },
+      {
+        title: 'Wind and anchoring',
+        body: [
+          'A hardtop roof works like a sail in strong wind. Every post should be anchored, not just set on the surface, and the anchors need to match what is underneath: concrete anchors for a slab, structural fasteners for a deck.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Gazebo size and type',
+      'Whether you already have the gazebo or need one sourced',
+      'Surface it is going on (concrete, pavers, deck)',
+      'Anchoring hardware',
+      'Curtains, lights, or other accessories',
+      'Access to the backyard'
+    ],
+    expectations: [
+      'Tell us the gazebo size, type, and where it will go',
+      'Site visit or photos to check the surface and clearances',
+      'Estimate with anchoring and any prep needed',
+      'Layout, assembly, roof, and anchoring, usually in a day or two',
+      'Final check for level, square, and tight hardware, then cleanup'
+    ],
+    related: ['fences-gates', 'power-washing', 'exterior-painting', 'handyman-services'],
+    faqCategory: 'gazebos',
+    projectCategory: 'gazebo',
+    images: []
+  },
+
   {
     slug: 'fences-gates',
     name: 'Fences & Gates',
@@ -1056,6 +1267,19 @@ export const services: Service[] = [
       'True Arm Construction is a licensed Class B General Building Contractor (#1128503). Send us your list, and we will tell you which items we can take care of and put together an estimate.'
     ],
     scopeTitle: 'Common handyman jobs',
+    scopeVisual: 'handyman',
+    process: {
+      title: 'How a handyman visit works',
+      intro: 'One list, planned once, done in one visit. Scroll through each step.',
+      steps: [
+        { title: 'Make your list', text: 'Write down every item, big or small. Grouping tasks into one visit usually costs less than separate trips.' },
+        { title: 'Add photos', text: 'A photo of each item, if you can, helps us plan the materials and time needed.' },
+        { title: 'Review and estimate', text: 'We review your list and give you an estimate before the visit is scheduled.' },
+        { title: 'One visit, materials planned', text: 'The visit is scheduled with materials planned, so several items get done in one trip.' },
+        { title: 'If a small job is bigger', text: 'Sometimes a repair reveals a larger problem, like a soft floor or a ceiling stain. We explain what we found and the options before doing more work.' },
+        { title: 'Checked with you', text: 'The work is completed and each item on the list is checked with you.' }
+      ]
+    },
     scope: [
       { title: 'Small repairs', text: 'Doors, trim, cabinets, and other wear-and-tear fixes.' },
       { title: 'Drywall touch-ups', text: 'Patching holes and dings, with paint touch-ups.' },
@@ -1094,7 +1318,14 @@ export const services: Service[] = [
     related: ['drywall-repair', 'dry-rot-repair', 'baseboard-installation', 'interior-painting'],
     faqCategory: 'repairs',
     projectCategory: 'repairs',
-    images: []
+    images: [
+      {
+        src: '/images/services/handyman-services-illustration.jpg',
+        alt: 'Illustration of a room with numbered small repairs and a checked-off punch list',
+        width: 1800,
+        height: 1200
+      }
+    ]
   }
 ]
 
