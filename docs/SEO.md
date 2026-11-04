@@ -3,10 +3,20 @@
 Everything below is generated from `data/` at build time, so pages, schema, sitemap, and AI files never disagree.
 
 ## Going live (indexing)
-Indexing is decided at build time (`nuxt.config.ts` → `siteEnv`):
-- A Cloudflare **Workers Builds** build of the `main` branch is production automatically (`WORKERS_CI=1`, `WORKERS_CI_BRANCH=main`).
-- Any other build (local, preview branches) is `noindex` with `robots.txt` blocking everything.
-- An explicit `NUXT_PUBLIC_SITE_ENV` always wins. If it is set to anything other than `production` in Cloudflare, remove it. When building locally and deploying with `wrangler deploy`, run the build with `NUXT_PUBLIC_SITE_ENV=production`.
+Indexing is decided once at build time (`nuxt.config.ts` → `siteMode`):
+- **Cloudflare Workers Builds** (`WORKERS_CI=1`): branch `main` = production (indexable), any other
+  branch = preview (noindex). `NUXT_PUBLIC_SITE_ENV` is **ignored** on Cloudflare, because a
+  dashboard variable applies to every branch (a leftover `staging` value once kept the live site
+  out of Google with "Blocked by robots.txt").
+- **Anywhere else** (local, other hosts): indexable only with `NUXT_PUBLIC_SITE_ENV=production`.
+- Production `robots.txt`: `Allow: /`, disallows only the internal `/200.html` and `/404.html`
+  shells, and lists `Sitemap: https://truearmconstruction.com/sitemap.xml`. Non-production:
+  `Disallow: /` plus `noindex, nofollow` on every page.
+- No `X-Robots-Tag` header is sent (there is no `public/_headers`); keep it that way for production.
+
+To check a deployed build: `curl https://truearmconstruction.com/robots.txt`, and in the page
+source look for `<meta name="robots" content="index, follow, max-image-preview:large">` and
+`siteMode:"production"`.
 
 After the first production deploy:
 1. Check `https://truearmconstruction.com/robots.txt` shows `Allow: /`, and the page source has `<meta name="robots" content="index, follow, max-image-preview:large">`.

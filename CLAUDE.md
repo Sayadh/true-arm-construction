@@ -92,8 +92,11 @@ name must be unique across all folders.
   `entry-point file at "index.mjs" was not found`.
 - **`<NuxtImg sizes>`**: a bare `sizes="100vw"` produces 1–2px images. Use breakpoint syntax,
   e.g. `sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"` or `xs:100vw lg:50vw`.
-- **Indexing switch:** builds are `noindex` unless `siteEnv` is `production`. A Workers Builds
-  build of `main` is production automatically; local builds are not (see `docs/SEO.md`).
+- **Indexing switch (`siteMode` in `nuxt.config.ts`):** on Cloudflare Workers Builds, `main` is
+  production and every other branch is noindex, regardless of any `NUXT_PUBLIC_SITE_ENV` in the
+  dashboard (a stale `staging` value once blocked Google). Locally, only
+  `NUXT_PUBLIC_SITE_ENV=production` makes a build indexable. The key is named `siteMode`, not
+  `siteEnv`, so Nuxt's automatic `NUXT_PUBLIC_*` runtime override cannot replace it.
 - **Sticky elements** must use `top-[var(--header-offset)]`, not `--header-h`: the header has an
   extra utility bar on `xl` screens.
 - **In-page anchor links** must use `useAnchorScroll().scrollToId` so native hash jumps and the

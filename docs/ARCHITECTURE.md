@@ -67,7 +67,7 @@ useJsonLd([organizationSchema(), webPageSchema({ path, title, description }), br
 
 ## 5. SEO and indexing
 
-- `usePageSeo` sets `noindex, nofollow` on every page unless `siteEnv === 'production'`.
+- `usePageSeo` sets `noindex, nofollow` on every page unless `siteMode === 'production'`.
   `robots.txt` follows the same switch. See `docs/SEO.md` for how production is detected.
 - JSON-LD: `GeneralContractor` organization (license, phones, areas, service catalog,
   `sameAs`), `WebSite`, `WebPage`, `Service`, `BreadcrumbList`, `FAQPage`, `Article`.

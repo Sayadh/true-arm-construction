@@ -17,7 +17,7 @@ automatically from GitHub. The other options below are documented alternatives.
 | Redirects | `public/_redirects` (301s for old service URLs) |
 | Domains | `truearmconstruction.com` (custom domain), `www` → apex via a Cloudflare redirect rule (301, query string kept) |
 | HTTPS | SSL/TLS → Edge Certificates → **Always Use HTTPS** on (free). Do not buy Advanced Certificate Manager. |
-| Indexing | Builds of `main` are production automatically (`WORKERS_CI_BRANCH=main`); leave `NUXT_PUBLIC_SITE_ENV` unset |
+| Indexing | Builds of `main` are production automatically (`WORKERS_CI_BRANCH=main`); other branches are noindex. `NUXT_PUBLIC_SITE_ENV` is ignored on Cloudflare (delete it from the dashboard to avoid confusion) |
 
 **Deploy = `git push` to `main`.** Watch the build under Workers & Pages → `true-arm-construction`
 → Deployments. A failed build leaves the previous version live.

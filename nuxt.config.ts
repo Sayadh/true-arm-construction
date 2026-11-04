@@ -6,11 +6,16 @@ import { areaPages } from './data/areas'
 
 const siteUrl = (process.env.NUXT_PUBLIC_SITE_URL || 'https://truearmconstruction.com').replace(/\/$/, '')
 
-// Indexing switch. An explicit NUXT_PUBLIC_SITE_ENV always wins; otherwise a Cloudflare Workers Builds
-// build of the main branch is production, and everything else (local, preview branches) stays noindex.
-const siteEnv =
-  process.env.NUXT_PUBLIC_SITE_ENV ||
-  (process.env.WORKERS_CI === '1' && process.env.WORKERS_CI_BRANCH === 'main' ? 'production' : 'development')
+// Indexing switch, decided once at build time.
+// - Cloudflare Workers Builds (WORKERS_CI=1): the `main` branch is production, every other branch is a
+//   preview. A dashboard NUXT_PUBLIC_SITE_ENV is ignored there on purpose: it applies to every branch,
+//   and a stale "staging" value once kept the live site out of Google.
+// - Anywhere else (local, other hosts): production only with NUXT_PUBLIC_SITE_ENV=production.
+// Stored as `siteMode` (not `siteEnv`) so Nuxt's automatic NUXT_PUBLIC_SITE_ENV runtime override can't replace it.
+const onCloudflareCi = process.env.WORKERS_CI === '1'
+const siteMode: 'production' | 'preview' | 'development' = onCloudflareCi
+  ? process.env.WORKERS_CI_BRANCH === 'main' ? 'production' : 'preview'
+  : process.env.NUXT_PUBLIC_SITE_ENV === 'production' ? 'production' : 'development'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -32,7 +37,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl,
-      siteEnv,
+      siteMode,
       // Form delivery (static-friendly hosted provider). See docs/FORMS.md
       formProvider: process.env.NUXT_PUBLIC_FORM_PROVIDER || 'formspree',
       // Formspree form "True Arm website" (public by nature: it is visible in the browser). An env var overrides it.

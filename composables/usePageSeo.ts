@@ -29,7 +29,7 @@ export function usePageSeo(input: PageSeoInput) {
     : `${input.title} | ${company.name}`
   const url = absoluteUrl(input.path)
   const image = absoluteUrl(input.image || company.defaultOgImage)
-  const isProd = useRuntimeConfig().public.siteEnv === 'production'
+  const isProd = useRuntimeConfig().public.siteMode === 'production'
   const robots = input.noindex || !isProd ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
 
   useSeoMeta({
