@@ -1,8 +1,41 @@
 # Deployment
 
-The site is fully static. Every option below serves the files in `.output/public/`.
+The site is fully static. Production runs on **Cloudflare Workers (Static Assets)** and deploys
+automatically from GitHub. The other options below are documented alternatives.
 
-## 1. Build
+## Current production setup (Cloudflare Workers Builds)
+
+| Setting | Value |
+|---|---|
+| Repository | `Sayadh/true-arm-construction`, branch `main` |
+| Worker name | `true-arm-construction` |
+| Build command | `npm run generate` |
+| Deploy command | `npx wrangler deploy` (reads `wrangler.jsonc`) |
+| Assets directory | `.output/public` |
+| Trailing slashes | `html_handling: "drop-trailing-slash"` (`/about/` → `/about`) |
+| Unknown URLs | `not_found_handling: "404-page"` (custom `404.html`, status 404) |
+| Redirects | `public/_redirects` (301s for old service URLs) |
+| Domains | `truearmconstruction.com` (custom domain), `www` → apex via a Cloudflare redirect rule (301, query string kept) |
+| HTTPS | SSL/TLS → Edge Certificates → **Always Use HTTPS** on (free). Do not buy Advanced Certificate Manager. |
+| Indexing | Builds of `main` are production automatically (`WORKERS_CI_BRANCH=main`); leave `NUXT_PUBLIC_SITE_ENV` unset |
+
+**Deploy = `git push` to `main`.** Watch the build under Workers & Pages → `true-arm-construction`
+→ Deployments. A failed build leaves the previous version live.
+
+Environment variables (Settings → Variables and secrets → build): only needed to override
+defaults, e.g. `NUXT_PUBLIC_FORM_ENDPOINT`, analytics IDs. All are public by nature.
+
+Why `preset: 'static'` matters: Cloudflare CI is auto-detected by Nitro, which would otherwise
+build a server Worker and fail with `entry-point file at "index.mjs" was not found`.
+
+### Manual deploy (rarely needed)
+
+```bash
+NUXT_PUBLIC_SITE_ENV=production npm run generate
+npx wrangler deploy
+```
+
+## Building for any other host
 
 ```bash
 npm ci
@@ -51,11 +84,7 @@ DirectorySlash On
 
 ## 2b. Cloudflare Pages
 
-- Connect the Git repository → Framework preset: **Nuxt.js** (or None).
-- Build command: `npm run generate` · Output directory: `.output/public`
-- Environment variables: `NUXT_PUBLIC_SITE_ENV=production`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_FORM_ENDPOINT`, analytics IDs, `NODE_VERSION=22`.
-- Custom domain: add `truearmconstruction.com` under the project's Custom domains. If DNS is on Cloudflare, records are created automatically. Add a redirect rule `www → apex` if you also use `www`.
-- `404.html` is served automatically for unknown routes.
+Superseded by Cloudflare Workers (above). If ever needed: build command `npm run generate`, output directory `.output/public`, `NODE_VERSION=22`.
 
 ## 2c. Nginx (DigitalOcean, DreamHost VPS, any Linux server)
 
