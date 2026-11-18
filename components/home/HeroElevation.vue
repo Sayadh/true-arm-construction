@@ -35,7 +35,8 @@ onBeforeUnmount(() => observer?.disconnect())
     1. the house elevation draws on (foundation -> frame -> roof -> openings),
     2. a paint roller makes vertical passes, revealing the wall color strip by strip
        (main body, then the wing in an accent color), windows stay glass,
-    3. the door gets its accent, and the color swatches + caption settle in.
+    3. the roof is brushed on, the door gets its color (panels, brass knob, porch light),
+       and the color swatches + caption settle in.
     Starts only when scrolled into view. Reduced motion: the finished, painted state, no roller.
     Pass/roller timings are generated so each strip grows exactly under the roller.
   -->
@@ -54,13 +55,13 @@ onBeforeUnmount(() => observer?.disconnect())
 
     <!-- paint: one strip per roller pass -->
     <g class="paint">
-      <g clip-path="url(#hero-paint-main)" fill="#A3B5A6">
+      <g clip-path="url(#hero-paint-main)" fill="#EBDDC3">
         <rect class="pass" style="--d: 1.55s" x="73.25" y="176" width="66" height="244" />
         <rect class="pass" style="--d: 2.06s" x="135.75" y="128" width="66" height="292" />
         <rect class="pass" style="--d: 2.57s" x="198.25" y="128" width="66" height="292" />
         <rect class="pass" style="--d: 3.08s" x="260.75" y="176" width="66" height="244" />
       </g>
-      <g clip-path="url(#hero-paint-wing)" fill="#5E7FA0">
+      <g clip-path="url(#hero-paint-wing)" fill="#7FA38C">
         <rect class="pass" style="--d: 3.59s" x="323.0" y="306" width="58" height="114" />
         <rect class="pass" style="--d: 4.10s" x="377.0" y="306" width="58" height="114" />
       </g>
@@ -75,7 +76,23 @@ onBeforeUnmount(() => observer?.disconnect())
       <rect x="352" y="344" width="54" height="40" />
       <circle cx="200" cy="190" r="14" />
     </g>
-    <rect class="door" x="236" y="342" width="48" height="78" fill="#C63D2C" />
+    <!-- roof: brushed on left to right after the walls -->
+    <g class="roof" fill="#B4513A">
+      <path d="M50 244 L200 112 L350 244 L325 228 L200 132 L75 228 Z" />
+      <path d="M314 322 L444 299 L444 309 L325 327 Z" />
+    </g>
+
+    <!-- front door: color, raised panels, brass knob, porch light -->
+    <g class="door">
+      <rect x="236" y="342" width="48" height="78" fill="#1F6461" />
+      <g fill="none" stroke="#F7F5F0" stroke-opacity=".38" stroke-width="1">
+        <rect x="243" y="350" width="34" height="26" rx="1" />
+        <rect x="243" y="383" width="34" height="30" rx="1" />
+      </g>
+      <circle cx="277" cy="380" r="2.6" fill="#E2B04A" />
+      <circle class="glow" cx="297" cy="350" r="9" fill="#E2B04A" fill-opacity=".22" />
+      <circle cx="297" cy="350" r="3.2" fill="#E2B04A" />
+    </g>
 
     <g fill="none" stroke="#EDE8E0" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
       <!-- ground -->
@@ -83,11 +100,11 @@ onBeforeUnmount(() => observer?.disconnect())
       <!-- main volume -->
       <path class="ln seq-1" pathLength="1" d="M75 420 V228 H325 V420" />
       <!-- gable roof -->
-      <path class="ln seq-2" pathLength="1" d="M58 238 L200 120 L342 238" />
+      <path class="ln seq-2" pathLength="1" d="M50 244 L200 112 L350 244" />
       <path class="ln seq-2" pathLength="1" d="M75 228 L200 132 L325 228" stroke-opacity=".35" />
       <!-- wing -->
       <path class="ln seq-3" pathLength="1" d="M325 420 V318 H432 V420" />
-      <path class="ln seq-3" pathLength="1" d="M318 320 L442 300" />
+      <path class="ln seq-3" pathLength="1" d="M314 322 L444 299" />
       <!-- gable window -->
       <circle class="ln seq-4" pathLength="1" cx="200" cy="190" r="14" stroke-opacity=".7" />
       <!-- upper windows -->
@@ -99,7 +116,6 @@ onBeforeUnmount(() => observer?.disconnect())
       <rect class="ln seq-6" pathLength="1" x="100" y="352" width="92" height="56" />
       <path class="ln seq-6b" pathLength="1" d="M146 352 V408" stroke-opacity=".45" />
       <rect class="ln seq-6" pathLength="1" x="236" y="342" width="48" height="78" />
-      <path class="fd seq-7" d="M274 384 h0.1" stroke-width="3" />
       <!-- wing cladding lines + window -->
       <path class="ln seq-6b" pathLength="1" d="M325 336 H432 M325 352 H432 M325 368 H432 M325 384 H432 M325 400 H432" stroke-opacity=".3" />
       <rect class="ln seq-6" pathLength="1" x="352" y="344" width="54" height="40" />
@@ -108,20 +124,24 @@ onBeforeUnmount(() => observer?.disconnect())
     <!-- color swatches, like chips from a fan deck -->
     <g class="swatches" font-family="inherit" font-size="10" font-weight="700">
       <g class="chip" style="--c: 0">
-        <rect x="75" y="436" width="80" height="22" rx="3" fill="#A3B5A6" />
-        <text x="85" y="451" fill="#13294B">Walls</text>
+        <rect x="75" y="436" width="64" height="22" rx="3" fill="#EBDDC3" />
+        <text x="84" y="451" fill="#13294B">Walls</text>
       </g>
       <g class="chip" style="--c: 1">
-        <rect x="167" y="436" width="80" height="22" rx="3" fill="#5E7FA0" />
-        <text x="177" y="451" fill="#F7F5F0">Accent</text>
+        <rect x="147" y="436" width="64" height="22" rx="3" fill="#B4513A" />
+        <text x="156" y="451" fill="#F7F5F0">Roof</text>
       </g>
       <g class="chip" style="--c: 2">
-        <rect x="259" y="436" width="80" height="22" rx="3" fill="#C63D2C" />
-        <text x="269" y="451" fill="#F7F5F0">Door</text>
+        <rect x="219" y="436" width="64" height="22" rx="3" fill="#7FA38C" />
+        <text x="228" y="451" fill="#13294B">Annex</text>
       </g>
       <g class="chip" style="--c: 3">
-        <rect x="351" y="436" width="80" height="22" rx="3" fill="#EDE8E0" />
-        <text x="361" y="451" fill="#13294B">Trim</text>
+        <rect x="291" y="436" width="64" height="22" rx="3" fill="#1F6461" />
+        <text x="300" y="451" fill="#F7F5F0">Door</text>
+      </g>
+      <g class="chip" style="--c: 4">
+        <rect x="363" y="436" width="64" height="22" rx="3" fill="#EDE8E0" />
+        <text x="372" y="451" fill="#13294B">Trim</text>
       </g>
     </g>
     <text x="253" y="486" text-anchor="middle" class="lbl" fill="#F0907A" font-family="inherit" font-size="12" font-weight="600">Prepared, painted, clean lines</text>
@@ -138,7 +158,7 @@ onBeforeUnmount(() => observer?.disconnect())
 
 <style scoped>
 .roller { opacity: 0; }
-.nap { fill: #A3B5A6; }
+.nap { fill: #EBDDC3; }
 
 @media (prefers-reduced-motion: no-preference) {
   /* Pre-draw state: held until .in-view is added by the observer. */
@@ -146,6 +166,7 @@ onBeforeUnmount(() => observer?.disconnect())
   .elevation .fd,
   .elevation .lbl,
   .elevation .door { opacity: 0; }
+  .elevation .roof { transform-box: fill-box; transform-origin: 0 50%; transform: scaleX(0); }
   .elevation .pass { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); }
   .elevation .chip { opacity: 0; transform: translateY(8px); }
 
@@ -170,19 +191,23 @@ onBeforeUnmount(() => observer?.disconnect())
     animation: roll 3.06s linear 1.55s both;
   }
   .elevation.in-view .nap { animation: nap-color 3.06s step-end 1.55s both; }
-  .elevation.in-view .door { animation: fade 0.5s ease-out 4.55s forwards; }
+  .elevation.in-view .roof { animation: brush 0.7s cubic-bezier(0.65, 0, 0.35, 1) 4.5s forwards; }
+  .elevation.in-view .door { animation: fade 0.5s ease-out 5.05s forwards; }
+  .elevation.in-view .glow { animation: glow 2.8s ease-in-out 5.6s infinite; }
   .elevation.in-view .chip {
     animation: chip-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    animation-delay: calc(4.6s + var(--c) * 0.1s);
+    animation-delay: calc(5.2s + var(--c) * 0.08s);
   }
-  .elevation.in-view .lbl { animation: fade 0.6s ease-out 5.1s forwards; }
+  .elevation.in-view .lbl { animation: fade 0.6s ease-out 5.75s forwards; }
 }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade { to { opacity: 1; } }
 @keyframes paint { to { transform: scaleY(1); } }
 @keyframes chip-in { to { opacity: 1; transform: none; } }
+@keyframes brush { to { transform: scaleX(1); } }
+@keyframes glow { 0%, 100% { fill-opacity: 0.22; } 50% { fill-opacity: 0.45; } }
 /* The roller carries the wall color, then the accent for the wing passes. */
-@keyframes nap-color { 0% { fill: #A3B5A6; } 65% { fill: #5E7FA0; } }
+@keyframes nap-color { 0% { fill: #EBDDC3; } 65% { fill: #7FA38C; } }
 @keyframes roll {
   0.00% { transform: translate(106.25px, 152px); opacity: 0; }
   1.96% { transform: translate(106.25px, 176px); opacity: 1; }

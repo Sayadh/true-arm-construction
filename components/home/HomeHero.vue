@@ -17,7 +17,7 @@ const headlineWords = headline.split(' ')
 
 const captionEl = ref<HTMLElement | null>(null)
 const captionInView = ref(false)
-const captionBaseDelay = company.heroImage ? '0.15s' : '3s'
+const captionBaseDelay = company.heroImage ? '0.15s' : '3.4s'
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
