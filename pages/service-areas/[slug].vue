@@ -34,7 +34,7 @@ const otherAreas = areaPages.filter((a) => a.slug !== area.slug)
     <PageHeader
       :crumbs="[{ name: 'Service Areas', path: '/service-areas' }, { name: area.name, path }]"
       :kicker="area.county"
-      :title="`Remodeling and construction in ${place}`"
+      :title="`Painting and remodeling in ${place}`"
     >
       <RichParagraphs :paragraphs="page.intro" class="mt-5 max-w-[44rem] text-lead text-muted" />
       <div class="mt-8 flex flex-wrap gap-3">

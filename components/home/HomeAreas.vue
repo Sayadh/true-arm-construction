@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { MapPin } from 'lucide-vue-next'
 import { company } from '~/data/company'
-import { enabledAreas, areaNames } from '~/data/areas'
+import { enabledAreas, areaCounties } from '~/data/areas'
+
+const primary = enabledAreas.find((a) => a.primary) ?? enabledAreas[0]
+const others = enabledAreas.filter((a) => a !== primary)
 </script>
 
 <template>
@@ -10,7 +13,7 @@ import { enabledAreas, areaNames } from '~/data/areas'
       <div v-reveal class="lg:col-span-6">
         <h2 id="areas-heading" class="text-h2">Serving {{ company.primaryArea.city }} and nearby communities</h2>
         <p class="mt-5 max-w-prose text-lead text-muted">
-          We work on homes and commercial properties in {{ areaNames() }}. If your property is nearby,
+          We work on homes and commercial properties in {{ company.primaryArea.city }} and {{ others.length }} nearby cities across {{ areaCounties() }}. If your property is nearby,
           include your ZIP code in your request and we will let you know whether we can take on the project.
         </p>
         <div class="mt-8">
@@ -28,11 +31,15 @@ import { enabledAreas, areaNames } from '~/data/areas'
         </div>
         <div class="relative">
           <p class="text-sm font-semibold text-bronze-light">Service areas</p>
-          <ul class="mt-24 space-y-2">
-            <li v-for="a in enabledAreas" :key="a.slug">
-              <NuxtLink :to="a.page ? `/service-areas/${a.slug}` : '/service-areas'" class="group flex items-center gap-3">
-                <MapPin :size="22" aria-hidden="true" class="shrink-0 text-bronze-light" />
-                <span class="font-display text-3xl font-extrabold leading-none [font-stretch:78%] group-hover:underline group-hover:decoration-bronze sm:text-4xl">{{ a.name }}, {{ company.primaryArea.regionCode }}</span>
+          <NuxtLink v-if="primary" :to="primary.page ? `/service-areas/${primary.slug}` : '/service-areas'" class="group mt-20 flex items-center gap-3">
+            <MapPin :size="26" aria-hidden="true" class="shrink-0 text-bronze-light" />
+            <span class="font-display text-4xl font-extrabold leading-none [font-stretch:78%] group-hover:underline group-hover:decoration-bronze sm:text-5xl">{{ primary.name }}, {{ company.primaryArea.regionCode }}</span>
+          </NuxtLink>
+          <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 border-t sm:gap-x-6 border-paper/10 pt-6">
+            <li v-for="a in others" :key="a.slug">
+              <NuxtLink :to="a.page ? `/service-areas/${a.slug}` : '/service-areas'" class="group flex items-center gap-2">
+                <MapPin :size="16" aria-hidden="true" class="shrink-0 text-bronze-light/80" />
+                <span class="whitespace-nowrap font-display text-base font-bold leading-tight [font-stretch:85%] group-hover:underline group-hover:decoration-bronze sm:text-xl">{{ a.name }}</span>
               </NuxtLink>
             </li>
           </ul>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { MapPin, ArrowRight } from 'lucide-vue-next'
 import { company } from '~/data/company'
-import { enabledAreas, areaNames } from '~/data/areas'
+import { enabledAreas, areaNames, areaCounties } from '~/data/areas'
 import { enabledServices } from '~/data/services'
 
 const title = 'Areas We Serve in the Sacramento Region'
-const description = `Remodeling, construction, and repair services in ${areaNames()}, California, from a licensed Class B general contractor.`
+const description = `Painting, remodeling, and repairs in Sacramento and ${enabledAreas.length - 1} nearby cities across ${areaCounties()}, from a licensed contractor.`
 const path = '/service-areas'
 usePageSeo({ title, description, path })
 useJsonLd([

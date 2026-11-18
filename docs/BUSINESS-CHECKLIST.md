@@ -25,7 +25,7 @@ Last reviewed: 2026-11-04.
 - [ ] **Analytics IDs:** GA4 / GTM, Google Ads conversion ID + label → env vars (`docs/ANALYTICS.md`)
 - [ ] **Search Console / Bing Webmaster** verification and sitemap submission (`docs/SEO.md`)
 - [ ] Public business address — only if the owner wants one shown → `address`
-- [ ] Additional service cities, each with city-specific content → `data/areas.ts`
+- [x] Additional service cities (Elk Grove, Roseville, Folsom, Citrus Heights, Rancho Cordova, Davis, Rocklin) with city-specific pages → `data/areas.ts`
 
 ## Content to confirm
 - [ ] Drywall: repair only, or also new installation? → `drywall-repair`
