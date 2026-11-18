@@ -49,13 +49,21 @@ onBeforeUnmount(() => observer?.disconnect())
     aria-label="Illustration of a house being painted with a paint roller"
   >
     <defs>
-      <clipPath id="hero-paint-main"><path d="M75 420 V228 L200 132 L325 228 V420 Z" /></clipPath>
+      <clipPath id="hero-paint-main"><path d="M75 420 V228 H325 V420 Z" /></clipPath>
+      <clipPath id="hero-paint-gable"><path d="M75 228 L200 132 L325 228 Z" /></clipPath>
       <clipPath id="hero-paint-wing"><path d="M325 420 V318 H432 V420 Z" /></clipPath>
     </defs>
 
     <!-- paint: one strip per roller pass -->
     <g class="paint">
       <g clip-path="url(#hero-paint-main)" fill="#EBDDC3">
+        <rect class="pass" style="--d: 1.55s" x="73.25" y="176" width="66" height="244" />
+        <rect class="pass" style="--d: 2.06s" x="135.75" y="128" width="66" height="292" />
+        <rect class="pass" style="--d: 2.57s" x="198.25" y="128" width="66" height="292" />
+        <rect class="pass" style="--d: 3.08s" x="260.75" y="176" width="66" height="244" />
+      </g>
+      <!-- gable: same roller passes, its own color -->
+      <g clip-path="url(#hero-paint-gable)" fill="#D9AE62">
         <rect class="pass" style="--d: 1.55s" x="73.25" y="176" width="66" height="244" />
         <rect class="pass" style="--d: 2.06s" x="135.75" y="128" width="66" height="292" />
         <rect class="pass" style="--d: 2.57s" x="198.25" y="128" width="66" height="292" />
@@ -124,24 +132,28 @@ onBeforeUnmount(() => observer?.disconnect())
     <!-- color swatches, like chips from a fan deck -->
     <g class="swatches" font-family="inherit" font-size="10" font-weight="700">
       <g class="chip" style="--c: 0">
-        <rect x="75" y="436" width="64" height="22" rx="3" fill="#EBDDC3" />
-        <text x="84" y="451" fill="#13294B">Walls</text>
+        <rect x="75.0" y="436" width="54" height="22" rx="3" fill="#EBDDC3" />
+        <text x="83.0" y="451" fill="#13294B">Walls</text>
       </g>
       <g class="chip" style="--c: 1">
-        <rect x="147" y="436" width="64" height="22" rx="3" fill="#B4513A" />
-        <text x="156" y="451" fill="#F7F5F0">Roof</text>
+        <rect x="134.6" y="436" width="54" height="22" rx="3" fill="#D9AE62" />
+        <text x="142.6" y="451" fill="#13294B">Gable</text>
       </g>
       <g class="chip" style="--c: 2">
-        <rect x="219" y="436" width="64" height="22" rx="3" fill="#7FA38C" />
-        <text x="228" y="451" fill="#13294B">Annex</text>
+        <rect x="194.2" y="436" width="54" height="22" rx="3" fill="#B4513A" />
+        <text x="202.2" y="451" fill="#F7F5F0">Roof</text>
       </g>
       <g class="chip" style="--c: 3">
-        <rect x="291" y="436" width="64" height="22" rx="3" fill="#1F6461" />
-        <text x="300" y="451" fill="#F7F5F0">Door</text>
+        <rect x="253.8" y="436" width="54" height="22" rx="3" fill="#7FA38C" />
+        <text x="261.8" y="451" fill="#13294B">Annex</text>
       </g>
       <g class="chip" style="--c: 4">
-        <rect x="363" y="436" width="64" height="22" rx="3" fill="#EDE8E0" />
-        <text x="372" y="451" fill="#13294B">Trim</text>
+        <rect x="313.4" y="436" width="54" height="22" rx="3" fill="#1F6461" />
+        <text x="321.4" y="451" fill="#F7F5F0">Door</text>
+      </g>
+      <g class="chip" style="--c: 5">
+        <rect x="373.0" y="436" width="54" height="22" rx="3" fill="#EDE8E0" />
+        <text x="381.0" y="451" fill="#13294B">Trim</text>
       </g>
     </g>
     <text x="253" y="486" text-anchor="middle" class="lbl" fill="#F0907A" font-family="inherit" font-size="12" font-weight="600">Prepared, painted, clean lines</text>
