@@ -4,12 +4,15 @@ import { company, formatPhone } from '~/data/company'
 import { paintingHub as hub } from '~/data/painting'
 import { getService } from '~/data/services'
 import { faqsByIds } from '~/data/faqs'
+import { publishedResources } from '~/data/resources'
 import { publishedCredentials } from '~/data/credentials'
 import { workMedia, mediaForService, coverImage } from '~/data/work'
 import type { Service, WorkMedia } from '~/types'
 
 const services = hub.services.map(getService).filter((s): s is Service => Boolean(s))
 const faqItems = faqsByIds(hub.faqIds)
+// Guides whose first related service is a painting service
+const guides = publishedResources.filter((r) => getService(r.relatedServices[0] ?? '')?.group === 'painting')
 const epa = publishedCredentials.find((c) => c.id === 'epa-lead-safe')
 
 const heroMedia = workMedia.find((m) => m.id === hub.heroMedia)
@@ -197,6 +200,22 @@ useJsonLd([
           </div>
         </div>
         <div class="lg:col-span-8"><PaintingQuoteForm /></div>
+      </div>
+    </section>
+
+    <!-- Painting guides -->
+    <section v-if="guides.length" class="section pb-0" aria-labelledby="painting-guides-heading">
+      <div class="wrap">
+        <h2 id="painting-guides-heading" class="text-h2">Painting guides</h2>
+        <ul class="mt-8 grid gap-4 md:grid-cols-3">
+          <li v-for="g in guides" :key="g.slug">
+            <NuxtLink :to="`/resources/${g.slug}`" class="group flex h-full flex-col rounded-lg border border-stone-300 bg-white p-6 hover:border-ink/40">
+              <span class="text-lg font-bold leading-snug text-ink group-hover:text-bronze-dark">{{ g.title }}</span>
+              <span class="mt-2 flex-1 text-[0.9375rem] text-muted">{{ g.description }}</span>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">Read the guide <ArrowRight :size="16" aria-hidden="true" class="transition-transform group-hover:translate-x-0.5" /></span>
+            </NuxtLink>
+          </li>
+        </ul>
       </div>
     </section>
 

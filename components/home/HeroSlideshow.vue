@@ -34,7 +34,7 @@ onBeforeUnmount(() => {
       :key="slide.src"
       format="webp"
       :src="slide.src"
-      alt=""
+      :alt="slide.alt"
       sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
       :loading="i === 0 ? 'eager' : 'lazy'"
       :fetchpriority="i === 0 ? 'high' : undefined"

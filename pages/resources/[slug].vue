@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getResource } from '~/data/resources'
 import { getService } from '~/data/services'
+import { paintingHub } from '~/data/painting'
 import type { ResourceArticle, Service } from '~/types'
 
 const route = useRoute()
@@ -11,6 +12,8 @@ const article = found as ResourceArticle
 const path = `/resources/${article.slug}`
 const crumbs = [{ name: 'Resources', path: '/resources' }, { name: article.title, path }]
 const related = article.relatedServices.map(getService).filter((s): s is Service => Boolean(s))
+// Painting guides send readers to the painting estimate form instead of the general planner
+const isPaintingGuide = related[0]?.group === 'painting'
 
 usePageSeo({ title: article.title, description: article.description, path, type: 'article' })
 useJsonLd([
@@ -35,13 +38,16 @@ const fmt = (d: string) => new Date(`${d}T12:00:00`).toLocaleDateString('en-US',
         <article class="rich max-w-prose text-[1.0625rem] lg:col-span-7">
           <template v-for="(block, i) in article.body" :key="i">
             <h2 v-if="block.heading">{{ block.heading }}</h2>
-            <p v-for="(p, j) in block.paragraphs ?? []" :key="`p${j}`">{{ p }}</p>
+            <!-- eslint-disable vue/no-v-html -- trusted repository content, escaped by inlineLinks -->
+            <p v-for="(p, j) in block.paragraphs ?? []" :key="`p${j}`" v-html="inlineLinks(p)" />
             <ul v-if="block.list?.length">
-              <li v-for="li in block.list" :key="li">{{ li }}</li>
+              <li v-for="li in block.list" :key="li" v-html="inlineLinks(li)" />
             </ul>
+            <!-- eslint-enable vue/no-v-html -->
           </template>
           <div class="mt-10">
-            <AppButton to="/free-estimate" track="estimate_cta_click" :track-label="`guide_${article.slug}`">Start your project planner</AppButton>
+            <AppButton v-if="isPaintingGuide" :to="`${paintingHub.path}#quote`" track="estimate_cta_click" :track-label="`guide_${article.slug}`">Get a free painting estimate</AppButton>
+            <AppButton v-else to="/free-estimate" track="estimate_cta_click" :track-label="`guide_${article.slug}`">Start your project planner</AppButton>
           </div>
         </article>
         <aside class="lg:col-span-4 lg:col-start-9">

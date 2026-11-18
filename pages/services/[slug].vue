@@ -97,6 +97,12 @@ useJsonLd([
         <div class="lg:col-span-7">
           <h2 class="text-h2"><span class="capitalize-first">{{ service.shortName }}</span> for Sacramento properties</h2>
           <div class="mt-6 text-lead text-body"><RichParagraphs :paragraphs="service.intro" /></div>
+          <p v-if="isPainting" class="mt-5 text-[0.9375rem] text-muted">
+            Part of our <NuxtLink :to="paintingHub.path" class="font-semibold text-ink underline decoration-bronze underline-offset-4">house painting in Sacramento</NuxtLink>: interior, exterior, cabinets, commercial, and staining.
+          </p>
+          <p v-else class="mt-5 text-[0.9375rem] text-muted">
+            Many projects finish with fresh paint. See our <NuxtLink :to="paintingHub.path" class="font-semibold text-ink underline decoration-bronze underline-offset-4">house painting in Sacramento</NuxtLink> services.
+          </p>
 
           <div v-if="service.scopeNote" class="mt-8 flex gap-3 rounded border border-bronze/40 bg-bronze/5 p-5 text-[0.9375rem]">
             <Info :size="20" aria-hidden="true" class="mt-0.5 shrink-0 text-bronze-dark" />

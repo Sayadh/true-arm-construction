@@ -116,6 +116,13 @@ Each published entry is `/resources/<slug>` with `body` blocks (`heading`, `para
 `list`). Keep guides general; never give legal or permit advice. Set `publishedOn` (and
 `updatedOn` when edited) and `relatedServices`.
 
+- Within a block, `paragraphs` render before `list`. For text after a list, start a new block
+  without a `heading`.
+- Paragraphs and list items support inline links: `[house painting in Sacramento](/painting)`.
+- If the first `relatedServices` entry is a painting service, the guide shows a painting
+  estimate button and appears under "Painting guides" on `/painting`.
+- Every image needs real `alt` text, including stock backgrounds (SEO audits flag empty alts).
+
 ## Hero slideshow and homepage imagery
 
 `company.heroSlides` lists the hero background photos (crossfade every 7s; one photo = static;

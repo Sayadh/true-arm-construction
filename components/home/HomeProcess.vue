@@ -14,7 +14,7 @@ const steps = [
     <NuxtImg
       format="webp"
       src="/images/stock/process-plans.jpg"
-      alt=""
+      alt="Construction plans being reviewed on a desk"
       aria-hidden="true"
       sizes="xs:100vw lg:60vw"
       loading="lazy"

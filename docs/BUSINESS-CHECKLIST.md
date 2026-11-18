@@ -34,6 +34,7 @@ Last reviewed: 2026-11-04.
 - [ ] Fence materials (wood, vinyl, chain link, metal) and gate types → `fences-gates`
 - [ ] Room additions: typical scope; plans/permits in-house or partnered → `room-additions`
 
+- [ ] **Painting price ranges** (owner will send) → price guide + "How much does it cost to paint a house in Sacramento?" article
 - [ ] Painting: paint brands used, any workmanship warranty, typical timelines (all hidden until confirmed) → `data/painting.ts`, `data/faqs.ts`
 - [ ] Off-site: Google Business Profile primary category "Painter" (or add it), Google Ads painting campaign → `/painting`
 

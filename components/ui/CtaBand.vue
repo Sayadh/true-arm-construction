@@ -25,7 +25,7 @@ withDefaults(
     <NuxtImg
       format="webp"
       src="/images/stock/cta-living-room.jpg"
-      alt=""
+      alt="Bright living room with a leather sofa and large windows"
       aria-hidden="true"
       sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw"
       loading="lazy"

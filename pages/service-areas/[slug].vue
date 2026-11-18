@@ -5,6 +5,7 @@ import { getArea, areaPages } from '~/data/areas'
 import { serviceGroups, servicesByGroup } from '~/data/services'
 import { reviewTotals } from '~/data/reviews'
 import { estimatePath } from '~/data/navigation'
+import { paintingHub } from '~/data/painting'
 import type { FaqItem } from '~/types'
 
 const route = useRoute()
@@ -56,6 +57,11 @@ const otherAreas = areaPages.filter((a) => a.slug !== area.slug)
     <section class="section" aria-labelledby="area-services">
       <div class="wrap">
         <h2 id="area-services" class="text-h2">Services in {{ area.name }}</h2>
+        <p class="mt-4 max-w-2xl text-lead text-muted">
+          Painting is our lead service. See
+          <NuxtLink :to="paintingHub.path" class="font-semibold text-ink underline decoration-bronze underline-offset-4">house painting in {{ area.name }}</NuxtLink>:
+          interior, exterior, cabinets, commercial, and staining, with a free estimate.
+        </p>
         <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div v-for="g in groups" :key="g.id">
             <h3 class="text-sm font-bold uppercase tracking-[0.12em] text-muted">{{ g.name }}</h3>

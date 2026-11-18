@@ -76,9 +76,9 @@ export const company: CompanyConfig = {
   // never labeled or presented as True Arm projects. Replace with real work when available.
   // Painting-first order (client decision, 2026-11): exterior, paint roller, then remodeling.
   heroSlides: [
-    { src: '/images/stock/hero-dusk-house.jpg', alt: '' },
-    { src: '/images/stock/group-painting.jpg', alt: '' },
-    { src: '/images/stock/hero-kitchen.jpg', alt: '' }
+    { src: '/images/stock/hero-dusk-house.jpg', alt: 'Modern two-story house exterior at dusk' },
+    { src: '/images/stock/group-painting.jpg', alt: 'Paint roller applying blue paint to a wall' },
+    { src: '/images/stock/hero-kitchen.jpg', alt: 'White kitchen with dark backsplash and pendant lights' }
   ],
 
   defaultOgImage: '/images/social/og-default.png'
