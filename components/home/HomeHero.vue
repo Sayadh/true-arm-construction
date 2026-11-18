@@ -17,7 +17,7 @@ const headlineWords = headline.split(' ')
 
 const captionEl = ref<HTMLElement | null>(null)
 const captionInView = ref(false)
-const captionBaseDelay = company.heroImage ? '0.15s' : '2.2s'
+const captionBaseDelay = company.heroImage ? '0.15s' : '3s'
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
@@ -125,8 +125,8 @@ onBeforeUnmount(() => observer?.disconnect())
           >
             <div class="cell border-b border-r border-slate-line p-3" style="--i: 0">
               <span class="scan" aria-hidden="true" />
-              <span class="label block text-stone/55">Project</span>
-              <span class="value font-semibold text-paper">Yours</span>
+              <span class="label block text-stone/55">Service</span>
+              <span class="value font-semibold text-paper">Interior &amp; exterior painting</span>
             </div>
             <div class="cell border-b border-slate-line p-3" style="--i: 1">
               <span class="scan" aria-hidden="true" />
@@ -135,8 +135,8 @@ onBeforeUnmount(() => observer?.disconnect())
             </div>
             <div class="cell border-r border-slate-line p-3" style="--i: 2">
               <span class="scan" aria-hidden="true" />
-              <span class="label block text-stone/55">Contractor</span>
-              <span class="value font-semibold text-paper">{{ company.name }}</span>
+              <span class="label block text-stone/55">{{ epa ? 'Certified' : 'Contractor' }}</span>
+              <span class="value font-semibold text-paper">{{ epa ? 'EPA Lead-Safe Firm' : company.name }}</span>
             </div>
             <div class="cell p-3" style="--i: 3">
               <span class="scan" aria-hidden="true" />
