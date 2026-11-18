@@ -84,6 +84,11 @@ export function llmsFullTxt(base: string): string {
     ...facts(base),
     ''
   ]
+  // Lead service line first
+  out.push(`## Painting (lead service)`, '', `URL: ${base}${paintingHub.path}`, '', paintingHub.heroLead, '')
+  out.push('What every painting job includes:', ...paintingHub.promises.map((p) => `- ${p.title}: ${p.text}`), '')
+  out.push('How a painting project works:', ...paintingHub.process.map((p, i) => `${i + 1}. ${p.title}: ${p.text}`), '')
+  out.push(`${paintingHub.leadSafe.title}`, '', ...paintingHub.leadSafe.body, '')
   for (const s of enabledServices) {
     out.push(`## ${s.name}`, '', `URL: ${base}/services/${s.slug}`, '', ...s.intro.map((p) => absLinks(p, base)), '')
     if (s.scope.length) out.push('What is included:', ...s.scope.map((i) => `- ${i.title}: ${i.text}`), '')
@@ -95,6 +100,14 @@ export function llmsFullTxt(base: string): string {
     out.push(`Building permits: ${p.permits.authority} (${p.permits.url}). ${p.permits.text}`, '')
     out.push(...p.localNotes.map((n) => `- ${n.title}: ${n.text}`), '')
     for (const f of p.faqs) out.push(`### ${f.question}`, '', ...f.answer.map((x) => absLinks(x, base)), '')
+  }
+  for (const r of publishedResources) {
+    out.push(`## Guide: ${r.title}`, '', `URL: ${base}/resources/${r.slug}`, '', r.description, '')
+    for (const b of r.body) {
+      if (b.heading) out.push(`### ${b.heading}`, '')
+      if (b.paragraphs?.length) out.push(...b.paragraphs.map((x) => absLinks(x, base)), '')
+      if (b.list?.length) out.push(...b.list.map((x) => `- ${absLinks(x, base)}`), '')
+    }
   }
   out.push('## Frequently asked questions', '')
   for (const c of faqCategories) {

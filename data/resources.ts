@@ -91,7 +91,7 @@ export const resources: ResourceArticle[] = [
     slug: 'lead-safe-painting-homes-built-before-1978',
     title: 'Lead-safe painting for homes built before 1978',
     description:
-      "Why paint in older Sacramento homes needs special care, what the EPA's Renovation, Repair and Painting Rule requires, and what to expect from a lead-safe paint job.",
+      "Why paint in older Sacramento homes needs special care, what the EPA's RRP Rule requires, and what to expect from a lead-safe paint job.",
     published: true,
     publishedOn: '2026-11-18',
     readingMinutes: 6,

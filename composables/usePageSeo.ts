@@ -24,9 +24,10 @@ export function absoluteUrl(path: string): string {
  * One call per page: title, description, canonical, Open Graph, Twitter, robots.
  */
 export function usePageSeo(input: PageSeoInput) {
+  // Keep titles within ~60 characters (Google truncates longer ones): full brand, short brand, or none
   const fullTitle = input.absoluteTitle || input.title.includes(company.name)
     ? input.title
-    : `${input.title} | ${company.name}`
+    : [`${input.title} | ${company.name}`, `${input.title} | True Arm`, input.title].find((t) => t.length <= 60) ?? input.title
   const url = absoluteUrl(input.path)
   const image = absoluteUrl(input.image || company.defaultOgImage)
   const isProd = useRuntimeConfig().public.siteMode === 'production'

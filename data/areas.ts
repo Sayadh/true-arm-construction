@@ -29,7 +29,7 @@ export const serviceAreas: ServiceArea[] = [
     page: {
       seoTitle: 'Sacramento, CA Painting & Remodeling Services | True Arm',
       metaDescription:
-        'House painting, cabinet and commercial painting, kitchen and bathroom remodeling, flooring, and repairs in Sacramento, CA. Licensed contractor, EPA Lead-Safe Firm.',
+        'House, cabinet, and commercial painting, kitchen and bathroom remodeling, flooring, and repairs in Sacramento, CA. Licensed contractor, EPA Lead-Safe Firm.',
       intro: [
         'Sacramento is our home base. We remodel kitchens and bathrooms, build room additions, install flooring and tile, paint inside and out, build and repair fences, and take care of the repairs that older and newer homes both need.',
         'Every project starts with a free, project-specific estimate. We look at the property, talk through what you want to change, and explain what is included before any work is scheduled.'
@@ -167,7 +167,7 @@ export const serviceAreas: ServiceArea[] = [
     page: {
       seoTitle: 'Painting & Remodeling in Elk Grove, CA | True Arm Construction',
       metaDescription:
-        'Interior and exterior painting, cabinet painting, remodeling, flooring, and repairs in Elk Grove, CA. Licensed contractor, EPA Lead-Safe Certified Firm. Free estimates.',
+        'Interior and exterior painting, cabinet painting, remodeling, flooring, and repairs in Elk Grove, CA. Licensed contractor, EPA Lead-Safe Certified Firm.',
       intro: [
         'Elk Grove is one of the largest cities in Sacramento County, just south of Sacramento. We paint homes inside and out, refinish cabinets, and handle remodels, flooring, and repairs for homeowners and businesses there.',
         'Many Elk Grove homes are stucco houses in planned neighborhoods, so exterior repaints often come down to the right prep for stucco and trim, and colors that fit the neighborhood rules.'
@@ -212,7 +212,7 @@ export const serviceAreas: ServiceArea[] = [
     page: {
       seoTitle: 'Painting & Remodeling in Roseville, CA | True Arm Construction',
       metaDescription:
-        'House painting, cabinet painting, remodeling, flooring, and repairs in Roseville, CA (Placer County). Licensed contractor, EPA Lead-Safe Certified Firm. Free estimates.',
+        'House painting, cabinet painting, remodeling, flooring, and repairs in Roseville, CA (Placer County). Licensed contractor, EPA Lead-Safe Certified Firm.',
       intro: [
         'Roseville is in Placer County, northeast of Sacramento. We paint interiors and exteriors, refresh cabinets, and take on remodels, flooring, and repairs for homes and commercial properties in the city.',
         'Roseville has both older homes near downtown and large newer neighborhoods, so a job can range from careful prep on older wood siding to a color change on a newer stucco home.'
@@ -257,7 +257,7 @@ export const serviceAreas: ServiceArea[] = [
     page: {
       seoTitle: 'Painting & Remodeling in Folsom, CA | True Arm Construction',
       metaDescription:
-        'Interior and exterior painting, cabinet painting, remodeling, and repairs in Folsom, CA. Licensed contractor and EPA Lead-Safe Certified Firm. Free painting estimates.',
+        'Interior and exterior painting, cabinet painting, remodeling, and repairs in Folsom, CA. Licensed contractor and EPA Lead-Safe Certified Firm. Free estimates.',
       intro: [
         'Folsom sits east of Sacramento along the American River and Folsom Lake. We paint homes and businesses, refinish cabinets, and handle remodels, flooring, and repairs throughout the city.',
         'Folsom mixes a historic downtown with established and brand-new neighborhoods, so we plan each job around the age of the building and the surfaces we are painting.'
@@ -346,7 +346,7 @@ export const serviceAreas: ServiceArea[] = [
     page: {
       seoTitle: 'Painting & Remodeling in Rancho Cordova, CA | True Arm',
       metaDescription:
-        'Interior, exterior, and commercial painting, remodeling, flooring, and repairs in Rancho Cordova, CA. Licensed contractor, EPA Lead-Safe Certified Firm. Free estimates.',
+        'Interior, exterior, and commercial painting, remodeling, flooring, and repairs in Rancho Cordova, CA. Licensed contractor, EPA Lead-Safe Certified Firm.',
       intro: [
         'Rancho Cordova is a city east of Sacramento along Highway 50, with older neighborhoods and fast-growing new communities. We paint homes and commercial spaces and handle remodels, flooring, and repairs there.',
         'Older homes usually need more prep and repair before paint, while newer homes are often about color changes, cabinets, and finish upgrades.'

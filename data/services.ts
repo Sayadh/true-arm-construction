@@ -54,7 +54,7 @@ export const services: Service[] = [
     enabled: true,
     icon: 'Hammer',
     adsLanding: true,
-    seoTitle: `Home Remodeling Contractor in ${SAC}, CA | True Arm Construction`,
+    seoTitle: `Home Remodeling Contractor in ${SAC}, CA | True Arm`,
     metaDescription:
       'Home remodeling in Sacramento, CA: kitchens, bathrooms, flooring, tile, and room additions. Licensed Class B contractor. Request a free estimate.',
     heroTitle: 'Home remodeling in Sacramento',
