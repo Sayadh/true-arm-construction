@@ -90,7 +90,7 @@ export interface CompanyConfig {
   defaultOgImage: string
 }
 
-export type ServiceGroupId = 'remodeling' | 'flooring' | 'exterior' | 'repairs'
+export type ServiceGroupId = 'painting' | 'remodeling' | 'flooring' | 'exterior' | 'repairs'
 
 export interface ServiceGroup {
   id: ServiceGroupId
@@ -356,3 +356,28 @@ export interface WorkBeforeAfter extends WorkMediaBase {
   after: Required<ImageAsset>
 }
 export type WorkMedia = WorkPhoto | WorkVideo | WorkBeforeAfter
+
+/** Painting hub page (/painting): the lead service line, built from data/painting.ts */
+export interface PaintingHub {
+  path: string
+  seoTitle: string
+  metaDescription: string
+  heroTitle: string
+  heroLead: string
+  /** Service slugs shown as the painting service cards, in order */
+  services: string[]
+  /** Work media id for the hero photo */
+  heroMedia: string
+  promises: { icon: string; title: string; text: string }[]
+  process: ServiceScopeItem[]
+  leadSafe: { title: string; body: string[] }
+  faqIds: string[]
+  quote: {
+    title: string
+    lead: string
+    /** "What needs painting?" choices; value is a service slug */
+    projectTypes: { value: string; label: string }[]
+    sizes: { value: string; label: string }[]
+    timings: { value: string; label: string }[]
+  }
+}

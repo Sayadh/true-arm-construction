@@ -6,7 +6,7 @@ export const faqCategories: FaqCategory[] = [
   { id: 'bathroom', name: 'Bathroom remodeling' },
   { id: 'additions', name: 'Room additions' },
   { id: 'flooring', name: 'Flooring & tile' },
-  { id: 'painting', name: 'Interior & exterior painting' },
+  { id: 'painting', name: 'Painting' },
   { id: 'exterior', name: 'Fences, gates & pressure washing' },
   { id: 'windows', name: 'Windows' },
   { id: 'gazebos', name: 'Gazebos' },
@@ -180,6 +180,55 @@ export const faqs: FaqItem[] = [
     question: 'My house was built before 1978. Does that matter for painting?',
     answer: [
       'Yes. Homes built before 1978 may have lead-based paint, and federal rules require specific work practices when it is disturbed. Mention your home’s age when you request an estimate. The [EPA’s Renovation, Repair and Painting page](https://www.epa.gov/lead/renovation-repair-and-painting-program) explains the requirements.'
+    ]
+  },
+  {
+    id: 'paint-lead-safe',
+    category: 'painting',
+    featured: true,
+    question: 'Are you an EPA Lead-Safe Certified Firm?',
+    answer: [
+      'Yes. True Arm Construction is an EPA Lead-Safe Certified Firm (certification NAT-F312370-1). The certification is required for paid renovation, repair, and painting work that disturbs paint in homes, child-care facilities, and preschools built before 1978. You can see the details on our [licenses and certifications](/licenses-certifications) page.'
+    ]
+  },
+  {
+    id: 'paint-estimate-included',
+    category: 'painting',
+    question: 'What does a painting estimate include?',
+    answer: [
+      'A written estimate lists the rooms or surfaces to be painted, the preparation and repairs needed, priming where it is required, the number of coats, and who supplies the paint. Colors and sheens are confirmed before the work is scheduled. Estimates are free.'
+    ]
+  },
+  {
+    id: 'paint-how-long',
+    category: 'painting',
+    question: 'How long does a painting project take?',
+    answer: [
+      'It depends on the size of the space, the amount of preparation and repair, the number of colors, and for exterior work, the weather. A single room is very different from a whole house or a two-story exterior. We give you a schedule with the estimate.'
+    ]
+  },
+  {
+    id: 'cabinet-paint-vs-replace',
+    category: 'painting',
+    question: 'Should I paint my cabinets or replace them?',
+    answer: [
+      'If the cabinet boxes are solid wood or wood-based, in good condition, and the layout works for you, painting is usually the more practical update. If the boxes are water-damaged or swollen, or you want a different layout, replacement as part of a [kitchen remodel](/services/kitchen-remodeling) makes more sense.'
+    ]
+  },
+  {
+    id: 'paint-commercial-schedule',
+    category: 'painting',
+    question: 'Can you paint while our business stays open?',
+    answer: [
+      'Often, yes. Commercial work is usually divided into phases, with work areas closed off and daily working hours agreed in advance, so the rest of the space stays usable. We plan the phasing with you before work starts.'
+    ]
+  },
+  {
+    id: 'stain-vs-paint-fence',
+    category: 'painting',
+    question: 'Should I stain or paint my fence?',
+    answer: [
+      'A penetrating stain soaks into the wood, shows the grain, and fades gradually, so it is easy to refresh. Paint and solid stains hide the grain and give an even color, but recoating takes more preparation. If the fence was painted before, it usually needs paint or a solid stain again.'
     ]
   },
 

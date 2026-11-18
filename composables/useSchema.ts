@@ -148,6 +148,28 @@ export function serviceSchema(service: Service): Json {
   }
 }
 
+/** Umbrella Service node for the /painting hub, with the painting services as an offer catalog. */
+export function paintingServiceSchema(opts: { path: string; description: string; services: Service[] }): Json {
+  return {
+    '@type': 'Service',
+    '@id': `${absoluteUrl(opts.path)}#service`,
+    name: 'Painting',
+    serviceType: 'Painting contractor',
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    provider: { '@id': orgId() },
+    areaServed: enabledAreas.map(cityNode),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Painting services',
+      itemListElement: opts.services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@id': `${absoluteUrl(`/services/${s.slug}`)}#service`, '@type': 'Service', name: s.name, url: absoluteUrl(`/services/${s.slug}`) }
+      }))
+    }
+  }
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]): Json {
   return {
     '@type': 'BreadcrumbList',

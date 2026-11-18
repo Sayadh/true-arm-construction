@@ -34,7 +34,11 @@ Last reviewed: 2026-11-04.
 - [ ] Fence materials (wood, vinyl, chain link, metal) and gate types → `fences-gates`
 - [ ] Room additions: typical scope; plans/permits in-house or partnered → `room-additions`
 
+- [ ] Painting: paint brands used, any workmanship warranty, typical timelines (all hidden until confirmed) → `data/painting.ts`, `data/faqs.ts`
+- [ ] Off-site: Google Business Profile primary category "Painter" (or add it), Google Ads painting campaign → `/painting`
+
 ## Assets
+- [ ] Photos of cabinet painting, commercial painting, and deck/fence staining jobs → `npm run media:import`
 - [ ] Real photos to replace the homepage stock images (hero slides, service-group tiles,
       "Why choose", process, CTA band) — see below
 - [ ] More work photos/videos per service → `npm run media:import` (`docs/ASSETS.md`)

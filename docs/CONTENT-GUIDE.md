@@ -52,7 +52,7 @@ work media folders) and add a 301 from the old URL.
 
 ## Service groups
 
-`serviceGroups` (4 groups) organize menus, `/services`, and the homepage tiles. The homepage tile
+`serviceGroups` (5 groups, `painting` first as the lead service line) organize menus, `/services`, and the homepage tiles. The homepage tile
 photo per group is set in `components/home/HomeServices.vue` (`groupImages`).
 
 ## FAQs — `data/faqs.ts`

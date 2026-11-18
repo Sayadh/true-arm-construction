@@ -9,14 +9,15 @@ import type { ServiceGroupId } from '~/types'
  * photos per group when available.
  */
 const groupImages: Record<ServiceGroupId, { src: string; alt: string }> = {
+  painting: { src: '/images/stock/group-painting.jpg', alt: 'Paint roller applying blue paint to a wall' },
   remodeling: { src: '/images/stock/group-remodeling.jpg', alt: 'Open-plan living room and kitchen interior' },
   flooring: { src: '/images/stock/group-flooring.jpg', alt: 'Light wood floor in an empty, finished room' },
-  exterior: { src: '/images/stock/group-painting.jpg', alt: 'Paint roller applying blue paint to a wall' },
+  exterior: { src: '/images/stock/hero-dusk-house.jpg', alt: 'House exterior with a lit porch at dusk' },
   repairs: { src: '/images/stock/group-repairs.jpg', alt: 'Cordless drill resting on a worn subfloor' }
 }
 
-// Asymmetric 12-column rhythm on desktop: wide / narrow, then narrow / wide.
-const spans = ['lg:col-span-7', 'lg:col-span-5', 'lg:col-span-5', 'lg:col-span-7']
+// Asymmetric 12-column rhythm on desktop: painting (lead line) wide, then a row of three.
+const spans = ['lg:col-span-7', 'lg:col-span-5', 'lg:col-span-4', 'lg:col-span-4', 'lg:col-span-4']
 
 const groups = serviceGroups
   .map((g) => ({ ...g, items: servicesByGroup(g.id), image: groupImages[g.id] }))
@@ -30,7 +31,7 @@ const groups = serviceGroups
         <div class="max-w-2xl">
           <h2 id="services-heading" class="text-h2">Services for homes and commercial properties</h2>
           <p class="mt-4 text-lead text-muted">
-            From a single repair to a full remodel, each service is planned around the property, the scope, and how you will use the space.
+            Painting is our lead service, backed by remodeling, flooring, and repairs. Each job is planned around the property, the scope, and how you will use the space.
           </p>
         </div>
         <AppButton to="/services" variant="outline">View all services</AppButton>

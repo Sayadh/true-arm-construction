@@ -9,7 +9,7 @@ Full how-to: [docs/CONTENT-GUIDE.md](../docs/CONTENT-GUIDE.md).
 | File | Holds | Notes |
 |---|---|---|
 | `company.ts` | Name, phones, email, hours, license, social links, logo, hero image/slides | `null` = hidden. License "Active" shows only when `statusConfirmed: true`. |
-| `services.ts` | `serviceGroups` (4) and `services` (one entry per `/services/<slug>` page) | `enabled: false` removes a page everywhere. `featuredServiceSlugs` drives featured lists. |
+| `services.ts` | `serviceGroups` (5, `painting` first) and `services` (one entry per `/services/<slug>` page) | `enabled: false` removes a page everywhere. `featuredServiceSlugs` drives featured lists. |
 | `areas.ts` | Service areas; entries with a `page` get `/service-areas/<slug>` | Enable a city only if the company really serves it, with city-specific content. |
 | `faqs.ts` | FAQ categories and items | Used on `/faq`, service pages, city pages, homepage, and FAQ schema. |
 | `planner.ts` | Project planner questions + the service finder (`navigatorChoices`) | Every `service` slug must exist in `services.ts`. |
@@ -19,6 +19,7 @@ Full how-to: [docs/CONTENT-GUIDE.md](../docs/CONTENT-GUIDE.md).
 | `work.ts` | Helpers over work media (per service, featured, covers) | Logic, not content. |
 | `projects.ts` | Case-study projects | Real projects only. `published: true` to show. |
 | `resources.ts` | Homeowner guides (`/resources/<slug>`) | General information, never legal/permit advice. |
+| `painting.ts` | Painting hub (`/painting`): copy, promises, process, quote form options | Lead service line. Services listed must exist in `services.ts`. |
 | `navigation.ts` | Menus, `estimatePath` | |
 
 ## Rules

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { featuredFaqs } from '~/data/faqs'
 
-const title = 'General Contractor in Sacramento, CA | True Arm Construction'
+// Painting-first positioning (client decision, 2026-11); remodeling stays in the title as the second line.
+const title = 'Painting & Remodeling Contractor in Sacramento, CA | True Arm'
 const description =
-  'Kitchen and bathroom remodeling, room additions, flooring, painting, fences, and repairs in Sacramento, CA. Licensed Class B contractor. Free estimates.'
+  'Interior, exterior, cabinet, and commercial painting in Sacramento, plus remodeling, flooring, and repairs. Licensed contractor, EPA Lead-Safe Certified Firm.'
 
 usePageSeo({ title, description, path: '/', absoluteTitle: true })
 useJsonLd([
@@ -17,6 +18,7 @@ useJsonLd([
 <template>
   <div>
     <HomeHero />
+    <HomePainting />
 
     <section class="section" aria-labelledby="selector-heading">
       <div class="wrap">

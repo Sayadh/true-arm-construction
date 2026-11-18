@@ -1,7 +1,9 @@
 import type { Service, ServiceGroup, ServiceGroupId } from '../types'
 
 /**
- * Service catalogue. Source: client-confirmed categories (Interior & Exterior Painting, Window Installation & Replacement, Gazebo Construction,
+ * Service catalogue. Painting is the lead service line (client decision, 2026-11): interior, exterior,
+ * cabinet, commercial painting, and deck/fence staining are all confirmed by the client.
+ * Source: client-confirmed categories (Interior & Exterior Painting, Window Installation & Replacement, Gazebo Construction,
  * Home Remodeling, Bathroom Remodeling, Room Additions, Fences & Gates) and the
  * company business card (kitchen, flooring, tile, handyman, epoxy, baseboards,
  * drywall repair, dry rot repair, power wash).
@@ -12,6 +14,11 @@ import type { Service, ServiceGroup, ServiceGroupId } from '../types'
  */
 
 export const serviceGroups: ServiceGroup[] = [
+  {
+    id: 'painting',
+    name: 'Painting',
+    description: 'Interior, exterior, cabinets, commercial, and staining.'
+  },
   {
     id: 'remodeling',
     name: 'Remodeling & additions',
@@ -24,8 +31,8 @@ export const serviceGroups: ServiceGroup[] = [
   },
   {
     id: 'exterior',
-    name: 'Painting & exterior',
-    description: 'Painting, pressure washing, fences, gates, windows, and gazebos.'
+    name: 'Exterior & outdoor',
+    description: 'Pressure washing, fences, gates, windows, and gazebos.'
   },
   {
     id: 'repairs',
@@ -670,7 +677,7 @@ export const services: Service[] = [
     coverMedia: 'interior-painting-staircase-walls-trim',
     name: 'Interior Painting',
     shortName: 'Interior painting',
-    group: 'exterior',
+    group: 'painting',
     enabled: true,
     icon: 'PaintRoller',
     seoTitle: `Interior Painting in ${SAC}, CA | True Arm Construction`,
@@ -724,8 +731,9 @@ export const services: Service[] = [
       'Protection, prep, priming where needed, and painting',
       'Touch-ups and final walkthrough'
     ],
-    related: ['exterior-painting', 'drywall-repair', 'baseboard-installation', 'home-remodeling'],
+    related: ['exterior-painting', 'cabinet-painting', 'drywall-repair', 'commercial-painting'],
     faqCategory: 'painting',
+    faqIds: ['paint-lead-safe', 'paint-estimate-included'],
     projectCategory: 'interior-painting',
     images: []
   },
@@ -735,7 +743,7 @@ export const services: Service[] = [
     slug: 'exterior-painting',
     name: 'Exterior Painting',
     shortName: 'Exterior painting',
-    group: 'exterior',
+    group: 'painting',
     enabled: true,
     icon: 'Paintbrush',
     seoTitle: `Exterior Painting in ${SAC}, CA | Homes & Commercial`,
@@ -755,7 +763,7 @@ export const services: Service[] = [
       { title: 'Stucco', text: 'Coatings suited to stucco, with crack repair before painting.' },
       { title: 'Trim, fascia, and eaves', text: 'The details that frame the house and take the most weather.' },
       { title: 'Doors and garage doors', text: 'Entry and garage doors finished to match your color plan.' },
-      { title: 'Fences and gates', text: 'Fences and gates painted or stained to protect the wood.' },
+      { title: 'Fences and decks', text: 'Painting or staining to protect the wood, also offered on its own as deck and fence staining.' },
       { title: 'Commercial exteriors', text: 'Storefronts and commercial buildings, scheduled around operations.' }
     ],
     sections: [
@@ -774,7 +782,7 @@ export const services: Service[] = [
       {
         title: 'Older homes',
         body: [
-          'Homes built before 1978 may have lead-based paint. Disturbing it requires specific work practices under federal rules. If your home falls in that age range, mention it in your request so it can be addressed during the estimate. The [EPA lead renovation page](https://www.epa.gov/lead/renovation-repair-and-painting-program) explains the requirements.'
+          'Homes built before 1978 may have lead-based paint. Disturbing it requires specific work practices under federal rules, and True Arm Construction is an EPA Lead-Safe Certified Firm. If your home falls in that age range, mention it in your request so it can be planned for during the estimate. The [EPA lead renovation page](https://www.epa.gov/lead/renovation-repair-and-painting-program) explains the requirements.'
         ]
       }
     ],
@@ -794,8 +802,208 @@ export const services: Service[] = [
       'Cleaning, prep, priming, and painting',
       'Final inspection walk with you'
     ],
-    related: ['power-washing', 'dry-rot-repair', 'fences-gates', 'interior-painting'],
+    related: ['power-washing', 'dry-rot-repair', 'deck-fence-staining', 'commercial-painting'],
     faqCategory: 'painting',
+    faqIds: ['paint-lead-safe', 'paint-estimate-included'],
+    projectCategory: 'exterior-painting',
+    images: []
+  },
+
+  // ───────────────────────── Cabinet painting ─────────────────────────
+  {
+    slug: 'cabinet-painting',
+    name: 'Cabinet Painting',
+    shortName: 'Cabinet painting',
+    group: 'painting',
+    enabled: true,
+    icon: 'PaintBucket',
+    // Real True Arm job (painted cabinets during a kitchen refresh)
+    coverMedia: 'kitchen-remodeling-painted-kitchen-cabinets',
+    seoTitle: `Cabinet Painting in ${SAC}, CA | Kitchen & Bath Cabinets`,
+    metaDescription:
+      'Kitchen and bathroom cabinet painting in Sacramento. Cleaning, sanding, priming, and a smooth, durable finish without replacing your cabinets.',
+    heroTitle: 'Cabinet painting in Sacramento',
+    heroLead:
+      'Painted cabinets can change how a kitchen or bathroom looks without the cost and disruption of replacing them. The finish depends on preparation, so that is where most of the work goes.',
+    cardText: 'Kitchen and bathroom cabinets refinished with careful prep.',
+    intro: [
+      'Cabinets take more wear than any wall: hands, steam, grease, and cleaning. Paint that is rolled over a greasy or glossy surface chips and peels quickly, so cabinet painting starts with degreasing, sanding, and a primer made to bond to the existing finish.',
+      'If the cabinet boxes are solid and the layout works for you, painting is often the most practical way to update a kitchen or bathroom. If they are damaged or the layout is the real problem, we will tell you, and a [kitchen remodel](/services/kitchen-remodeling) may be the better path.'
+    ],
+    scopeTitle: 'Cabinet painting work',
+    scope: [
+      { title: 'Kitchen cabinets', text: 'Cabinet doors, drawer fronts, and face frames, with boxes and interiors on request.' },
+      { title: 'Bathroom vanities', text: 'Vanity cabinets refinished to suit a bathroom refresh.' },
+      { title: 'Built-ins and shelving', text: 'Bookcases, built-in storage, and laundry cabinets.' },
+      { title: 'Color changes', text: 'Dark to light, single color, or two-tone with a contrasting island or lowers.' },
+      { title: 'Hardware', text: 'Hardware removed and reinstalled, or new pulls and hinges you choose fitted in place.' },
+      { title: 'Small repairs', text: 'Filling dents and gaps and tightening loose doors before painting.' }
+    ],
+    sections: [
+      {
+        title: 'Why preparation matters',
+        body: [
+          'A durable cabinet finish comes from the steps you do not see: cleaning off grease, scuff-sanding the existing finish, filling defects, and priming with a bonding primer. Doors and drawer fronts are usually labeled and finished separately so every surface gets even coverage.',
+          'Paint also needs time to cure. Cabinets can be used carefully soon after painting, but the finish keeps hardening for a while, so we explain how to treat them in the first weeks.'
+        ]
+      },
+      {
+        title: 'Is painting the right choice?',
+        body: [
+          'Painting works best on solid wood or wood-based cabinets in sound condition. Swollen, water-damaged, or peeling laminate boxes are usually better replaced. We look at the cabinets during the walkthrough and give you an honest recommendation.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Number of doors, drawers, and cabinet boxes',
+      'Whether interiors and shelves are included',
+      'Condition of the existing finish and needed repairs',
+      'Color change and number of colors',
+      'Door style and detail (flat, shaker, raised panel)',
+      'Hardware removal, reinstallation, or replacement'
+    ],
+    expectations: [
+      'Send photos or describe the cabinets you want painted',
+      'Walkthrough to check condition and count doors and drawers',
+      'Estimate with prep, primer, and finish noted',
+      'Color and sheen confirmed before work starts',
+      'Cleaning, sanding, priming, and painting',
+      'Reassembly, hardware, and final walkthrough'
+    ],
+    related: ['kitchen-remodeling', 'interior-painting', 'bathroom-remodeling', 'handyman-services'],
+    faqCategory: 'painting',
+    faqIds: ['cabinet-paint-vs-replace', 'paint-estimate-included'],
+    projectCategory: 'interior-painting',
+    images: []
+  },
+
+  // ───────────────────────── Commercial painting ─────────────────────────
+  {
+    slug: 'commercial-painting',
+    coverMedia: 'interior-painting-commercial-interior-spray-painting',
+    name: 'Commercial Painting',
+    shortName: 'Commercial painting',
+    group: 'painting',
+    enabled: true,
+    icon: 'Store',
+    seoTitle: `Commercial Painting in ${SAC}, CA | Offices & Storefronts`,
+    metaDescription:
+      'Commercial painting in Sacramento for offices, retail spaces, rental units, and buildings. Interior and exterior work planned around your business.',
+    heroTitle: 'Commercial painting in Sacramento',
+    heroLead:
+      'Offices, storefronts, rental units, and building exteriors, painted on a schedule planned around your tenants, customers, and staff.',
+    cardText: 'Offices, retail, rentals, and building exteriors.',
+    intro: [
+      'Commercial painting is as much about planning as it is about paint. Work areas, access, noise, odor, and safety all have to fit around a business that often stays open while the work is done.',
+      'We paint commercial interiors and exteriors in the Sacramento area, from a single office suite or rental turnover to a full building exterior, and we agree on the phasing and daily work hours with you before we start.'
+    ],
+    scopeTitle: 'Commercial painting work',
+    scope: [
+      { title: 'Offices', text: 'Suites, conference rooms, and shared areas, phased to keep teams working.' },
+      { title: 'Retail and storefronts', text: 'Sales floors, facades, and entries refreshed with minimal disruption.' },
+      { title: 'Rental units', text: 'Apartment and rental turnovers between tenants, including patching.' },
+      { title: 'Common areas', text: 'Lobbies, hallways, and stairwells in multi-unit buildings.' },
+      { title: 'Building exteriors', text: 'Stucco, siding, trim, and doors on commercial buildings.' },
+      { title: 'Doors and frames', text: 'Entry doors, frames, and other painted metal and wood surfaces.' }
+    ],
+    sections: [
+      {
+        title: 'Planning around your operations',
+        body: [
+          'Before work starts we agree on which areas are painted when, how they are closed off, where materials are kept, and the daily working hours. Larger spaces are usually divided into phases so the rest of the building stays usable.'
+        ]
+      },
+      {
+        title: 'Older buildings and child-occupied facilities',
+        body: [
+          'Buildings constructed before 1978 may contain lead-based paint. Federal rules require lead-safe work practices when it is disturbed in homes and in child-occupied facilities such as child-care centers and preschools. True Arm Construction is an EPA Lead-Safe Certified Firm. Learn more on our [licenses and certifications](/licenses-certifications) page.'
+        ]
+      }
+    ],
+    costFactors: [
+      'Square footage and ceiling heights',
+      'Interior, exterior, or both',
+      'Surface condition, patching, and repairs',
+      'Phasing and after-hours or weekend scheduling',
+      'Access, lifts, and protection of occupied areas',
+      'Coating selection for traffic and durability'
+    ],
+    expectations: [
+      'Tell us the property type, areas, and timing constraints',
+      'Site walkthrough with you or your property manager',
+      'Written estimate with scope, phasing, and schedule',
+      'Colors and work hours confirmed',
+      'Prep, protection, and painting in agreed phases',
+      'Final walkthrough and punch list'
+    ],
+    related: ['interior-painting', 'exterior-painting', 'drywall-repair', 'power-washing'],
+    faqCategory: 'painting',
+    faqIds: ['paint-commercial-schedule', 'paint-lead-safe'],
+    projectCategory: 'interior-painting',
+    images: []
+  },
+
+  // ───────────────────────── Deck & fence staining ─────────────────────────
+  {
+    slug: 'deck-fence-staining',
+    name: 'Deck & Fence Staining',
+    shortName: 'Deck & fence staining',
+    group: 'painting',
+    enabled: true,
+    icon: 'Brush',
+    seoTitle: `Deck & Fence Staining in ${SAC}, CA | True Arm Construction`,
+    metaDescription:
+      'Deck and fence staining and painting in Sacramento. Cleaning, board repairs, and stain or sealer suited to the wood and the sun exposure.',
+    heroTitle: 'Deck and fence staining in Sacramento',
+    heroLead:
+      'Sun and dry summers wear outdoor wood quickly. Cleaning, repairing, and staining or painting your fence or deck protects the wood and brings back its color.',
+    cardText: 'Stain, seal, or paint fences, decks, and gates.',
+    intro: [
+      'Unprotected wood turns gray, dries out, and cracks, especially on south- and west-facing fences and decks in the Sacramento Valley. A fresh stain or paint coat slows that down and makes the wood look cared for again.',
+      'The result depends on the wood being clean and dry and on choosing the right product: a penetrating stain, a solid stain, or paint. We help you choose based on the wood, its condition, and the look you want.'
+    ],
+    scopeTitle: 'Staining and outdoor wood work',
+    scope: [
+      { title: 'Fence staining', text: 'Wood privacy fences, picket fences, and gates, one side or both.' },
+      { title: 'Deck staining and sealing', text: 'Deck boards, stairs, and railings cleaned and finished.' },
+      { title: 'Fence and gate painting', text: 'Solid paint finishes for fences, gates, and trim.' },
+      { title: 'Cleaning before staining', text: 'Washing off dirt and gray surface fibers so the stain can soak in.' },
+      { title: 'Board repairs', text: 'Replacing broken boards and resetting loose ones before finishing.' },
+      { title: 'Pergolas and wood structures', text: 'Pergolas, arbors, and other outdoor wood structures.' }
+    ],
+    sections: [
+      {
+        title: 'Stain or paint?',
+        body: [
+          'Penetrating stains soak into the wood and show its grain; they fade gradually and are easy to refresh. Solid stains and paint hide the grain and give a uniform color, but they need more preparation when it is time to recoat. Previously painted wood usually needs paint or a solid stain again.'
+        ]
+      },
+      {
+        title: 'Timing and dry wood',
+        body: [
+          'Stain needs dry wood and suitable weather. After washing, the wood is left to dry before it is finished, and we plan around rain in winter and heat in summer. New fences may need time to weather before their first stain, depending on the wood. If the fence itself needs rebuilding, see [fences and gates](/services/fences-gates).'
+        ]
+      }
+    ],
+    costFactors: [
+      'Linear feet of fence or square footage of deck',
+      'One side or both sides of the fence',
+      'Condition of the wood and needed repairs',
+      'Stain, sealer, or paint, and the existing finish',
+      'Cleaning and stripping requirements',
+      'Access, plants, and surfaces to protect'
+    ],
+    expectations: [
+      'Tell us what you want stained or painted, with photos if you have them',
+      'Walkthrough to check the wood and measure',
+      'Estimate with cleaning, repairs, and product noted',
+      'Color and product confirmed, scheduled for dry weather',
+      'Cleaning, drying, repairs, and finishing',
+      'Final walkthrough with you'
+    ],
+    related: ['fences-gates', 'power-washing', 'exterior-painting', 'dry-rot-repair'],
+    faqCategory: 'painting',
+    faqIds: ['stain-vs-paint-fence', 'paint-estimate-included'],
     projectCategory: 'exterior-painting',
     images: []
   },
@@ -1341,10 +1549,10 @@ export function servicesByGroup(group: ServiceGroupId): Service[] {
 
 /** Services featured on the homepage, in order */
 export const featuredServiceSlugs = [
+  'interior-painting',
+  'exterior-painting',
+  'cabinet-painting',
   'kitchen-remodeling',
   'bathroom-remodeling',
-  'room-additions',
-  'flooring-installation',
-  'interior-painting',
-  'fences-gates'
+  'room-additions'
 ]

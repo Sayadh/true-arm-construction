@@ -74,10 +74,11 @@ export const company: CompanyConfig = {
   // ],
   // Currently: licensed stock photos (Unsplash License) as atmosphere only. They are
   // never labeled or presented as True Arm projects. Replace with real work when available.
+  // Painting-first order (client decision, 2026-11): exterior, paint roller, then remodeling.
   heroSlides: [
-    { src: '/images/stock/hero-kitchen.jpg', alt: '' },
     { src: '/images/stock/hero-dusk-house.jpg', alt: '' },
-    { src: '/images/stock/hero-bathroom.jpg', alt: '' }
+    { src: '/images/stock/group-painting.jpg', alt: '' },
+    { src: '/images/stock/hero-kitchen.jpg', alt: '' }
   ],
 
   defaultOgImage: '/images/social/og-default.png'

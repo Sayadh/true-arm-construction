@@ -10,6 +10,7 @@ export default defineEventHandler((event) => {
   const base = String(useRuntimeConfig().public.siteUrl).replace(/\/$/, '')
   const staticRoutes = [
     '/',
+    '/painting',
     '/services',
     '/reviews',
     '/about',

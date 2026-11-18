@@ -13,6 +13,7 @@ const megaButton = ref<HTMLButtonElement | null>(null)
 
 const mainLinks = [
   { label: 'Home', to: '/' },
+  { label: 'Painting', to: '/painting' },
   { label: 'Our Projects', to: '/projects' },
   { label: 'Reviews', to: '/reviews' },
   { label: 'About Us', to: '/about' },
@@ -153,10 +154,10 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
           @click.stop
         >
           <div class="wrap grid grid-cols-12 gap-8 py-10">
-            <div class="col-span-9 grid grid-cols-4 gap-8">
+            <div class="col-span-9 grid grid-cols-5 gap-6">
               <div v-for="g in groups" :key="g.id">
-                <p class="text-sm font-bold text-ink">{{ g.name }}</p>
-                <p class="mt-1 min-h-[2.6em] text-[0.8125rem] leading-snug text-muted">{{ g.description }}</p>
+                <p class="min-h-[2.5em] text-sm font-bold leading-tight text-ink">{{ g.name }}</p>
+                <p class="mt-1 min-h-[3.9em] text-[0.8125rem] leading-snug text-muted">{{ g.description }}</p>
                 <ul class="mt-4 space-y-2.5 border-t border-stone-300 pt-4">
                   <li v-for="s in [...g.items, ...g.extras]" :key="s.to">
                     <NuxtLink :to="s.to" class="text-[0.9375rem] font-medium text-body hover:text-bronze-dark">{{ s.label }}</NuxtLink>

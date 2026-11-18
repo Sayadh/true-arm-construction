@@ -27,6 +27,9 @@ export const plannerServiceOptions: { slug: string; label: string }[] = [
   { slug: 'baseboard-installation', label: 'Baseboard installation' },
   { slug: 'interior-painting', label: 'Interior painting' },
   { slug: 'exterior-painting', label: 'Exterior painting' },
+  { slug: 'cabinet-painting', label: 'Cabinet painting' },
+  { slug: 'commercial-painting', label: 'Commercial painting' },
+  { slug: 'deck-fence-staining', label: 'Deck or fence staining' },
   { slug: 'power-washing', label: 'Pressure washing' },
   { slug: 'fences-gates', label: 'Fences & gates' },
   { slug: 'window-replacement', label: 'Window replacement or repair' },
@@ -122,6 +125,26 @@ export const plannerQuestions: Record<string, PlannerQuestion[]> = {
       { value: 'stucco', label: 'Stucco' }, { value: 'wood', label: 'Wood' },
       { value: 'fiber-cement', label: 'Fiber cement' }, notSure] }
   ],
+  'cabinet-painting': [
+    { id: 'cabinet-room', label: 'Which cabinets?', type: 'choice', options: [
+      { value: 'kitchen', label: 'Kitchen' }, { value: 'bathroom', label: 'Bathroom vanity' },
+      { value: 'both', label: 'Kitchen and bathroom' }, { value: 'other', label: 'Built-ins or other' }] },
+    { id: 'cabinet-size', label: 'Roughly how many doors and drawers?', type: 'choice', options: [
+      { value: 'under-15', label: 'Fewer than 15' }, { value: '15-30', label: '15 to 30' }, { value: '30+', label: 'More than 30' }, notSure] }
+  ],
+  'commercial-painting': [
+    { id: 'property', label: 'Type of property', type: 'choice', options: [
+      { value: 'office', label: 'Office' }, { value: 'retail', label: 'Retail or restaurant' },
+      { value: 'rental', label: 'Rental unit or apartment' }, { value: 'building', label: 'Whole building' }, { value: 'other', label: 'Something else' }] },
+    { id: 'area', label: 'Interior, exterior, or both?', type: 'choice', options: [
+      { value: 'interior', label: 'Interior' }, { value: 'exterior', label: 'Exterior' }, { value: 'both', label: 'Both' }] }
+  ],
+  'deck-fence-staining': [
+    { id: 'what', label: 'What needs finishing?', type: 'choice', options: [
+      { value: 'fence', label: 'Fence' }, { value: 'deck', label: 'Deck' }, { value: 'both', label: 'Fence and deck' }, { value: 'other', label: 'Pergola or other wood' }] },
+    { id: 'finish', label: 'Stain or paint?', type: 'choice', options: [
+      { value: 'stain', label: 'Stain or sealer' }, { value: 'paint', label: 'Paint' }, notSure] }
+  ],
   'window-replacement': [
     { id: 'window-work', label: 'What do you need?', type: 'choice', options: [
       { value: 'replace', label: 'Replace windows' }, { value: 'repair', label: 'Repair windows' }, notSure] },
@@ -161,6 +184,21 @@ export interface NavigatorChoice {
 
 export const navigatorChoices: NavigatorChoice[] = [
   {
+    label: 'Paint my home or business',
+    description: 'Interior, exterior, cabinets, staining',
+    icon: 'PaintRoller',
+    next: {
+      question: 'What needs painting?',
+      options: [
+        { label: 'Interior rooms, ceilings, or trim', service: 'interior-painting' },
+        { label: 'House exterior', service: 'exterior-painting' },
+        { label: 'Kitchen or bathroom cabinets', service: 'cabinet-painting' },
+        { label: 'Office, store, or rental property', service: 'commercial-painting' },
+        { label: 'Fence or deck stain', service: 'deck-fence-staining' }
+      ]
+    }
+  },
+  {
     label: 'Remodel my kitchen or bath',
     description: 'Kitchens, bathrooms, full renovations',
     icon: 'Bath',
@@ -185,19 +223,6 @@ export const navigatorChoices: NavigatorChoice[] = [
         { label: 'Tile', service: 'tile-installation' },
         { label: 'Epoxy for a garage or concrete', service: 'epoxy-flooring' },
         { label: 'Baseboards and trim', service: 'baseboard-installation' }
-      ]
-    }
-  },
-  {
-    label: 'Paint my property',
-    description: 'Inside or outside',
-    icon: 'PaintRoller',
-    next: {
-      question: 'Which part of the property?',
-      options: [
-        { label: 'Interior rooms', service: 'interior-painting' },
-        { label: 'Exterior walls and trim', service: 'exterior-painting' },
-        { label: 'Cleaning before painting', service: 'power-washing' }
       ]
     }
   },

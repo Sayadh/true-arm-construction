@@ -92,6 +92,7 @@ export default defineNuxtConfig({
       failOnError: true,
       routes: [
         '/',
+        '/painting',
         '/sitemap.xml',
         '/robots.txt',
         '/llms.txt',

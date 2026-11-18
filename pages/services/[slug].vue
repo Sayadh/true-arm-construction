@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { areaPages } from '~/data/areas'
-import { Phone, Info, Check } from 'lucide-vue-next'
+import { Phone, Info, Check, ShieldCheck } from 'lucide-vue-next'
 import { company, formatPhone } from '~/data/company'
 import { getService, serviceGroups } from '~/data/services'
 import { faqsByCategory, faqsByIds } from '~/data/faqs'
 import { projectsForService } from '~/data/projects'
 import { mediaForService, serviceCover } from '~/data/work'
 import { estimatePath } from '~/data/navigation'
+import { paintingHub } from '~/data/painting'
+import { publishedCredentials } from '~/data/credentials'
 import type { Service } from '~/types'
 
 const route = useRoute()
@@ -26,7 +28,10 @@ const faqItems = (() => {
   const list = [...faqsByCategory(service.faqCategory), ...faqsByIds(service.faqIds ?? [])]
   return list.filter((f, i) => list.findIndex((x) => x.id === f.id) === i).slice(0, 6)
 })()
-const estimateLink = `${estimatePath}?service=${service.slug}`
+// Painting services use the short painting quote form on the hub; everything else uses the planner.
+const isPainting = service.group === 'painting'
+const epa = isPainting ? publishedCredentials.find((c) => c.id === 'epa-lead-safe') : undefined
+const estimateLink = isPainting ? `${paintingHub.path}?service=${service.slug}#quote` : `${estimatePath}?service=${service.slug}`
 const { track } = useAnalytics()
 const path = `/services/${service.slug}`
 const crumbs = [
@@ -62,7 +67,16 @@ useJsonLd([
               <Phone :size="18" aria-hidden="true" /> {{ formatPhone(company.phone) }}
             </AppButton>
           </div>
-          <div class="mt-8"><LicenseTag /></div>
+          <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <LicenseTag />
+            <NuxtLink v-if="epa" to="/licenses-certifications" class="group inline-flex items-center gap-3">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full border border-bronze/50 bg-bronze/5 text-bronze-dark"><ShieldCheck :size="20" aria-hidden="true" /></span>
+              <span class="text-sm leading-tight">
+                <span class="block font-semibold text-ink group-hover:text-bronze-dark">EPA Lead-Safe Certified Firm</span>
+                <span class="text-muted">{{ epa.credentialNumber }}</span>
+              </span>
+            </NuxtLink>
+          </div>
         </div>
         <div class="lg:col-span-5">
           <MediaFrame
@@ -92,10 +106,11 @@ useJsonLd([
         <aside class="lg:col-span-4 lg:col-start-9">
           <div class="rounded bg-ink p-7 text-stone lg:sticky lg:top-[calc(var(--header-offset)+1.5rem)]">
             <p class="text-lg font-bold text-paper">Free estimate</p>
-            <p class="mt-2 text-[0.9375rem] text-stone/75">Tell us about your {{ service.shortName.toLowerCase() }} project in a few short steps. Skip anything you are not sure about.</p>
+            <p class="mt-2 text-[0.9375rem] text-stone/75">{{ isPainting ? 'A short form: what needs painting, roughly how much, and how to reach you.' : `Tell us about your ${service.shortName.toLowerCase()} project in a few short steps. Skip anything you are not sure about.` }}</p>
             <ul class="mt-5 space-y-2 text-[0.9375rem]">
               <li v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />Residential and commercial</li>
               <li class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />CA License #{{ company.license.number }}, Class {{ company.license.classification }}</li>
+              <li v-if="epa" class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" />EPA Lead-Safe Certified Firm</li>
               <li class="flex gap-2"><Check :size="18" class="mt-0.5 shrink-0 text-bronze-light" aria-hidden="true" /><span>Serving <template v-for="(a, i) in areaPages" :key="a.slug"><NuxtLink :to="`/service-areas/${a.slug}`" class="underline decoration-bronze/60 underline-offset-4 hover:decoration-bronze">{{ a.name }}</NuxtLink><template v-if="i < areaPages.length - 2">, </template><template v-else-if="i === areaPages.length - 2"> and </template></template></span></li>
             </ul>
             <AppButton :to="estimateLink" block class="mt-6" track="service_cta_click" :track-label="`${service.slug}_aside`">Start your estimate</AppButton>

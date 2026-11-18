@@ -1,3 +1,4 @@
+import { paintingHub } from '../../data/painting'
 import { company, formatPhone, licenseLabel } from '../../data/company'
 import { enabledServices, serviceGroups, servicesByGroup } from '../../data/services'
 import { areaPages, enabledAreas, areaNames } from '../../data/areas'
@@ -41,10 +42,13 @@ export function llmsTxt(base: string): string {
   const out: string[] = [
     `# ${company.name}`,
     '',
-    `> ${company.name} is a licensed Class B general contractor (CA License #${company.license.number}) serving ${areaNames()}, California. It remodels kitchens and bathrooms, builds room additions, installs flooring and tile, paints interiors and exteriors, builds and repairs fences and gates, replaces and repairs windows, builds gazebos, and handles drywall, dry rot, and handyman repairs for residential and commercial properties. Estimates are free.`,
+    `> ${company.name} is a licensed Class B general contractor (CA License #${company.license.number}) serving ${areaNames()}, California. Its lead service is painting: interior, exterior, cabinet, and commercial painting and deck and fence staining, as an EPA Lead-Safe Certified Firm. It also remodels kitchens and bathrooms, builds room additions, installs flooring and tile, builds and repairs fences and gates, replaces and repairs windows, builds gazebos, and handles drywall, dry rot, and handyman repairs for residential and commercial properties. Estimates are free.`,
     '',
     '## Key facts',
     ...facts(base),
+    '',
+    '## Painting',
+    `- [Painting in Sacramento](${base}${paintingHub.path}): ${paintingHub.metaDescription}`,
     '',
     '## Services'
   ]

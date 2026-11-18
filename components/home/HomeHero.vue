@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ArrowUpRight, Building2, FileCheck2, ShieldCheck } from 'lucide-vue-next'
+import { ArrowUpRight, BadgeCheck, FileCheck2, ShieldCheck } from 'lucide-vue-next'
 import { company } from '~/data/company'
-import { estimatePath } from '~/data/navigation'
+import { paintingHub } from '~/data/painting'
+import { publishedCredentials } from '~/data/credentials'
 
 /**
  * The title block "stamps in" after the house elevation finishes drawing
@@ -9,7 +10,9 @@ import { estimatePath } from '~/data/navigation'
  * with the rest of the hero — it reads as the drawing being signed off.
  * Gated behind IntersectionObserver so it never fires off-screen on mobile.
  */
-const headline = 'Construction and remodeling, built around you.'
+// Painting is the lead service line (client decision, 2026-11); remodeling and repairs follow in the lead.
+const headline = 'Painting done right, inside and out.'
+const epa = publishedCredentials.find((c) => c.id === 'epa-lead-safe')
 const headlineWords = headline.split(' ')
 
 const captionEl = ref<HTMLElement | null>(null)
@@ -45,18 +48,18 @@ onBeforeUnmount(() => observer?.disconnect())
       <div class="intro flex flex-col justify-center lg:col-span-7">
         <p class="intro-item flex items-center gap-3 text-[0.9375rem] font-semibold text-bronze-light" style="--d: 0ms">
           <span class="h-px w-8 bg-bronze" aria-hidden="true" />
-          General contractor in {{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}
+          Painting and construction in {{ company.primaryArea.city }}, {{ company.primaryArea.regionCode }}
         </p>
         <h1 class="mt-6 text-display text-paper" :aria-label="headline">
           <template v-for="(w, i) in headlineWords" :key="i"><span class="word" aria-hidden="true"><span class="word-in" :style="{ '--d': `${120 + i * 55}ms` }">{{ w }}</span></span>{{ ' ' }}</template>
         </h1>
         <p class="intro-item mt-7 max-w-[36rem] text-lead text-stone/85" style="--d: 520ms">
-          Residential and commercial construction, remodeling, and property improvements in Sacramento. From kitchen and
-          bathroom remodels to room additions, flooring, and fences, we help you turn a plan into a finished space.
+          Interior, exterior, cabinet, and commercial painting in Sacramento, with careful prep and lead-safe practices for
+          older homes. The same licensed crew also handles remodeling, flooring, and repairs when your project needs more than paint.
         </p>
         <div class="intro-item mt-9 flex flex-col gap-3 sm:flex-row" style="--d: 640ms">
-          <AppButton :to="estimatePath" size="lg" data-primary-cta track="estimate_cta_click" track-label="hero">Get a Free Estimate</AppButton>
-          <AppButton to="/projects" variant="outline-light" size="lg">View Projects</AppButton>
+          <AppButton :to="`${paintingHub.path}#quote`" size="lg" data-primary-cta track="estimate_cta_click" track-label="hero">Get a Free Painting Estimate</AppButton>
+          <AppButton :to="`${paintingHub.path}#work`" variant="outline-light" size="lg">See Our Painting Work</AppButton>
         </div>
 
         <!-- Trust detail: a credential strip. License leads (full width on mobile), the two facts share a row. -->
@@ -78,13 +81,13 @@ onBeforeUnmount(() => observer?.disconnect())
                 >Verify on CSLB<ArrowUpRight :size="12" aria-hidden="true" /></a>
               </div>
             </div>
-            <div v-if="company.confirmedFacts.residential && company.confirmedFacts.commercial" class="trust-item trust-item--stack border-r border-paper/10">
-              <span class="trust-icon" aria-hidden="true"><Building2 :size="18" /></span>
+            <NuxtLink v-if="epa" to="/licenses-certifications" class="trust-item trust-item--stack group border-r border-paper/10">
+              <span class="trust-icon" aria-hidden="true"><BadgeCheck :size="18" /></span>
               <div>
-                <p class="text-xs font-semibold text-stone/60">Property types</p>
-                <div class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper">Residential &amp; commercial</div>
+                <p class="text-xs font-semibold text-stone/60">EPA certified</p>
+                <div class="mt-1.5 text-[0.9375rem] font-semibold leading-snug text-paper group-hover:text-bronze-light">Lead-Safe Firm</div>
               </div>
-            </div>
+            </NuxtLink>
             <div v-if="company.confirmedFacts.freeEstimates" class="trust-item trust-item--stack">
               <span class="trust-icon" aria-hidden="true"><FileCheck2 :size="18" /></span>
               <div>

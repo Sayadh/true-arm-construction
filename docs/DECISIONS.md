@@ -50,3 +50,14 @@ Add new entries at the top. Format: date, decision, why, consequences.
   awards, insurance, warranties, prices). No `AggregateRating` schema.
 - **Why:** Trust, legal exposure (CSLB/FTC), and Google's policies on self-serving markup.
 - **Consequences:** Missing facts stay `null`/unpublished and are tracked in `BUSINESS-CHECKLIST.md`.
+
+### 2026-11 — Painting-first positioning
+- **Decision:** Painting is the lead service line; remodeling, flooring, and repairs follow.
+  New `painting` service group (interior, exterior, cabinet, commercial, deck & fence staining),
+  a `/painting` hub with its own short estimate form (`PaintingQuoteForm`, `form: 'painting-quote'`),
+  a painting-first homepage hero and spotlight (`HomePainting`), and a "Painting" header link.
+- **Why:** Owner's business priority. The EPA Lead-Safe certification is a real differentiator for
+  Sacramento's many pre-1978 homes, so it is shown next to every painting CTA.
+- **Consequences:** No paint brands, warranties, prices, or durations until the owner confirms them.
+  Painting estimate submissions fire `painting_quote_submit` (a lead/conversion event).
+  Homepage photos in the spotlight are real jobs only (picked by work media id).

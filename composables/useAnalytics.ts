@@ -17,6 +17,8 @@ export type AnalyticsEvent =
   | 'planner_step'
   | 'planner_submit'
   | 'navigator_recommendation'
+  | 'painting_quote_start'
+  | 'painting_quote_submit'
 
 type SafeParams = Record<string, string | number | boolean | undefined>
 
@@ -27,7 +29,7 @@ declare global {
   }
 }
 
-const LEAD_EVENTS: AnalyticsEvent[] = ['contact_form_submit', 'planner_submit']
+const LEAD_EVENTS: AnalyticsEvent[] = ['contact_form_submit', 'planner_submit', 'painting_quote_submit']
 
 export function useAnalytics() {
   const config = useRuntimeConfig().public
