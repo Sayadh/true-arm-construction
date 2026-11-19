@@ -49,10 +49,6 @@ useJsonLd([
               Is your property nearby but not listed? Include your ZIP code when you request an estimate, and we will let you know whether we can
               take on the project.
             </p>
-            <p>
-              Permits are issued by different offices depending on the address: the City of Sacramento, the City of West Sacramento, or Sacramento
-              County for unincorporated communities such as Carmichael. Each area page explains which one applies.
-            </p>
           </div>
           <div class="mt-8"><AppButton to="/free-estimate" track="estimate_cta_click" track-label="service_areas">Check your project</AppButton></div>
         </div>
