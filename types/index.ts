@@ -34,7 +34,7 @@ export interface CompanyConfig {
   /** Primary service area as shown to visitors */
   primaryArea: { city: string; region: string; regionCode: string; country: string }
   /** Leave null until real values are supplied. Null values are never rendered as links. */
-  /** Main number for calls and texts (E.164) */
+  /** Main number for calls (E.164) */
   phone: string | null
   /** Second number for text messages only (E.164). Rendered as an sms: link. */
   textPhone: string | null

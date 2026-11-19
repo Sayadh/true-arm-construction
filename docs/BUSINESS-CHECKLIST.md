@@ -6,7 +6,7 @@ Last reviewed: 2026-11-04.
 ## Done
 - [x] CSLB license #1128503 confirmed active → `license.statusConfirmed: true`, `statusCheckedOn` (`data/company.ts`)
 - [x] Legal business name → `legalName`
-- [x] Phones: (213) 248-1760 call/text → `phone`; (213) 248-1273 text only → `textPhone`
+- [x] Phones: (916) 599-1105 main, calls only → `phone` (was (213) 248-1760 until 2026-11); (213) 248-1273 text only → `textPhone`
 - [x] Email → `email`
 - [x] Business hours (Mon–Fri 7 AM – 7 PM) → `hours`
 - [x] Instagram, Facebook, Google Business Profile → `social`

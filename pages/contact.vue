@@ -38,7 +38,7 @@ const { track } = useAnalytics()
               <li v-if="company.phone" class="flex items-center gap-3">
                 <Phone :size="20" class="text-bronze-dark" aria-hidden="true" />
                 <a :href="`tel:${company.phone}`" class="font-semibold text-ink underline decoration-bronze underline-offset-4" @click="track('phone_click', { label: 'contact_page' })">{{ formatPhone(company.phone) }}</a>
-                <span class="text-sm text-muted">call or text</span>
+                <span class="text-sm text-muted">call</span>
               </li>
               <li v-if="company.textPhone" class="flex items-center gap-3">
                 <MessageSquare :size="20" class="text-bronze-dark" aria-hidden="true" />

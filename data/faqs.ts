@@ -441,7 +441,7 @@ export const faqs: FaqItem[] = [
     category: 'estimates',
     question: 'Can I text you photos of my project?',
     answer: [
-      'Yes. Photos of the space, the damage, or the area you want to change help us understand the project before a site visit. Text them to (213) 248-1273 or (213) 248-1760 with a short description and your ZIP code. You can also describe the project in the [project planner](/free-estimate).'
+      'Yes. Photos of the space, the damage, or the area you want to change help us understand the project before a site visit. Text them to (213) 248-1273 with a short description and your ZIP code. You can also describe the project in the [project planner](/free-estimate).'
     ]
   },
   {

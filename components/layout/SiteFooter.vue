@@ -20,7 +20,7 @@ const groups = serviceGroups.map((g) => ({ ...g, items: servicesByGroup(g.id) })
         <ul class="mt-6 space-y-2 text-[0.9375rem]">
           <li v-if="company.phone">
             <a :href="`tel:${company.phone}`" class="font-semibold text-paper hover:underline" @click="track('phone_click', { label: 'footer' })">{{ formatPhone(company.phone) }}</a>
-            <span class="text-stone/60"> · call or text</span>
+            <span class="text-stone/60"> · call</span>
           </li>
           <li v-if="company.textPhone">
             <a :href="`sms:${company.textPhone}`" class="font-semibold text-paper hover:underline" @click="track('sms_click', { label: 'footer' })">{{ formatPhone(company.textPhone) }}</a>

@@ -45,6 +45,6 @@ After the first production deploy:
 - Keep Name, phone, and service area identical on the site, Google Business Profile, Yelp, Thumbtack, and Facebook.
 
 ## Off-site work with the biggest impact
-1. Google Business Profile: primary category "General contractor", add secondary categories that match the services (Kitchen remodeler, Bathroom remodeler, Painter, Fence contractor, Handyman), set the service areas to the same three cities, add phone (213) 248-1760, website, hours, and photos of real jobs every month.
+1. Google Business Profile: primary category "General contractor", add secondary categories that match the services (Kitchen remodeler, Bathroom remodeler, Painter, Fence contractor, Handyman), set the service areas to the same three cities, add phone (916) 599-1105 (main line since 2026-11; update the profile too), website, hours, and photos of real jobs every month.
 2. Ask every finished customer for a Google review with the "Ask for reviews" link; reply to every review.
 3. Add the website link to Yelp, Thumbtack, Facebook, Instagram, and the CSLB-listed business details.

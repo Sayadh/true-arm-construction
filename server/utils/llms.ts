@@ -23,7 +23,7 @@ function facts(base: string): string[] {
     `- Property types: ${[company.confirmedFacts.residential && 'residential', company.confirmedFacts.commercial && 'commercial'].filter(Boolean).join(' and ')}`,
     company.confirmedFacts.freeEstimates ? `- Estimates: free, project-specific. Request one at ${base}/free-estimate` : ''
   ]
-  if (company.phone) lines.push(`- Phone (calls and texts): ${formatPhone(company.phone)}`)
+  if (company.phone) lines.push(`- Phone (calls): ${formatPhone(company.phone)}`)
   if (company.textPhone) lines.push(`- Phone (texts only): ${formatPhone(company.textPhone)}`)
   if (company.email) lines.push(`- Email: ${company.email}`)
   if (company.hours?.length) lines.push(`- Hours: ${company.hours.map((h) => `${h.days} ${h.hours}`).join('; ')}`)

@@ -19,7 +19,7 @@ export const company: CompanyConfig = {
 
   primaryArea: { city: 'Sacramento', region: 'California', regionCode: 'CA', country: 'US' },
 
-  phone: '+12132481760', // calls and texts
+  phone: '+19165991105', // main line, calls only (client, 2026-11)
   textPhone: '+12132481273', // texts only
   email: 'truearmconstruction@gmail.com',
   address: null, // Only add a real, public business address. Never a placeholder.
